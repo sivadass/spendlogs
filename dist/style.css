@@ -1,4 +1,4 @@
-/* line 1, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 1, ../src/sass/base/_reset.scss */
 body {
   margin: 0;
   padding: 0;
@@ -8,40 +8,31 @@ body {
   background: #f5f5f5;
 }
 
-/* line 10, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 10, ../src/sass/base/_reset.scss */
 input,
 button {
   font-family: inherit;
   font-size: inherit;
 }
 
-/* line 15, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 15, ../src/sass/base/_reset.scss */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* line 19, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 19, ../src/sass/base/_reset.scss */
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* line 22, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 22, ../src/sass/base/_reset.scss */
 strong {
   font-weight: 700;
 }
 
-/* line 25, C:/wamp64/www/examples/expense/src/sass/base/_reset.scss */
+/* line 25, ../src/sass/base/_reset.scss */
 #root {
   background: #fff;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-/* line 1, C:/wamp64/www/examples/expense/src/sass/layouts/_home.scss */
-.container {
-  text-align: center;
-  padding: 32px 0;
 }
