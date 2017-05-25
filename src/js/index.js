@@ -6,13 +6,13 @@ class App extends React.Component{
     return(
       <div className="container">
         <header className="header">
-          <h1>Welcome!</h1>
+          <h1>Project under construction!</h1>
         </header>
         <div className="main">
-          <p>App contents.</p>
+          <p>The project is in design phase, please check the folder named <strong>design</strong> in root to view the progression as mocks.</p>
         </div>
         <footer className="footer">
-          &copy; Acme Ltd. 2017
+          &copy; React Expense Manager 2017
         </footer>
       </div>
     )
