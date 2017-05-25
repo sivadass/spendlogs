@@ -5,7 +5,15 @@ class App extends React.Component{
   render(){
     return(
       <div className="container">
-        <h1>Hola</h1>
+        <header className="header">
+          <h1>Welcome!</h1>
+        </header>
+        <div className="main">
+          <p>App contents.</p>
+        </div>
+        <footer className="footer">
+          &copy; Acme Ltd. 2017
+        </footer>
       </div>
     )
   }
