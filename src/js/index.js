@@ -9,7 +9,7 @@ class App extends React.Component{
           <h1>Project under construction!</h1>
         </header>
         <div className="main">
-          <p>The project is in design phase, please check the folder named <strong>design</strong> in root to view the progression as mocks.</p>
+          <p>The project is in design phase, please check the folder named <a href="https://github.com/sivadass/react-expense-manager/tree/master/design"><strong>design</strong></a> in root to view the progression as mocks.</p>
         </div>
         <footer className="footer">
           &copy; React Expense Manager 2017
