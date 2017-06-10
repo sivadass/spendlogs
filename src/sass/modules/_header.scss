@@ -4,12 +4,12 @@ header{
 	display: flex;
 	display: -webkit-flex;
 	@media (max-width: 768px){
-			padding: 8px;
+		padding: 8px;
 	}
 	a{
-			color: $white;
-			text-decoration: none;
-			padding: 12px;
+		color: $white;
+		text-decoration: none;
+		padding: 12px;
 	}
 }
 .left-links,
