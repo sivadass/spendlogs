@@ -97,29 +97,24 @@ button {
 /* line 1, ../src/sass/modules/_header.scss */
 header {
   background: #1976d3;
-  padding: 16px 64px;
+  padding: 8px 64px;
   display: flex;
   display: -webkit-flex;
 }
 @media (max-width: 768px) {
   /* line 1, ../src/sass/modules/_header.scss */
   header {
-    padding: 16px;
-  }
-}
-@media (max-width: 480px) {
-  /* line 1, ../src/sass/modules/_header.scss */
-  header {
     padding: 8px;
   }
 }
-/* line 12, ../src/sass/modules/_header.scss */
+/* line 9, ../src/sass/modules/_header.scss */
 header a {
   color: white;
   text-decoration: none;
+  padding: 12px;
 }
 
-/* line 18, ../src/sass/modules/_header.scss */
+/* line 16, ../src/sass/modules/_header.scss */
 .left-links,
 .right-links {
   display: flex;
@@ -130,19 +125,30 @@ header a {
   -webkit-align-items: center;
 }
 
-/* line 26, ../src/sass/modules/_header.scss */
+/* line 24, ../src/sass/modules/_header.scss */
 .right-links {
   margin-left: auto;
 }
 
-/* line 29, ../src/sass/modules/_header.scss */
+/* line 28, ../src/sass/modules/_header.scss */
+.logo {
+  font-size: 21px;
+}
+
+/* line 32, ../src/sass/modules/_header.scss */
 .cta-button {
   color: white;
   background: #f0b114;
   border: none;
 }
-/* line 33, ../src/sass/modules/_header.scss */
+/* line 36, ../src/sass/modules/_header.scss */
 .cta-button i {
   font-size: 20px;
   margin-right: 8px;
+}
+
+/* line 43, ../src/sass/modules/_header.scss */
+.search-button,
+.more-button {
+  margin-left: 16px;
 }

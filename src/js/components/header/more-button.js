@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MoreButton = () => (
-  <a href="#"><i className="material-icons">more_vert</i></a>
+  <a className="more-button" href="#"><i className="material-icons">more_vert</i></a>
 )
 
 export default MoreButton;

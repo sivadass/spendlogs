@@ -1,31 +1,34 @@
 header{
 	background: $blue-dark;
-	padding: 16px 64px;
+	padding: 8px 64px;
 	display: flex;
 	display: -webkit-flex;
 	@media (max-width: 768px){
-			padding: 16px;
-	}
-	@media (max-width: 480px){
 			padding: 8px;
 	}
 	a{
 			color: $white;
 			text-decoration: none;
+			padding: 12px;
 	}
 }
 .left-links,
-	.right-links{
-		display: flex;
-		display: -webkit-flex;
-		justify-content: space-between;
-		-webkit-justify-content: space-between;
-		align-items: center;
-		-webkit-align-items: center;
-	}
-	.right-links{
-		margin-left: auto;
-	}
+.right-links{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	align-items: center;
+	-webkit-align-items: center;
+}
+.right-links{
+	margin-left: auto;
+}
+
+.logo{
+	font-size: 21px;
+}
+
 .cta-button{
 	color: $white;
 	background: $yellow;
@@ -34,4 +37,9 @@ header{
 			font-size: 20px;
 			margin-right: 8px;
 	}
+}
+
+.search-button,
+.more-button{
+	margin-left: 16px;
 }

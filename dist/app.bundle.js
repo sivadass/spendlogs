@@ -22271,7 +22271,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var MoreButton = function MoreButton() {
   return _react2.default.createElement(
     "a",
-    { href: "#" },
+    { className: "more-button", href: "#" },
     _react2.default.createElement(
       "i",
       { className: "material-icons" },
@@ -22335,7 +22335,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Search = function Search() {
   return _react2.default.createElement(
     "a",
-    { href: "#" },
+    { className: "search-button", href: "#" },
     _react2.default.createElement(
       "i",
       { className: "material-icons" },
@@ -22366,7 +22366,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Logo = function Logo() {
   return _react2.default.createElement(
     "a",
-    { href: "#" },
+    { className: "logo", href: "#" },
     "React Expense Manager"
   );
 };
