@@ -1,4 +1,11 @@
 /* line 1, ../src/sass/base/_reset.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 6, ../src/sass/base/_reset.scss */
 body {
   margin: 0;
   padding: 0;
@@ -8,31 +15,31 @@ body {
   background: #f5f5f5;
 }
 
-/* line 10, ../src/sass/base/_reset.scss */
+/* line 15, ../src/sass/base/_reset.scss */
 input,
 button {
   font-family: inherit;
   font-size: inherit;
 }
 
-/* line 15, ../src/sass/base/_reset.scss */
+/* line 20, ../src/sass/base/_reset.scss */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* line 19, ../src/sass/base/_reset.scss */
+/* line 24, ../src/sass/base/_reset.scss */
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* line 22, ../src/sass/base/_reset.scss */
+/* line 27, ../src/sass/base/_reset.scss */
 strong {
   font-weight: 700;
 }
 
-/* line 25, ../src/sass/base/_reset.scss */
+/* line 30, ../src/sass/base/_reset.scss */
 #root {
   background: #fff;
 }
@@ -68,4 +75,74 @@ strong {
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+/* line 1, ../src/sass/components/_buttons.scss */
+button {
+  border: 1px solid #ccc;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+/* line 1, ../src/sass/modules/_header.scss */
+header {
+  background: #1976d3;
+  padding: 16px 64px;
+  display: flex;
+  display: -webkit-flex;
+}
+@media (max-width: 768px) {
+  /* line 1, ../src/sass/modules/_header.scss */
+  header {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  /* line 1, ../src/sass/modules/_header.scss */
+  header {
+    padding: 8px;
+  }
+}
+/* line 12, ../src/sass/modules/_header.scss */
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 18, ../src/sass/modules/_header.scss */
+.left-links,
+.right-links {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+/* line 26, ../src/sass/modules/_header.scss */
+.right-links {
+  margin-left: auto;
+}
+
+/* line 29, ../src/sass/modules/_header.scss */
+.cta-button {
+  color: white;
+  background: #f0b114;
+  border: none;
+}
+/* line 33, ../src/sass/modules/_header.scss */
+.cta-button i {
+  font-size: 20px;
+  margin-right: 8px;
 }

@@ -22141,7 +22141,7 @@ module.exports = traverseAllChildren;
 
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22153,6 +22153,10 @@ var _react2 = _interopRequireDefault(_react);
 var _menuButton = __webpack_require__(225);
 
 var _menuButton2 = _interopRequireDefault(_menuButton);
+
+var _logo = __webpack_require__(230);
+
+var _logo2 = _interopRequireDefault(_logo);
 
 var _addButton = __webpack_require__(228);
 
@@ -22175,39 +22179,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Header = function (_React$Component) {
-		_inherits(Header, _React$Component);
+	_inherits(Header, _React$Component);
 
-		function Header(props) {
-				_classCallCheck(this, Header);
+	function Header(props) {
+		_classCallCheck(this, Header);
 
-				var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
-				_this.state = {
-						name: "Vanakam"
-				};
-				return _this;
+		_this.state = {
+			name: "Vanakam"
+		};
+		return _this;
+	}
+
+	_createClass(Header, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'header',
+				null,
+				_react2.default.createElement(
+					'div',
+					{ className: 'left-links' },
+					_react2.default.createElement(_menuButton2.default, null),
+					_react2.default.createElement(_logo2.default, null)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'right-links' },
+					_react2.default.createElement(_addButton2.default, null),
+					_react2.default.createElement(_searchButton2.default, null),
+					_react2.default.createElement(_moreButton2.default, null)
+				)
+			);
 		}
+	}]);
 
-		_createClass(Header, [{
-				key: 'render',
-				value: function render() {
-						return _react2.default.createElement(
-								'header',
-								null,
-								_react2.default.createElement(_menuButton2.default, null),
-								_react2.default.createElement(
-										'span',
-										null,
-										'Expense Manager'
-								),
-								_react2.default.createElement(_addButton2.default, null),
-								_react2.default.createElement(_searchButton2.default, null),
-								_react2.default.createElement(_moreButton2.default, null)
-						);
-				}
-		}]);
-
-		return Header;
+	return Header;
 }(_react2.default.Component);
 
 exports.default = Header;
@@ -22295,7 +22303,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var AddButton = function AddButton() {
   return _react2.default.createElement(
     "button",
-    { type: "button" },
+    { className: "cta-button", type: "button" },
     _react2.default.createElement(
       "i",
       { className: "material-icons" },
@@ -22337,6 +22345,33 @@ var Search = function Search() {
 };
 
 exports.default = Search;
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Logo = function Logo() {
+  return _react2.default.createElement(
+    "a",
+    { href: "#" },
+    "React Expense Manager"
+  );
+};
+
+exports.default = Logo;
 
 /***/ })
 /******/ ]);

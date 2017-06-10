@@ -1,0 +1,37 @@
+header{
+	background: $blue-dark;
+	padding: 16px 64px;
+	display: flex;
+	display: -webkit-flex;
+	@media (max-width: 768px){
+			padding: 16px;
+	}
+	@media (max-width: 480px){
+			padding: 8px;
+	}
+	a{
+			color: $white;
+			text-decoration: none;
+	}
+}
+.left-links,
+	.right-links{
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-between;
+		-webkit-justify-content: space-between;
+		align-items: center;
+		-webkit-align-items: center;
+	}
+	.right-links{
+		margin-left: auto;
+	}
+.cta-button{
+	color: $white;
+	background: $yellow;
+	border: none;
+	i{
+			font-size: 20px;
+			margin-right: 8px;
+	}
+}
