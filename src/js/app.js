@@ -7,9 +7,6 @@ import DataTable from './components/data-table/index';
 class App extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      name: "Vanakam"
-    };
   }
   render() {
     return(
