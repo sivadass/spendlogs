@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Logo = () => (
-  <a className="logo" href="#">React Expense Manager</a>
+  <a className="logo" href="#">My Expenses</a>
 )
 
 export default Logo;

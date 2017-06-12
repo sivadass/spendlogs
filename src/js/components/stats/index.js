@@ -10,7 +10,13 @@ class Stats extends React.Component{
   render() {
 		return(
       <div className="stats">
-        Stats
+        <div className="total-expense">
+          <p className="total-expense-label">SPENDING THIS MONTH</p>
+          <h1 className="total-expense-amount currency-symbol">16,500</h1>
+        </div>
+        <div className="graph">
+          D3.JS Graph will come here..!
+        </div>
       </div>
 		)
   }
