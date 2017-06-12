@@ -1,0 +1,34 @@
+.form-group{
+  margin: 24px 0;
+  position: relative;
+}
+.form-control{
+  display: block;
+  width: 100%;
+  border-width: 0  0 1px 0;
+  border-bottom-style: solid;
+  border-bottom-color: #ccc;
+  height: 36px;
+  line-height: 36px;
+  outline: none;
+  z-index: 2;
+}
+.form-label{
+  display: block;
+  height: 36px;
+  line-height: 36px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all .2s ease-in;
+}
+.form-control:focus + .form-label{
+  font-size: 12px;
+  transform: translate(0, -24px);
+  color: #ccc;
+}
+.form-action{
+  display: flex;
+  display: -webkit-flex;
+}
