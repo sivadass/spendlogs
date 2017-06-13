@@ -25,4 +25,18 @@
   background: $white;
   margin: 16px;
   padding: 16px;
+  position: relative;
+}
+.close{
+  display: block;
+  position: absolute;
+  width: 36px;
+  padding: 0;
+  margin: 0;
+  height: 36px;
+  top: -15px;
+  right: -15px;
+  line-height: 36px;
+  border-radius: 50%;
+  text-align: center;
 }
