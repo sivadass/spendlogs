@@ -1,4 +1,6 @@
 import React from 'react';
+import DataFilter from './data-filter';
+import Table from './table';
 
 class DataTable extends React.Component{
   constructor(props) {
@@ -10,7 +12,8 @@ class DataTable extends React.Component{
   render() {
 		return(
       <div className="data-table">
-        Table
+        <DataFilter />
+        <Table />
       </div>
 		)
   }

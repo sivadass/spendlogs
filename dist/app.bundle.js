@@ -9604,6 +9604,14 @@ var _react = __webpack_require__(9);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _dataFilter = __webpack_require__(192);
+
+var _dataFilter2 = _interopRequireDefault(_dataFilter);
+
+var _table = __webpack_require__(193);
+
+var _table2 = _interopRequireDefault(_table);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9627,12 +9635,13 @@ var DataTable = function (_React$Component) {
   }
 
   _createClass(DataTable, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
-        { className: "data-table" },
-        "Table"
+        'div',
+        { className: 'data-table' },
+        _react2.default.createElement(_dataFilter2.default, null),
+        _react2.default.createElement(_table2.default, null)
       );
     }
   }]);
@@ -22648,6 +22657,141 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(9);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DataTable = function DataTable(props) {
+  return _react2.default.createElement(
+    'ul',
+    null,
+    _react2.default.createElement(
+      'li',
+      null,
+      'Today'
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      'This Week'
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      'This Month'
+    )
+  );
+};
+
+exports.default = DataTable;
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+
+var _react = __webpack_require__(9);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Table = function Table(props) {
+   return _react2.default.createElement(
+      'table',
+      null,
+      _react2.default.createElement(
+         'thead',
+         null,
+         _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+               'th',
+               null,
+               'Month'
+            ),
+            _react2.default.createElement(
+               'th',
+               null,
+               'Savings'
+            )
+         )
+      ),
+      _react2.default.createElement(
+         'tfoot',
+         null,
+         _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+               'td',
+               null,
+               'Sum'
+            ),
+            _react2.default.createElement(
+               'td',
+               null,
+               '180'
+            )
+         )
+      ),
+      _react2.default.createElement(
+         'tbody',
+         null,
+         _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+               'td',
+               null,
+               'January'
+            ),
+            _react2.default.createElement(
+               'td',
+               null,
+               '100'
+            )
+         ),
+         _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+               'td',
+               null,
+               'February'
+            ),
+            _react2.default.createElement(
+               'td',
+               null,
+               '80'
+            )
+         )
+      )
+   );
+};
+
+exports.default = Table;
 
 /***/ })
 /******/ ]);
