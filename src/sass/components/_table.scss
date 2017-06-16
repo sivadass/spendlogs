@@ -17,8 +17,14 @@
     }
   }
   tbody{
+    tr:nth-child(even){background-color: #f2f2f2}
     td{
       padding: 8px 16px;
+      &.data-category{
+        padding-right: 0;
+        width: 54px;
+        opacity: 0.66;
+      }
       &.data-amount{
         text-align: right;
       }
