@@ -5,7 +5,8 @@
   thead{
     background: #eee;
     th{
-      padding: 8px 16px;
+      padding: 16px;
+      font-weight: normal;
       &.data-payee,
       &.data-date,
       &.data-comment{
