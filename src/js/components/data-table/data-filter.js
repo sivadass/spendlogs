@@ -3,9 +3,9 @@ import React from 'react';
 const DataTable = (props) => (
   <div>
     <ul>
-      <li><a href="#">Today</a></li>
-      <li><a href="#">This Week</a></li>
-      <li><a href="#">This Month</a></li>
+      <li><a className="filter-button active" href="#">Today</a></li>
+      <li><a className="filter-button" href="#">This Week</a></li>
+      <li><a className="filter-button" href="#">This Month</a></li>
     </ul>
     <div className="custom-duration">
       <div className="form-group">
