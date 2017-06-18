@@ -1,5 +1,5 @@
 import React from 'react';
-import DataFilter from './data-filter';
+import Filter from './filter';
 import Table from './table';
 
 class DataTable extends React.Component{
@@ -12,7 +12,7 @@ class DataTable extends React.Component{
   render() {
 		return(
       <div className="data-table">
-        <DataFilter />
+        <Filter />
         <Table />
       </div>
 		)
