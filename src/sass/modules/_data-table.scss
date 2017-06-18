@@ -17,8 +17,10 @@
   .form-group{
     display: inline-block;
     margin: 0 0 0 16px;
+    border-bottom: 1px solid $blue;
+    height: 32px;
     .form-control{
-      border-bottom-color: $blue;
+      border-bottom: none;
       background: #f5f5f5;
     }
     .form-label{
@@ -35,7 +37,7 @@
 .filter-button{
   margin-right: 16px;
   display: block;
-  padding: 8px 16px;
+  padding: 4px 16px;
   //background: $white;
   border: 1px solid $blue;
   border-radius: 3px;

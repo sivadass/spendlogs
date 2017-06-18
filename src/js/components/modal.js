@@ -1,4 +1,5 @@
 import React from 'react';
+import FormControl from './form-control';
 
 class Modal extends React.Component{
   constructor(props) {
@@ -12,7 +13,18 @@ class Modal extends React.Component{
       <div className={this.props.modalActive ? "modal active" : "modal"}>
         <div className="modal-body">
           <button className="close" onClick={this.props.closeAddModal}>&times;</button>
-          <form>
+          <div>
+            <FormControl type={"text"} label={"Payee"} />
+            <FormControl type={"select"} label={"Category"}>
+              <option></option>
+              <option>Clothes</option>
+              <option>Electricity</option>
+              <option>Food</option>
+            </FormControl>
+            <FormControl type={"number"} label={"Amount"} />
+            <FormControl type={"textarea"} label={"Comment"} />
+          </div>
+          {/*<form>
             <p>* fileds are required!</p>
             <div className="form-group">
               <input className="form-control" type="text" id="payee" placeholder="Enter Payee"/>
@@ -44,7 +56,7 @@ class Modal extends React.Component{
               <button type="reset">RESET</button>
               <button type="submit">SAVE</button>
             </div>
-          </form>
+          </form>*/}
         </div>
       </div>
     )

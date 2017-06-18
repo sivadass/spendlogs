@@ -1,4 +1,4 @@
-.form-group{
+.input-group{
   margin: 24px 0;
   position: relative;
 }
@@ -23,7 +23,9 @@
   left: 0;
   transition: all .2s ease-in;
 }
-.form-control:focus + .form-label{
+.form-control:focus + .form-label,
+.form-control.has-value + .form-label,
+{
   font-size: 12px;
   transform: translate(0, -24px);
   color: #ccc;
