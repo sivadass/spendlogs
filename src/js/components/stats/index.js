@@ -1,4 +1,6 @@
 import React from 'react';
+import Trend from 'react-trend';
+import Graph from './graph';
 
 class Stats extends React.Component{
   constructor(props) {
@@ -15,7 +17,7 @@ class Stats extends React.Component{
           <h1 className="total-expense-amount currency-symbol">16,500</h1>
         </div>
         <div className="graph">
-          D3.JS Graph will come here..!
+          <Graph/>
         </div>
       </div>
 		)
