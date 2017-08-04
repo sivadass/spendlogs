@@ -37,6 +37,7 @@ class Header extends React.Component{
 					<AddButton openModal={this.openAddModal}/>
 					<SearchButton />
 					<MoreButton />
+					<p>{this.props.count}</p>
 				</div>
 			</header>
 		)
