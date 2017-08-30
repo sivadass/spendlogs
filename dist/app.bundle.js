@@ -31562,7 +31562,9 @@ var App = function (_React$Component) {
             { key: item.id },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: '/expense-details', id: item.id },
+              {
+                to: '/expense-details/' + item.id
+              },
               _react2.default.createElement(
                 'span',
                 null,
@@ -31867,6 +31869,7 @@ var ExpenseDetails = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ExpenseDetails.__proto__ || Object.getPrototypeOf(ExpenseDetails)).call(this, props));
 
     _this.state = {
+      expenseID: _this.props.match.params.value,
       details: []
     };
     return _this;
@@ -31888,26 +31891,17 @@ var ExpenseDetails = function (_React$Component) {
   }, {
     key: 'fetchExpenseDetails',
     value: function fetchExpenseDetails() {
-      var ref = _firebase2.default.database().ref('expenses');
-      var self = this;
-      // ref.on('value', snapshot => {
-      //   var expenseData = [];
-      //   snapshot.forEach(function(childSnapshot) {
-      //     var childData = childSnapshot.val();
-      //     expenseData.push(childData);
-      //   });
-      //   self.setState({details: expenseData});
-      // })
-      console.log(this.props.id);
-      var detailExpenseRef = _firebase2.default.database().ref('expenses/' + this.props.id);
-      detailExpenseRef.on('value', function (snapshot) {
+      var expenseURL = 'expenses/' + this.state.expenseID;
+      var id = this.state.expenseID;
+      console.log(expenseURL);
+      var detailExpenseRef = _firebase2.default.database().ref('expenses/' + id);
+      detailExpenseRef.once('value', function (snapshot) {
         console.log(snapshot.val());
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.state.details);
       return _react2.default.createElement(
         'ul',
         { className: 'container' },
@@ -31920,6 +31914,11 @@ var ExpenseDetails = function (_React$Component) {
           'h1',
           null,
           '2600'
+        ),
+        _react2.default.createElement(
+          'h2',
+          null,
+          this.props.match.params.value
         )
       );
     }
@@ -32090,7 +32089,7 @@ _reactDom2.default.render(_react2.default.createElement(
         ),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/add-expense', component: _addExpense2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/expense-details', component: _expenseDetails2.default })
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/expense-details/:value', component: _expenseDetails2.default })
       )
     )
   )

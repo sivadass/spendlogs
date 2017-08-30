@@ -45,7 +45,9 @@ class App extends React.Component{
     if(expenseArr.length > 0){
       renderExpenseItems = expenseArr.map((item, key = item.id) => (
         <li key={item.id}>
-          <Link to="/expense-details" id={item.id}>
+          <Link 
+            to = {`/expense-details/${ item.id }`}
+          >
             <span>{item.category}</span> {item.payee} <strong>{item.amount}</strong> <span>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</span>
           </Link>
           <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button>

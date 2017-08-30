@@ -41,7 +41,7 @@ ReactDOM.render(
         </header>
         <Route exact path="/" component={App}/>
         <Route path="/add-expense" component={AddExpense}/>
-        <Route path="/expense-details" component={ExpenseDetails}/>
+        <Route path="/expense-details/:value" component={ExpenseDetails}/>
       </div>
       </Router>
     </div>
