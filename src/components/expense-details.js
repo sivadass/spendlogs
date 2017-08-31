@@ -19,20 +19,23 @@ class ExpenseDetails extends React.Component{
   }
   // Load Initial Data
   fetchExpenseDetails(){
-    var expenseURL = `expenses/${this.state.expenseID}`;
-    let id = this.state.expenseID;
-    console.log(expenseURL);
-    var detailExpenseRef = firebase.database().ref('expenses/' + id);
+    let that = this;
+    var expenseURL = "expenses/"+this.state.expenseID;
+    var detailExpenseRef = firebase.database().ref(expenseURL);
     detailExpenseRef.once('value', function(snapshot) {
-      console.log(snapshot.val());
+      that.setState({
+        details: snapshot.val()
+      })
     });
   }
   render(){
     return(
       <ul className="container">
-        <h3>Kumaran Silks</h3>
-        <h1>2600</h1>
-        <h2>{this.props.match.params.value}</h2>
+        <h3>{this.state.details.payee}</h3>
+        <h1>{this.state.details.amount}</h1>
+        <p>{moment(this.state.details.date).format("hh.mm A, DD/MM/YYYY")}</p>
+        <p>{this.state.details.category}</p>
+        {this.state.details.comment ? <p>{this.state.details.comment}</p> : ""}
       </ul>
     )
   }

@@ -3,16 +3,18 @@ import firebase from 'firebase';
 // Add an Item
 export function postExpense(payee, amount, category, comment){
   return dispatch => {
-    var ref = firebase.database().ref('expenses');
-    var key = ref.push().key;
-    ref.push().set({
-      id: key,
-      payee: payee,
-      amount: amount,
-      category: category,
-      comment: comment,
-      date: firebase.database.ServerValue.TIMESTAMP
-    })
+    var ref = firebase.database().ref('expenses').push();
+    var id = ref.key;
+    ref.set(
+      {
+        id: id,
+        payee: payee,
+        amount: amount,
+        category: category,
+        comment: comment,
+        date: firebase.database.ServerValue.TIMESTAMP
+      }
+    )
   }
 }
 
