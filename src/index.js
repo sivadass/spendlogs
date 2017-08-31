@@ -33,7 +33,7 @@ let store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <div className="container">
+    <div className="wrapper">
       <Router>
       <div className="app">
         <header>

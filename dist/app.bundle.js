@@ -32008,7 +32008,7 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: store },
   _react2.default.createElement(
     'div',
-    { className: 'container' },
+    { className: 'wrapper' },
     _react2.default.createElement(
       _reactRouterDom.HashRouter,
       null,
