@@ -68,6 +68,23 @@ ul {
     border-bottom: 1px solid #eee;
     padding: 8px 0; }
 
+table {
+  width: 100%;
+  border-collapse: collapse; }
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+  background: #eee; }
+
+th {
+  background: #333;
+  color: white;
+  font-weight: bold; }
+
+td, th {
+  padding: 6px;
+  text-align: left; }
+
 header {
   background: #087bff;
   padding: 16px 64px;

@@ -31550,45 +31550,38 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var expenseArr = this.state.expenses;
       var renderExpenseItems = void 0;
       if (expenseArr.length > 0) {
         renderExpenseItems = expenseArr.map(function (item) {
           var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : item.id;
           return _react2.default.createElement(
-            'li',
+            'tr',
             { key: item.id },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              {
-                to: '/expense-details/' + item.id
-              },
-              _react2.default.createElement(
-                'span',
-                null,
-                item.category
-              ),
-              ' ',
-              item.payee,
-              ' ',
-              _react2.default.createElement(
-                'strong',
-                null,
-                item.amount
-              ),
-              ' ',
-              _react2.default.createElement(
-                'span',
-                null,
-                (0, _moment2.default)(item.date).format("hh.mm A, DD/MM/YYYY")
-              )
+              'td',
+              null,
+              item.category
             ),
             _react2.default.createElement(
-              'button',
-              { className: 'button-inline', onClick: _this2.removeExpense.bind(_this2, item.id) },
-              'Remove'
+              'td',
+              null,
+              item.payee
+            ),
+            _react2.default.createElement(
+              'td',
+              null,
+              (0, _moment2.default)(item.date).format("hh.mm A, DD/MM/YYYY")
+            ),
+            _react2.default.createElement(
+              'td',
+              null,
+              item.comment
+            ),
+            _react2.default.createElement(
+              'td',
+              null,
+              item.amount
             )
           );
         });
@@ -31604,9 +31597,37 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'thead',
             null,
-            _react2.default.createElement('th', null)
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement('th', null),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Payee'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Date'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Comment'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Amount'
+              )
+            )
           ),
-          renderExpenseItems
+          _react2.default.createElement(
+            'tbody',
+            null,
+            renderExpenseItems
+          )
         )
       );
     }

@@ -44,14 +44,18 @@ class App extends React.Component{
     let renderExpenseItems;
     if(expenseArr.length > 0){
       renderExpenseItems = expenseArr.map((item, key = item.id) => (
-        <li key={item.id}>
-          <Link 
+        <tr key={item.id}>
+          {/* <Link 
             to = {`/expense-details/${ item.id }`}
-          >
-            <span>{item.category}</span> {item.payee} <strong>{item.amount}</strong> <span>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</span>
-          </Link>
-          <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button>
-        </li>
+          > */}
+            <td>{item.category}</td>
+            <td>{item.payee}</td>
+            <td>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
+            <td>{item.comment}</td>
+            <td>{item.amount}</td>
+          {/* </Link> */}
+          {/* <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button> */}
+        </tr>
       ))
     }else{
       renderExpenseItems = "Loading..."
@@ -59,11 +63,19 @@ class App extends React.Component{
     return(
       <div className="container">
         <table>
-          <thead>
+        <thead>
+          <tr>
             <th></th>
-          </thead>
+            <th>Payee</th>
+            <th>Date</th>
+            <th>Comment</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
           {renderExpenseItems}
-        </table>
+        </tbody>
+      </table>
       </div>
     );
   }
