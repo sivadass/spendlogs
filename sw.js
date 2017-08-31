@@ -1,11 +1,11 @@
-var cacheName = 'cache-v1'; //Cache Name
+var cacheName = 'cache-v1.0.1'; //Cache Name
 
 //Files to cache
 var filesToCache = [
   './index.html',
   './index.html?utm=homescreen', //query strings are treated as seperate page
   './dist/style.css',
-  //'./dist/app.bundle.js',
+  './dist/app.bundle.js',
   'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700', //3rd party resource
 ];
 
@@ -73,4 +73,4 @@ self.addEventListener('fetch', function (event) {
         });
       })
     );
-  });
+  });  
