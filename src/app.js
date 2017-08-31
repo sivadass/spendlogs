@@ -58,9 +58,12 @@ class App extends React.Component{
     }
     return(
       <div className="container">
-        <ul>
+        <table>
+          <thead>
+            <th></th>
+          </thead>
           {renderExpenseItems}
-        </ul>
+        </table>
       </div>
     );
   }

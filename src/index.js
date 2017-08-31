@@ -37,7 +37,7 @@ ReactDOM.render(
       <Router>
       <div className="app">
         <header>
-        My Expense <Link to="/">Home</Link> <Link to="/add-expense">ADD EXPENSE</Link>
+          <Link to="/">My Expense</Link> <Link className="primary-cta" to="/add-expense">ADD EXPENSE</Link>
         </header>
         <Route exact path="/" component={App}/>
         <Route path="/add-expense" component={AddExpense}/>

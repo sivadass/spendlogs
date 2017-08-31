@@ -1,3 +1,23 @@
 header{
-    background: $primary-blue;
+  background: darken($primary-blue, 11%);
+  padding: 16px 64px;
+  font-size: 16px;
+  color: $white;
+  display: flex;
+  display: -webkit-flex;
+  a{
+    color: $white;
+    padding: 4px 0;
+  }
+  @media (max-width: 480px){
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.primary-cta{
+  margin-left: auto;
+  background: $yellow;
+  border-radius: 2px;
+  padding: 4px 16px;
 }

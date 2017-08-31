@@ -31599,8 +31599,13 @@ var App = function (_React$Component) {
         'div',
         { className: 'container' },
         _react2.default.createElement(
-          'ul',
+          'table',
           null,
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement('th', null)
+          ),
           renderExpenseItems
         )
       );
@@ -32081,16 +32086,15 @@ _reactDom2.default.render(_react2.default.createElement(
         _react2.default.createElement(
           'header',
           null,
-          'My Expense ',
           _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/' },
-            'Home'
+            'My Expense'
           ),
           ' ',
           _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: '/add-expense' },
+            { className: 'primary-cta', to: '/add-expense' },
             'ADD EXPENSE'
           )
         ),

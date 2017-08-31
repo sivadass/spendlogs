@@ -8,7 +8,8 @@ body {
   box-sizing: border-box; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #4099ff; }
 
 .container {
   padding: 16px; }
@@ -68,6 +69,24 @@ ul {
     padding: 8px 0; }
 
 header {
-  background: #4099ff; }
+  background: #087bff;
+  padding: 16px 64px;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  display: -webkit-flex; }
+  header a {
+    color: #fff;
+    padding: 4px 0; }
+  @media (max-width: 480px) {
+    header {
+      padding-left: 16px;
+      padding-right: 16px; } }
+
+.primary-cta {
+  margin-left: auto;
+  background: #f0b114;
+  border-radius: 2px;
+  padding: 4px 16px; }
 
 /*# sourceMappingURL=style.css.map*/
