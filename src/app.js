@@ -58,7 +58,6 @@ class App extends React.Component{
     }
     return(
       <div className="container">
-        <h1>Lorem Ipsum</h1>
         <ul>
           {renderExpenseItems}
         </ul>
