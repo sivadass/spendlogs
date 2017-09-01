@@ -78,13 +78,13 @@ class App extends React.Component{
           {/* <Link 
             to = {`/expense-details/${ item.id }`}
           > */}
-            <td>
-              <i className="material-icons">{this.categoryIcon(item.category)}</i>
+            <td className="data-category">
+              <i className="material-icons category-icon">{this.categoryIcon(item.category)}</i>
             </td>
-            <td>{item.payee}</td>
-            <td>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
-            <td>{item.comment}</td>
-            <td className="text-ar">{item.amount}</td>
+            <td className="data-payee">{item.payee}</td>
+            <td className="data-date">{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
+            <td className="data-comment">{item.comment}</td>
+            <td className="data-amount text-ar">{item.amount}</td>
           {/* </Link> */}
           {/* <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button> */}
         </tr>
@@ -94,20 +94,20 @@ class App extends React.Component{
     }
     return(
       <div className="container">
-        <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Payee</th>
-            <th>Date</th>
-            <th>Comment</th>
-            <th className="text-ar">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderExpenseItems}
-        </tbody>
-      </table>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th className="title-category"></th>
+              <th className="title-payee">Payee</th>
+              <th className="title-date">Date</th>
+              <th className="title-comment">Comment</th>
+              <th className="title-amount text-ar">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderExpenseItems}
+          </tbody>
+        </table>
       </div>
     );
   }
