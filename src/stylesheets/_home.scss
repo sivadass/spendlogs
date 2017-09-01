@@ -1,4 +1,9 @@
 .data-table{
+  .data-amount{
+    font-weight: 700;
+    font-size: 18px;
+    color: $gray-dark;
+  }
   @media (max-width: 768px){
     .title-comment,
     .data-comment{
@@ -9,10 +14,6 @@
     thead,
     .data-date{
       display: none;
-    }
-    .data-amount{
-      font-weight: 700;
-      font-size: 18px;
     }
   }
 }

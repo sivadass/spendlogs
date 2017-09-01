@@ -1,6 +1,5 @@
 header{
   background: darken($primary-blue, 11%);
-  padding: 16px 64px;
   font-size: 16px;
   color: $white;
   display: flex;
@@ -8,10 +7,6 @@ header{
   a{
     color: $white;
     padding: 4px 0;
-  }
-  @media (max-width: 480px){
-    padding-left: 16px;
-    padding-right: 16px;
   }
 }
 

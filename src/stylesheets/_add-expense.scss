@@ -1,0 +1,14 @@
+.form-container{
+  form{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  button{
+    width: 100%;
+    height: 45px;
+    background: $primary-blue;
+    border: 0;
+    color: $white;
+  }
+}

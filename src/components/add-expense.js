@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {postExpense} from '../actions/index';
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 
 class AddExpense extends React.Component{
   constructor(props){
@@ -54,26 +54,31 @@ class AddExpense extends React.Component{
   render(){
     return(
       <div className="container">
-        <form onSubmit={this.addExpense.bind(this)}>
+        <div className="page-title">
+          <Link to="/" className="back-button"><i className="material-icons">arrow_back</i></Link>
           <h2>ADD EXPENSE</h2>
-          <input type="text" placeholder="Payee" value={this.state.payee} onChange={this.handlePayee.bind(this)} required/>
-          <input type="number" placeholder="Amount" value={this.state.amount} onChange={this.handleAmount.bind(this)} required/>
-          <select value={this.state.category} onChange={this.handleCategory.bind(this)}>
-            <option value="books">Books</option>
-            <option value="cloths">Cloths</option>
-            <option value="electricity">Electricity</option>
-            <option value="food">Food</option>
-            <option value="fruits">Fruits</option>
-            <option value="grocery">Grocery</option>
-            <option value="internet">Internet</option>
-            <option value="mobile">Mobile</option>
-            <option value="travelling">Travelling</option>
-            <option value="uncategorized">Uncategorized</option>
-            <option value="vegetables">Vegetables</option>
-          </select>
-          <textarea value={this.state.comment} onChange={this.handleComment.bind(this)} placeholder="Comment"/>
-          <button type="submit">SUBMIT</button>
-        </form>
+        </div>
+        <div className="form-container">
+          <form onSubmit={this.addExpense.bind(this)}>
+            <input type="text" placeholder="Payee" value={this.state.payee} onChange={this.handlePayee.bind(this)} required/>
+            <input type="number" placeholder="Amount" value={this.state.amount} onChange={this.handleAmount.bind(this)} required/>
+            <select value={this.state.category} onChange={this.handleCategory.bind(this)}>
+              <option value="books">Books</option>
+              <option value="cloths">Cloths</option>
+              <option value="electricity">Electricity</option>
+              <option value="food">Food</option>
+              <option value="fruits">Fruits</option>
+              <option value="grocery">Grocery</option>
+              <option value="internet">Internet</option>
+              <option value="mobile">Mobile</option>
+              <option value="travelling">Travelling</option>
+              <option value="uncategorized">Uncategorized</option>
+              <option value="vegetables">Vegetables</option>
+            </select>
+            <textarea value={this.state.comment} onChange={this.handleComment.bind(this)} placeholder="Comment"/>
+            <button type="submit">SUBMIT</button>
+          </form>
+        </div>
       </div>
     )
   }

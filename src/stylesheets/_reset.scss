@@ -11,13 +11,6 @@ a{
   text-decoration: none;
   color: $primary-blue;
 }
-.container{
-  padding: 16px 64px;
-  @media (max-width: 480px){
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
   
 input[type="text"],
 input[type="number"],
@@ -49,12 +42,12 @@ textarea{
   height: 64px;
 }
 button{
+  font-size: inherit;
   border: 1px solid #ccc;
   border-radius: 2px;
   height: 32px;
   padding: 0 8px;
   display: block;
-  max-width: 420px;
   width: 100%;
   margin-bottom: 16px;
   cursor: pointer;
@@ -117,5 +110,29 @@ td{
   &:before{
     content: "\20b9";
     margin-right: 4px;
+  }
+}
+
+// Scafollding
+.container{
+  padding: 16px 64px;
+  @media (max-width: 768px){
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (max-width: 480px){
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+.page-title{
+  display: flex;
+  display: -webkit-flex;
+  margin-bottom: 16px;
+  h2{
+    font-weight: 400;
+  }
+  .back-button{
+    margin-right: 16px;
   }
 }

@@ -31791,79 +31791,96 @@ var AddExpense = function (_React$Component) {
         'div',
         { className: 'container' },
         _react2.default.createElement(
-          'form',
-          { onSubmit: this.addExpense.bind(this) },
+          'div',
+          { className: 'page-title' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/', className: 'back-button' },
+            _react2.default.createElement(
+              'i',
+              { className: 'material-icons' },
+              'arrow_back'
+            )
+          ),
           _react2.default.createElement(
             'h2',
             null,
             'ADD EXPENSE'
-          ),
-          _react2.default.createElement('input', { type: 'text', placeholder: 'Payee', value: this.state.payee, onChange: this.handlePayee.bind(this), required: true }),
-          _react2.default.createElement('input', { type: 'number', placeholder: 'Amount', value: this.state.amount, onChange: this.handleAmount.bind(this), required: true }),
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'form-container' },
           _react2.default.createElement(
-            'select',
-            { value: this.state.category, onChange: this.handleCategory.bind(this) },
+            'form',
+            { onSubmit: this.addExpense.bind(this) },
+            _react2.default.createElement('input', { type: 'text', placeholder: 'Payee', value: this.state.payee, onChange: this.handlePayee.bind(this), required: true }),
+            _react2.default.createElement('input', { type: 'number', placeholder: 'Amount', value: this.state.amount, onChange: this.handleAmount.bind(this), required: true }),
             _react2.default.createElement(
-              'option',
-              { value: 'books' },
-              'Books'
+              'select',
+              { value: this.state.category, onChange: this.handleCategory.bind(this) },
+              _react2.default.createElement(
+                'option',
+                { value: 'books' },
+                'Books'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'cloths' },
+                'Cloths'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'electricity' },
+                'Electricity'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'food' },
+                'Food'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'fruits' },
+                'Fruits'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'grocery' },
+                'Grocery'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'internet' },
+                'Internet'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'mobile' },
+                'Mobile'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'travelling' },
+                'Travelling'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'uncategorized' },
+                'Uncategorized'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'vegetables' },
+                'Vegetables'
+              )
             ),
+            _react2.default.createElement('textarea', { value: this.state.comment, onChange: this.handleComment.bind(this), placeholder: 'Comment' }),
             _react2.default.createElement(
-              'option',
-              { value: 'cloths' },
-              'Cloths'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'electricity' },
-              'Electricity'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'food' },
-              'Food'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'fruits' },
-              'Fruits'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'grocery' },
-              'Grocery'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'internet' },
-              'Internet'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'mobile' },
-              'Mobile'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'travelling' },
-              'Travelling'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'uncategorized' },
-              'Uncategorized'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'vegetables' },
-              'Vegetables'
+              'button',
+              { type: 'submit' },
+              'SUBMIT'
             )
-          ),
-          _react2.default.createElement('textarea', { value: this.state.comment, onChange: this.handleComment.bind(this), placeholder: 'Comment' }),
-          _react2.default.createElement(
-            'button',
-            { type: 'submit' },
-            'SUBMIT'
           )
         )
       );
@@ -32144,7 +32161,7 @@ _reactDom2.default.render(_react2.default.createElement(
         { className: 'app' },
         _react2.default.createElement(
           'header',
-          null,
+          { className: 'container' },
           _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/' },
