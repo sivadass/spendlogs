@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {removeExpense, addExpense, fetchExpenses} from './actions/index';
 import moment from 'moment';
 const css = require('./stylesheets/style.scss');
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
 class App extends React.Component{
@@ -38,6 +38,10 @@ class App extends React.Component{
       });
       self.setState({expenses: expenseData});
     })
+  }
+  // Goto Details Page
+  gotoDetails(id){
+    this.props.history.push(`/expense-details/${ id }`);
   }
   categoryIcon(icon){
     console.log(icon);
@@ -74,7 +78,7 @@ class App extends React.Component{
     let renderExpenseItems;
     if(expenseArr.length > 0){
       renderExpenseItems = expenseArr.map((item, key = item.id) => (
-        <tr key={item.id}>
+        <tr key={item.id} onClick={this.gotoDetails.bind(this, item.id)}>
           {/* <Link 
             to = {`/expense-details/${ item.id }`}
           > */}

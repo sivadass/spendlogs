@@ -76,6 +76,9 @@ table {
   border-collapse: collapse; 
 }
 /* Zebra striping */
+tr:hover{
+  background: #f5f5f5;
+}
 tr:nth-of-type(odd) { 
   background: #f7f7f7; 
 }
@@ -91,6 +94,7 @@ td, th {
 }
 td{
   color: $gray-medium;
+  cursor: pointer;
   @media (max-width: 480px){
     padding: 12px 8px;
   }
