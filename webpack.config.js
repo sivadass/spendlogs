@@ -33,6 +33,10 @@ module.exports = {
           fallback: 'style-loader',
           loader: 'css-loader!sass-loader'
         })
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: "file-loader"
       }
     ]
   },

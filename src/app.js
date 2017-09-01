@@ -14,6 +14,7 @@ class App extends React.Component{
       expenses: []
     }
     this.fetchExpenses = this.fetchExpenses.bind(this);
+    this.categoryIcon = this.categoryIcon.bind(this);
   }
   componentDidMount(){
     this.fetchExpenses();
@@ -38,6 +39,35 @@ class App extends React.Component{
       self.setState({expenses: expenseData});
     })
   }
+  categoryIcon(icon){
+    console.log(icon);
+    switch(icon) {
+      case 'books':
+        return "book";
+      case 'cloths':
+        return "restaurant_menu";
+      case 'electricity':
+        return "restaurant_menu";
+      case 'food':
+        return "restaurant_menu";
+      case 'fruits':
+        return "restaurant_menu";
+      case 'grocery':
+        return "local_grocery_store";
+      case 'internet':
+        return "wifi_tethering";
+      case 'mobile':
+        return "stay_current_portrait";
+      case 'travelling':
+        return "directions_bus";
+      case 'uncategorized':
+        return "local_offer";
+      case 'vegetables':
+        return "local_mall";
+      default:
+        return "local_offer";
+     }
+  }
 
   render(){
     let expenseArr = this.state.expenses;
@@ -48,7 +78,9 @@ class App extends React.Component{
           {/* <Link 
             to = {`/expense-details/${ item.id }`}
           > */}
-            <td>{item.category} <i className="material-icons data-category-icon">lightbulb_outline</i></td>
+            <td>
+              <i className="material-icons">{this.categoryIcon(item.category)}</i>
+            </td>
             <td>{item.payee}</td>
             <td>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
             <td>{item.comment}</td>
@@ -58,7 +90,7 @@ class App extends React.Component{
         </tr>
       ))
     }else{
-      renderExpenseItems = "Loading..."
+      renderExpenseItems = "Loading data, please wait..!"
     }
     return(
       <div className="container">
