@@ -113,3 +113,9 @@ td{
 .text-ac{
   text-align: center;
 }
+.currency-sign{
+  &:before{
+    content: "\20b9";
+    margin-right: 4px;
+  }
+}

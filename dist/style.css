@@ -104,6 +104,10 @@ td {
 .text-ac {
   text-align: center; }
 
+.currency-sign:before {
+  content: "\20B9";
+  margin-right: 4px; }
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -155,12 +159,6 @@ header {
   border-radius: 2px;
   padding: 4px 16px; }
 
-.category-icon {
-  background: #4099ff;
-  color: #fff;
-  padding: 8px;
-  border-radius: 50%; }
-
 @media (max-width: 768px) {
   .data-table .title-comment,
   .data-table .data-comment {
@@ -169,6 +167,18 @@ header {
 @media (max-width: 480px) {
   .data-table thead,
   .data-table .data-date {
-    display: none; } }
+    display: none; }
+  .data-table .data-amount {
+    font-weight: 700;
+    font-size: 18px; } }
+
+.category-icon {
+  background: #4099ff;
+  color: #fff;
+  padding: 8px;
+  border-radius: 50%; }
+  @media (max-width: 480px) {
+    .category-icon {
+      padding: 6px; } }
 
 /*# sourceMappingURL=style.css.map*/

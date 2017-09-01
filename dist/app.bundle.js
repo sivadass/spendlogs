@@ -31618,7 +31618,7 @@ var App = function (_React$Component) {
             ),
             _react2.default.createElement(
               'td',
-              { className: 'data-amount text-ar' },
+              { className: 'data-amount text-ar currency-sign' },
               item.amount
             )
           );

@@ -1,9 +1,3 @@
-.category-icon{
-  background: $primary-blue;
-  color: $white;
-  padding: 8px;
-  border-radius: 50%;
-}
 .data-table{
   @media (max-width: 768px){
     .title-comment,
@@ -16,5 +10,18 @@
     .data-date{
       display: none;
     }
+    .data-amount{
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+}
+.category-icon{
+  background: $primary-blue;
+  color: $white;
+  padding: 8px;
+  border-radius: 50%;
+  @media (max-width: 480px){
+    padding: 6px;
   }
 }

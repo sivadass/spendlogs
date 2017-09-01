@@ -84,7 +84,7 @@ class App extends React.Component{
             <td className="data-payee">{item.payee}</td>
             <td className="data-date">{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
             <td className="data-comment">{item.comment}</td>
-            <td className="data-amount text-ar">{item.amount}</td>
+            <td className="data-amount text-ar currency-sign">{item.amount}</td>
           {/* </Link> */}
           {/* <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button> */}
         </tr>
