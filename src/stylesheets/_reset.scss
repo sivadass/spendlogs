@@ -1,6 +1,6 @@
 body{
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
   }
   *{
     padding: 0;
@@ -81,15 +81,26 @@ body{
   }
   /* Zebra striping */
   tr:nth-of-type(odd) { 
-    background: #eee; 
+    background: #f7f7f7; 
   }
   th { 
-    background: #333; 
-    color: white; 
-    font-weight: bold; 
+    background: #eee; 
+    color: #333; 
+    text-transform: uppercase;
   }
   td, th { 
-    padding: 6px; 
+    padding: 16px; 
     //border: 1px solid #ccc; 
     text-align: left; 
+  }
+
+  // Utitlities
+  .text-ar{
+    text-align: right;
+  }
+  .text-al{
+    text-align: left;
+  }
+  .text-ac{
+    text-align: center;
   }

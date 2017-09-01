@@ -6,7 +6,7 @@ var filesToCache = [
   './index.html?utm=homescreen', //query strings are treated as seperate page
   './dist/style.css',
   './dist/app.bundle.js',
-  'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700', //3rd party resource
+  'https://fonts.googleapis.com/css?family=Roboto:300,400,700', //3rd party resource
 ];
 
 //Adding 'install' event listener

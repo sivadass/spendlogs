@@ -48,11 +48,11 @@ class App extends React.Component{
           {/* <Link 
             to = {`/expense-details/${ item.id }`}
           > */}
-            <td>{item.category}</td>
+            <td>{item.category} <i className="material-icons data-category-icon">lightbulb_outline</i></td>
             <td>{item.payee}</td>
             <td>{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
             <td>{item.comment}</td>
-            <td>{item.amount}</td>
+            <td className="text-ar">{item.amount}</td>
           {/* </Link> */}
           {/* <button className="button-inline" onClick={this.removeExpense.bind(this, item.id)}>Remove</button> */}
         </tr>
@@ -69,7 +69,7 @@ class App extends React.Component{
             <th>Payee</th>
             <th>Date</th>
             <th>Comment</th>
-            <th>Amount</th>
+            <th className="text-ar">Amount</th>
           </tr>
         </thead>
         <tbody>

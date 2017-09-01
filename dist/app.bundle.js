@@ -31561,7 +31561,13 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               'td',
               null,
-              item.category
+              item.category,
+              ' ',
+              _react2.default.createElement(
+                'i',
+                { className: 'material-icons data-category-icon' },
+                'lightbulb_outline'
+              )
             ),
             _react2.default.createElement(
               'td',
@@ -31580,7 +31586,7 @@ var App = function (_React$Component) {
             ),
             _react2.default.createElement(
               'td',
-              null,
+              { className: 'text-ar' },
               item.amount
             )
           );
@@ -31618,7 +31624,7 @@ var App = function (_React$Component) {
               ),
               _react2.default.createElement(
                 'th',
-                null,
+                { className: 'text-ar' },
                 'Amount'
               )
             )
