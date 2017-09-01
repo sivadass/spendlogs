@@ -12,7 +12,11 @@ a {
   color: #4099ff; }
 
 .container {
-  padding: 16px; }
+  padding: 16px 64px; }
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 16px;
+      padding-right: 16px; } }
 
 input[type="text"],
 input[type="number"],
@@ -23,10 +27,9 @@ textarea {
   font-size: inherit;
   border: 1px solid #ccc;
   border-radius: 2px;
-  min-height: 32px;
+  min-height: 36px;
   padding: 0 8px;
   display: block;
-  max-width: 420px;
   width: 100%;
   margin-bottom: 16px;
   box-sizing: border-box; }
@@ -78,12 +81,19 @@ tr:nth-of-type(odd) {
 
 th {
   background: #eee;
-  color: #333;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #999; }
 
 td, th {
   padding: 16px;
   text-align: left; }
+
+td {
+  color: #666; }
+  @media (max-width: 480px) {
+    td {
+      padding: 12px 8px; } }
 
 .text-ar {
   text-align: right; }
@@ -151,13 +161,13 @@ header {
   padding: 8px;
   border-radius: 50%; }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .data-table .title-comment,
   .data-table .data-comment {
     display: none; } }
 
 @media (max-width: 480px) {
-  .data-table .title-date,
+  .data-table thead,
   .data-table .data-date {
     display: none; } }
 

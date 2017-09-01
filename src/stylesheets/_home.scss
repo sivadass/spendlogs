@@ -5,14 +5,14 @@
   border-radius: 50%;
 }
 .data-table{
-  @media (max-width: 640px){
+  @media (max-width: 768px){
     .title-comment,
     .data-comment{
       display: none;
     }
   }
   @media (max-width: 480px){
-    .title-date,
+    thead,
     .data-date{
       display: none;
     }

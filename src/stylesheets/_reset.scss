@@ -1,106 +1,115 @@
 body{
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 16px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: $primary-blue;
+}
+.container{
+  padding: 16px 64px;
+  @media (max-width: 480px){
+    padding-left: 16px;
+    padding-right: 16px;
   }
-  *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  a{
-    text-decoration: none;
-    color: $primary-blue;
-  }
-  .container{
-    padding: 16px;
-  }
+}
   
-  input[type="text"],
-  input[type="number"],
-  input[type="password"],
-  select,
-  textarea{
-    font-family: inherit;
-    font-size: inherit;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    min-height: 32px;
-    padding: 0 8px;
-    display: block;
-    max-width: 420px;
-    width: 100%;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-  }
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+textarea{
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  min-height: 36px;
+  padding: 0 8px;
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
   
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+textarea{
+  padding: 8px;
+  height: 64px;
+}
+button{
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  height: 32px;
+  padding: 0 8px;
+  display: block;
+  max-width: 420px;
+  width: 100%;
+  margin-bottom: 16px;
+  cursor: pointer;
+  &.button-inline{
+    display: inline-block;
+    width: auto;
+    margin: 0 4px 0 4px;
+    padding: 0 4px;
+    height: 24px;
   }
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-  textarea{
-    padding: 8px;
-    height: 64px;
-  }
-  button{
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    height: 32px;
-    padding: 0 8px;
-    display: block;
-    max-width: 420px;
-    width: 100%;
-    margin-bottom: 16px;
-    cursor: pointer;
-    &.button-inline{
-      display: inline-block;
-      width: auto;
-      margin: 0 4px 0 4px;
-      padding: 0 4px;
-      height: 24px;
-    }
-  }
-  
-  ul{
-    list-style-type: none;
-    margin-bottom: 16px;
-    li{
-      margin-bottom: 4px;
-      border-bottom: 1px solid #eee;
-      padding: 8px 0;
-    }
-  }
+}
 
-  // Table
-  table { 
-    width: 100%; 
-    border-collapse: collapse; 
+ul{
+  list-style-type: none;
+  margin-bottom: 16px;
+  li{
+    margin-bottom: 4px;
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
   }
-  /* Zebra striping */
-  tr:nth-of-type(odd) { 
-    background: #f7f7f7; 
-  }
-  th { 
-    background: #eee; 
-    color: #333; 
-    text-transform: uppercase;
-  }
-  td, th { 
-    padding: 16px; 
-    //border: 1px solid #ccc; 
-    text-align: left; 
-  }
+}
 
-  // Utitlities
-  .text-ar{
-    text-align: right;
+// Table
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #f7f7f7; 
+}
+th { 
+  background: #eee; 
+  text-transform: uppercase;
+  font-weight: normal;
+  color: $gray-light;
+}
+td, th { 
+  padding: 16px; 
+  text-align: left; 
+}
+td{
+  color: $gray-medium;
+  @media (max-width: 480px){
+    padding: 12px 8px;
   }
-  .text-al{
-    text-align: left;
-  }
-  .text-ac{
-    text-align: center;
-  }
+}
+
+// Utitlities
+.text-ar{
+  text-align: right;
+}
+.text-al{
+  text-align: left;
+}
+.text-ac{
+  text-align: center;
+}
