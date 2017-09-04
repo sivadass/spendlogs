@@ -12,13 +12,23 @@ import AddExpense from './components/add-expense';
 import ExpenseDetails from './components/expense-details';
 
 // Initialize Firebase
+// var config = {
+//   apiKey: "AIzaSyC4KIa7QIZb7XxgfW6vKm3emLeq7zNBif0",
+//   authDomain: "myspendz.firebaseapp.com",
+//   databaseURL: "https://myspendz.firebaseio.com",
+//   projectId: "myspendz",
+//   storageBucket: "",
+//   messagingSenderId: "738205482933"
+// };
+
+// Pesronal Build
 var config = {
-  apiKey: "AIzaSyC4KIa7QIZb7XxgfW6vKm3emLeq7zNBif0",
-  authDomain: "myspendz.firebaseapp.com",
-  databaseURL: "https://myspendz.firebaseio.com",
-  projectId: "myspendz",
-  storageBucket: "",
-  messagingSenderId: "738205482933"
+  apiKey: "AIzaSyDVHpvb1w8gh2yY-f2On93s81zQf_aBnwM",
+  authDomain: "myspendingz.firebaseapp.com",
+  databaseURL: "https://myspendingz.firebaseio.com",
+  projectId: "myspendingz",
+  storageBucket: "myspendingz.appspot.com",
+  messagingSenderId: "12426474145"
 };
 firebase.initializeApp(config);
 

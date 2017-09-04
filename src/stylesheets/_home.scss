@@ -4,6 +4,9 @@
     font-size: 18px;
     color: $gray-dark;
   }
+  .data-date-mobile{
+    display: none
+  }
   @media (max-width: 768px){
     .title-comment,
     .data-comment{
@@ -15,6 +18,13 @@
     .data-date{
       display: none;
     }
+    .data-date-mobile{
+      display: block;
+      font-size: 12px;
+      color: $gray-light;
+      line-height: 12px;
+      margin-top: 4px;
+    }
   }
 }
 .category-icon{
@@ -22,6 +32,10 @@
   color: $white;
   padding: 8px;
   border-radius: 50%;
+  max-height: 40px;
+  max-width: 40px;
+  overflow: hidden;
+  display: block;
   @media (max-width: 480px){
     padding: 6px;
   }
