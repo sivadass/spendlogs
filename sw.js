@@ -2,10 +2,10 @@ var cacheName = 'cache-v1.0.4'; //Cache Name
 
 //Files to cache
 var filesToCache = [
-  './index.html',
-  './index.html?utm=homescreen', //query strings are treated as seperate page
-  './dist/style.css',
-  './dist/app.bundle.js',
+  'index.html',
+  'index.html?utm=homescreen', //query strings are treated as seperate page
+  'dist/style.css',
+  'dist/app.bundle.js',
   'https://fonts.googleapis.com/css?family=Roboto:300,400,700', //3rd party resource
 ];
 
