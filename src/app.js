@@ -7,6 +7,9 @@ const css = require('./stylesheets/style.scss');
 import { Link, withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
+import ExpenseItem from './components/expense-item';
+import ExpenseItemLoading from './components/expense-item-loading';
+
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -76,20 +79,12 @@ class App extends React.Component{
   render(){
     let expenseArr = this.state.expenses;
     let renderExpenseItems;
-    if(expenseArr.length > 0){
-      renderExpenseItems = expenseArr.map((item, key = item.id) => (
-        <tr key={item.id} onClick={this.gotoDetails.bind(this, item.id)}>
-          <td className="data-category">
-            <i className="material-icons category-icon">{this.categoryIcon(item.category)}</i>
-          </td>
-          <td className="data-payee"><p>{item.payee}</p> <p className="data-date-mobile">{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</p></td>
-          <td className="data-date">{moment(item.date).format("hh.mm A, DD/MM/YYYY")}</td>
-          <td className="data-comment">{item.comment}</td>
-          <td className="data-amount text-ar currency-sign">{item.amount}</td>
-        </tr>
-      ))
+    if(expenseArr.length < 1){
+      renderExpenseItems = <ExpenseItemLoading />
     }else{
-      renderExpenseItems = "Loading data, please wait..!"
+      renderExpenseItems = expenseArr.map((item) => (
+        <ExpenseItem key={item.id} data={item}/>
+      ))
     }
     return(
       <div className="container">

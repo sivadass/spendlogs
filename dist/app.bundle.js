@@ -31967,6 +31967,14 @@ var _firebase = __webpack_require__(81);
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _expenseItem = __webpack_require__(540);
+
+var _expenseItem2 = _interopRequireDefault(_expenseItem);
+
+var _expenseItemLoading = __webpack_require__(539);
+
+var _expenseItemLoading2 = _interopRequireDefault(_expenseItemLoading);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32066,59 +32074,14 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var expenseArr = this.state.expenses;
       var renderExpenseItems = void 0;
-      if (expenseArr.length > 0) {
-        renderExpenseItems = expenseArr.map(function (item) {
-          var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : item.id;
-          return _react2.default.createElement(
-            'tr',
-            { key: item.id, onClick: _this2.gotoDetails.bind(_this2, item.id) },
-            _react2.default.createElement(
-              'td',
-              { className: 'data-category' },
-              _react2.default.createElement(
-                'i',
-                { className: 'material-icons category-icon' },
-                _this2.categoryIcon(item.category)
-              )
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'data-payee' },
-              _react2.default.createElement(
-                'p',
-                null,
-                item.payee
-              ),
-              ' ',
-              _react2.default.createElement(
-                'p',
-                { className: 'data-date-mobile' },
-                (0, _moment2.default)(item.date).format("hh.mm A, DD/MM/YYYY")
-              )
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'data-date' },
-              (0, _moment2.default)(item.date).format("hh.mm A, DD/MM/YYYY")
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'data-comment' },
-              item.comment
-            ),
-            _react2.default.createElement(
-              'td',
-              { className: 'data-amount text-ar currency-sign' },
-              item.amount
-            )
-          );
-        });
+      if (expenseArr.length < 1) {
+        renderExpenseItems = _react2.default.createElement(_expenseItemLoading2.default, null);
       } else {
-        renderExpenseItems = "Loading data, please wait..!";
+        renderExpenseItems = expenseArr.map(function (item) {
+          return _react2.default.createElement(_expenseItem2.default, { key: item.id, data: item });
+        });
       }
       return _react2.default.createElement(
         'div',
@@ -62532,6 +62495,106 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ExpenseItemLoading = function ExpenseItemLoading() {
+  return _react2.default.createElement(
+    'tr',
+    null,
+    _react2.default.createElement(
+      'td',
+      null,
+      'Loading data, please wait..!'
+    )
+  );
+};
+
+exports.default = ExpenseItemLoading;
+
+/***/ }),
+/* 540 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(228);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ExpenseItem = function ExpenseItem(data) {
+  return console.log(data)(_react2.default.createElement(
+    'tr',
+    null,
+    _react2.default.createElement('td', { className: 'data-category' }),
+    _react2.default.createElement(
+      'td',
+      { className: 'data-payee' },
+      _react2.default.createElement(
+        'p',
+        null,
+        data.payee
+      ),
+      ' ',
+      _react2.default.createElement(
+        'p',
+        { className: 'data-date-mobile' },
+        (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
+      )
+    ),
+    _react2.default.createElement(
+      'td',
+      { className: 'data-date' },
+      (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
+    ),
+    _react2.default.createElement(
+      'td',
+      { className: 'data-comment' },
+      data.comment
+    ),
+    _react2.default.createElement(
+      'td',
+      { className: 'data-amount text-ar currency-sign' },
+      data.amount
+    )
+  ));
+};
+
+exports.default = ExpenseItem;
 
 /***/ })
 /******/ ]);
