@@ -5,7 +5,7 @@ const ExpenseItem = (data) =>
 console.log(data)(
   <tr>
     <td className="data-category">
-      {/* <i className="material-icons category-icon">{this.categoryIcon(item.category)}</i> */}
+      <i className="material-icons category-icon">{this.categoryIcon(item.category)}</i>
     </td>
     <td className="data-payee"><p>{data.payee}</p> <p className="data-date-mobile">{moment(data.date).format("hh.mm A, DD/MM/YYYY")}</p></td>
     <td className="data-date">{moment(data.date).format("hh.mm A, DD/MM/YYYY")}</td>
