@@ -83,7 +83,7 @@ class App extends React.Component{
       renderExpenseItems = <ExpenseItemLoading />
     }else{
       renderExpenseItems = expenseArr.map((item) => (
-        <ExpenseItem key={item.id} data={item}/>
+        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon(icon)}/>
       ))
     }
     return(
