@@ -35,6 +35,13 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield; }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  background: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path stroke="#CCC" stroke-width="1.5" d="M4.087 8.04l7.985 7.926 7.943-8.02"/></g></svg>') 98% center no-repeat #ffffff; }
+
 textarea {
   padding: 8px;
   height: 64px; }
