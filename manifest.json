@@ -1,9 +1,9 @@
 {
   "short_name": "MyExpense",
   "name": "My Expense Manager",
-  "description": "Pithy description (132 characters or less, no HTML)",
-  "version": "0.0.0.1",
-  "manifest_version": 2,
+  "description": "PExpense Manager app built with React JS and firebase.",
+  "version": "0.0.0.2",
+  "manifest_version": 3,
   "icons": [
     {
       "src": "icon_64.png",
@@ -19,10 +19,15 @@
       "src": "icon_256.png",
       "type": "image/png",
       "sizes": "256x256"
+    },
+    {
+      "src": "icon_256.png",
+      "type": "image/png",
+      "sizes": "256x256"
     }
   ],
-  "background_color": "#4099ff",
-  "theme_color": "#333333",
+  "background_color": "#f7f7f7",
+  "theme_color": "#4099ff",
   "display": "standalone",
   "start_url": "index.html#/"
 }
