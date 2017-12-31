@@ -12,18 +12,18 @@
 		<div id="root"></div>
 		<script>
 			// If service worker is supported, then register it
-			if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('./sw.js', {scope: './'}) // Scope of the service worker
-				.then(function(registration) {
-				console.log('service worker is registered!');
-				})
-				.catch(function(error) {
-				console.log('service worker registration failed ', error);
-				});
-			}
-			else {
-			console.log('service worker is not supported.');
-			}
+			// if ('serviceWorker' in navigator) {
+			// navigator.serviceWorker.register('./sw.js', {scope: './'}) // Scope of the service worker
+			// 	.then(function(registration) {
+			// 	console.log('service worker is registered!');
+			// 	})
+			// 	.catch(function(error) {
+			// 	console.log('service worker registration failed ', error);
+			// 	});
+			// }
+			// else {
+			// console.log('service worker is not supported.');
+			// }
 		</script>
 		<script src="dist/app.bundle.js"></script>
 	</body>

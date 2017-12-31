@@ -47,7 +47,7 @@ class App extends React.Component{
     this.props.history.push(`/expense-details/${ id }`);
   }
   categoryIcon(icon){
-    console.log(icon);
+    console.log("hi--");
     switch(icon) {
       case 'books':
         return "book";
@@ -83,7 +83,7 @@ class App extends React.Component{
       renderExpenseItems = <ExpenseItemLoading />
     }else{
       renderExpenseItems = expenseArr.map((item) => (
-        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon(icon)}/>
+        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon}/>
       ))
     }
     return(
