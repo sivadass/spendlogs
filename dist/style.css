@@ -208,6 +208,20 @@ header {
     .category-icon {
       padding: 6px; } }
 
+.loading-item {
+  padding: 32px;
+  text-align: center;
+  animation: loading 900ms infinite;
+  line-height: 18px; }
+
+@keyframes loading {
+  0% {
+    font-size: 12px; }
+  50% {
+    font-size: 18px; }
+  100% {
+    font-size: 12px; } }
+
 .form-container form {
   width: 100%;
   max-width: 600px;

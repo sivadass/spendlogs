@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ExpenseItemLoading = () => (
-  <tr><td>Loading data, please wait.......................!</td></tr>
+  <tr><td colSpan="5" className="loading-item">Loading...</td></tr>
 );
 
 export default ExpenseItemLoading;
