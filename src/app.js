@@ -39,7 +39,9 @@ class App extends React.Component{
         var childData = childSnapshot.val();
         expenseData.push(childData);
       });
-      self.setState({expenses: expenseData});
+      self.setState({expenses: expenseData}, function(){
+        console.log(self.state.expenses);
+      });
     })
   }
   // Goto Details Page

@@ -32030,7 +32030,9 @@ var App = function (_React$Component) {
           var childData = childSnapshot.val();
           expenseData.push(childData);
         });
-        self.setState({ expenses: expenseData });
+        self.setState({ expenses: expenseData }, function () {
+          console.log(self.state.expenses);
+        });
       });
     }
     // Goto Details Page
@@ -32585,7 +32587,7 @@ var ExpenseItemLoading = function ExpenseItemLoading() {
     _react2.default.createElement(
       "td",
       { colSpan: "5", className: "loading-item" },
-      "Loading..."
+      "Loading expenses..."
     )
   );
 };
@@ -32603,6 +32605,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(11);
 
 var _react2 = _interopRequireDefault(_react);
@@ -32613,51 +32617,73 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ExpenseItem = function ExpenseItem(data, setCategoryIcon) {
-  return console.log(data)(_react2.default.createElement(
-    'tr',
-    null,
-    _react2.default.createElement(
-      'td',
-      { className: 'data-category' },
-      _react2.default.createElement(
-        'i',
-        { className: 'material-icons category-icon' },
-        undefined.setCategoryIcon(data.category)
-      )
-    ),
-    _react2.default.createElement(
-      'td',
-      { className: 'data-payee' },
-      _react2.default.createElement(
-        'p',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ExpenseItem = function (_React$Component) {
+  _inherits(ExpenseItem, _React$Component);
+
+  function ExpenseItem() {
+    _classCallCheck(this, ExpenseItem);
+
+    return _possibleConstructorReturn(this, (ExpenseItem.__proto__ || Object.getPrototypeOf(ExpenseItem)).apply(this, arguments));
+  }
+
+  _createClass(ExpenseItem, [{
+    key: 'render',
+    value: function render() {
+      var data = this.props.data;
+      return _react2.default.createElement(
+        'tr',
         null,
-        data.payee
-      ),
-      ' ',
-      _react2.default.createElement(
-        'p',
-        { className: 'data-date-mobile' },
-        (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
-      )
-    ),
-    _react2.default.createElement(
-      'td',
-      { className: 'data-date' },
-      (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
-    ),
-    _react2.default.createElement(
-      'td',
-      { className: 'data-comment' },
-      data.comment
-    ),
-    _react2.default.createElement(
-      'td',
-      { className: 'data-amount text-ar currency-sign' },
-      data.amount
-    )
-  ));
-};
+        _react2.default.createElement(
+          'td',
+          { className: 'data-category' },
+          _react2.default.createElement(
+            'i',
+            { className: 'material-icons category-icon' },
+            this.props.setCategoryIcon(data.category)
+          )
+        ),
+        _react2.default.createElement(
+          'td',
+          { className: 'data-payee' },
+          _react2.default.createElement(
+            'p',
+            null,
+            data.payee
+          ),
+          ' ',
+          _react2.default.createElement(
+            'p',
+            { className: 'data-date-mobile' },
+            (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
+          )
+        ),
+        _react2.default.createElement(
+          'td',
+          { className: 'data-date' },
+          (0, _moment2.default)(data.date).format("hh.mm A, DD/MM/YYYY")
+        ),
+        _react2.default.createElement(
+          'td',
+          { className: 'data-comment' },
+          data.comment
+        ),
+        _react2.default.createElement(
+          'td',
+          { className: 'data-amount text-ar currency-sign' },
+          data.amount
+        )
+      );
+    }
+  }]);
+
+  return ExpenseItem;
+}(_react2.default.Component);
 
 exports.default = ExpenseItem;
 
