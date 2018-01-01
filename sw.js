@@ -1,9 +1,8 @@
-var cacheName = 'cache-v1.0.4'; //Cache Name
+var cacheName = 'cache-v1.0.6'; //Cache Name
 
 //Files to cache
 var filesToCache = [
   'index.html',
-  'index.html?utm=homescreen', //query strings are treated as seperate page
   'dist/style.css',
   'dist/app.bundle.js',
   'https://fonts.googleapis.com/css?family=Roboto:300,400,700', //3rd party resource
@@ -51,8 +50,16 @@ self.addEventListener('activate', function (event) {
 //Adding 'fetch' event listener
 self.addEventListener('fetch', function (event) {
     console.log('Event: Fetch');
-  
+
     var request = event.request; // request made by the app
+
+    if (request.method !== 'GET') {
+      /* If we don't block the event as shown below, then the request will go to
+         the network as usual.
+      */
+      console.log('WORKER: fetch event ignored.', request.method, request.url);
+      return;
+    }
   
     //Tell the browser to wait for network request and respond with below
     event.respondWith(
