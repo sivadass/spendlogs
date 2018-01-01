@@ -29,5 +29,5 @@
   "background_color": "#f7f7f7",
   "theme_color": "#4099ff",
   "display": "standalone",
-  "start_url": "/#/"
+  "start_url": "index.html/#/"
 }
