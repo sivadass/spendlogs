@@ -213,7 +213,7 @@ header {
   display: block; }
 
 .loading-item {
-  padding: 32px;
+  padding: 16px;
   text-align: center;
   animation: loading 900ms infinite;
   line-height: 18px; }
