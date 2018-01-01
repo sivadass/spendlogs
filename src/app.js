@@ -33,7 +33,7 @@ class App extends React.Component{
   fetchExpenses(){
     var ref = firebase.database().ref('expenses');
     var self = this;
-    ref.orderByChild('-id').limitToLast(10).on('value', snapshot => {
+    ref.orderByChild('date').limitToLast(10).on('value', snapshot => {
       var expenseData = [];
       snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
