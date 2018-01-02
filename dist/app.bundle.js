@@ -23780,6 +23780,10 @@ var _expenseDetails = __webpack_require__(210);
 
 var _expenseDetails2 = _interopRequireDefault(_expenseDetails);
 
+var _login = __webpack_require__(397);
+
+var _login2 = _interopRequireDefault(_login);
+
 var _register = __webpack_require__(396);
 
 var _register2 = _interopRequireDefault(_register);
@@ -23844,6 +23848,7 @@ _reactDom2.default.render(_react2.default.createElement(
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/add-expense', component: _addExpense2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/expense-details/:value', component: _expenseDetails2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _register2.default })
       )
     )
@@ -59614,6 +59619,8 @@ var _firebase = __webpack_require__(58);
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _reactRouterDom = __webpack_require__(59);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -59647,12 +59654,19 @@ var Register = function (_React$Component) {
       var email = this.state.email,
           password = this.state.password;
       console.log(email, password);
-      _firebase2.default.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+      _firebase2.default.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
       });
+
+      this.setState({
+        email: "",
+        password: ""
+      });
+      this.props.history.push('/');
+      alert('Registered Successfully!');
     }
   }, {
     key: 'handleInput',
@@ -59683,7 +59697,107 @@ var Register = function (_React$Component) {
   return Register;
 }(_react2.default.Component);
 
-exports.default = Register;
+exports.default = (0, _reactRouterDom.withRouter)(Register);
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _firebase = __webpack_require__(58);
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+var _reactRouterDom = __webpack_require__(59);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Login = function (_React$Component) {
+  _inherits(Login, _React$Component);
+
+  function Login(props) {
+    _classCallCheck(this, Login);
+
+    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+    _this.state = {
+      email: "",
+      password: ""
+    };
+    _this.loginUser = _this.loginUser.bind(_this);
+    return _this;
+  }
+
+  _createClass(Login, [{
+    key: 'loginUser',
+    value: function loginUser(e) {
+      e.preventDefault();
+      var email = this.state.email,
+          password = this.state.password;
+      console.log(email, password);
+      _firebase2.default.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
+
+      this.setState({
+        email: "",
+        password: ""
+      });
+      this.props.history.push('/');
+    }
+  }, {
+    key: 'handleInput',
+    value: function handleInput(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.loginUser },
+          _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
+          _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleInput.bind(this), value: this.state.password, placeholder: 'Password' }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'Login'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Login;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(Login);
 
 /***/ })
 /******/ ]);
