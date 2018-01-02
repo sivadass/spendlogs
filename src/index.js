@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 import App from './app';
 import AddExpense from './components/add-expense';
 import ExpenseDetails from './components/expense-details';
+import Register from './components/register';
 
 // Initialize Firebase
 // var config = {
@@ -52,6 +53,7 @@ ReactDOM.render(
         <Route exact path="/" component={App}/>
         <Route path="/add-expense" component={AddExpense}/>
         <Route path="/expense-details/:value" component={ExpenseDetails}/>
+        <Route path="/register" component={Register}/>
       </div>
       </Router>
     </div>
