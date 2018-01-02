@@ -4,12 +4,11 @@ import firebase from 'firebase';
 class Register extends React.Component {
   constructor(props){
     super(props);
-    this.registerUser = this.registerUser.bind(this);
-    this.handleInput = this.handleInput.bind(this);
     this.state = {
       email: "",
       password: ""
     }
+    this.registerUser = this.registerUser.bind(this);
   }
   registerUser(e){
     e.preventDefault();
@@ -24,15 +23,15 @@ class Register extends React.Component {
   }
   handleInput(e){
     this.setState({
-      [e.target.name] : e.target.name
+      [e.target.name] : e.target.value
     })
   }
   render(){
     return(
       <div className="container">
         <form onSubmit={this.registerUser}>
-          <input type="email" name="email" onChange={this.handleInput} value={this.state.email} placeholder="Email"/>
-          <input type="password" name="password" onChange={this.handleInput} value={this.state.password} placeholder="Password"/>
+          <input type="email" name="email" onChange={this.handleInput.bind(this)} value={this.state.email} placeholder="Email"/>
+          <input type="password" name="password" onChange={this.handleInput.bind(this)} value={this.state.password} placeholder="Password"/>
           <button type="submit">Register</button>
         </form>
       </div>

@@ -59632,12 +59632,11 @@ var Register = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
 
-    _this.registerUser = _this.registerUser.bind(_this);
-    _this.handleInput = _this.handleInput.bind(_this);
     _this.state = {
       email: "",
       password: ""
     };
+    _this.registerUser = _this.registerUser.bind(_this);
     return _this;
   }
 
@@ -59658,7 +59657,7 @@ var Register = function (_React$Component) {
   }, {
     key: 'handleInput',
     value: function handleInput(e) {
-      this.setState(_defineProperty({}, e.target.name, e.target.name));
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
     }
   }, {
     key: 'render',
@@ -59669,8 +59668,8 @@ var Register = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.registerUser },
-          _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput, value: this.state.email, placeholder: 'Email' }),
-          _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleInput, value: this.state.password, placeholder: 'Password' }),
+          _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
+          _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleInput.bind(this), value: this.state.password, placeholder: 'Password' }),
           _react2.default.createElement(
             'button',
             { type: 'submit' },
