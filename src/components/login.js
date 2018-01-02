@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props){
@@ -37,11 +37,13 @@ class Login extends React.Component {
   render(){
     return(
       <div className="container">
+        <h1>Login</h1>
         <form onSubmit={this.loginUser}>
           <input type="email" name="email" onChange={this.handleInput.bind(this)} value={this.state.email} placeholder="Email"/>
           <input type="password" name="password" onChange={this.handleInput.bind(this)} value={this.state.password} placeholder="Password"/>
           <button type="submit">Login</button>
         </form>
+        New here? <Link to="/register">Register here</Link>.
       </div>
     )
   }

@@ -23772,6 +23772,10 @@ var _app = __webpack_require__(208);
 
 var _app2 = _interopRequireDefault(_app);
 
+var _header = __webpack_require__(398);
+
+var _header2 = _interopRequireDefault(_header);
+
 var _addExpense = __webpack_require__(209);
 
 var _addExpense2 = _interopRequireDefault(_addExpense);
@@ -23830,21 +23834,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(
         'div',
         { className: 'app' },
-        _react2.default.createElement(
-          'header',
-          { className: 'container' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/' },
-            'My Expense'
-          ),
-          ' ',
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { className: 'primary-cta', to: '/add-expense' },
-            'ADD EXPENSE'
-          )
-        ),
+        _react2.default.createElement(_header2.default, null),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/add-expense', component: _addExpense2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/expense-details/:value', component: _expenseDetails2.default }),
@@ -59680,6 +59670,11 @@ var Register = function (_React$Component) {
         'div',
         { className: 'container' },
         _react2.default.createElement(
+          'h1',
+          null,
+          'Register'
+        ),
+        _react2.default.createElement(
           'form',
           { onSubmit: this.registerUser },
           _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
@@ -59689,7 +59684,14 @@ var Register = function (_React$Component) {
             { type: 'submit' },
             'Register'
           )
-        )
+        ),
+        'Already registered? ',
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/login' },
+          'Login here'
+        ),
+        '.'
       );
     }
   }]);
@@ -59780,6 +59782,11 @@ var Login = function (_React$Component) {
         'div',
         { className: 'container' },
         _react2.default.createElement(
+          'h1',
+          null,
+          'Login'
+        ),
+        _react2.default.createElement(
           'form',
           { onSubmit: this.loginUser },
           _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
@@ -59789,7 +59796,14 @@ var Login = function (_React$Component) {
             { type: 'submit' },
             'Login'
           )
-        )
+        ),
+        'New here? ',
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/register' },
+          'Register here'
+        ),
+        '.'
       );
     }
   }]);
@@ -59798,6 +59812,95 @@ var Login = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = (0, _reactRouterDom.withRouter)(Login);
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(59);
+
+var _firebase = __webpack_require__(58);
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_React$Component) {
+  _inherits(Header, _React$Component);
+
+  function Header(props) {
+    _classCallCheck(this, Header);
+
+    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+    _this.logout = _this.logout.bind(_this);
+    return _this;
+  }
+
+  _createClass(Header, [{
+    key: 'logout',
+    value: function logout() {
+      _firebase2.default.auth().signOut().then(function () {
+        // Sign-out successful.
+      }).catch(function (error) {
+        // An error happened.
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var user = _firebase2.default.auth().currentUser;
+      console.log(user);
+      return _react2.default.createElement(
+        'header',
+        { className: 'container' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/' },
+          'My Expense'
+        ),
+        ' ',
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { className: 'primary-cta', to: '/add-expense' },
+          'ADD EXPENSE'
+        ),
+        user ? _react2.default.createElement(
+          'a',
+          { href: '#', onClick: this.logout },
+          'Logout'
+        ) : _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/login' },
+          'Login'
+        )
+      );
+    }
+  }]);
+
+  return Header;
+}(_react2.default.Component);
+
+exports.default = Header;
 
 /***/ })
 /******/ ]);

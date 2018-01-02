@@ -8,6 +8,7 @@ import rootReducer from './reducers/index';
 import * as firebase from 'firebase';
 
 import App from './app';
+import Header from './components/header';
 import AddExpense from './components/add-expense';
 import ExpenseDetails from './components/expense-details';
 import Login from './components/login';
@@ -48,9 +49,7 @@ ReactDOM.render(
     <div className="wrapper">
       <Router>
       <div className="app">
-        <header className="container">
-          <Link to="/">My Expense</Link> <Link className="primary-cta" to="/add-expense">ADD EXPENSE</Link>
-        </header>
+        <Header />
         <Route exact path="/" component={App}/>
         <Route path="/add-expense" component={AddExpense}/>
         <Route path="/expense-details/:value" component={ExpenseDetails}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Register extends React.Component {
   constructor(props){
@@ -38,11 +38,14 @@ class Register extends React.Component {
   render(){
     return(
       <div className="container">
+        <h1>Register</h1>
         <form onSubmit={this.registerUser}>
           <input type="email" name="email" onChange={this.handleInput.bind(this)} value={this.state.email} placeholder="Email"/>
           <input type="password" name="password" onChange={this.handleInput.bind(this)} value={this.state.password} placeholder="Password"/>
           <button type="submit">Register</button>
         </form>
+
+        Already registered? <Link to="/login">Login here</Link>.
       </div>
     )
   }
