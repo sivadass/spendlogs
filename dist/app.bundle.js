@@ -23533,7 +23533,8 @@ var Header = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
     _this.state = {
-      authenticated: false
+      authenticated: false,
+      email: ""
     };
     _this.logout = _this.logout.bind(_this);
     return _this;
@@ -23555,7 +23556,11 @@ var Header = function (_React$Component) {
 
       _firebase2.default.auth().onAuthStateChanged(function (user) {
         if (user) {
-          _this2.setState({ authenticated: true });
+          _this2.setState({
+            authenticated: true,
+            email: user.email
+          });
+          console.log(user);
         } else {
           _this2.setState({ authenticated: false });
         }
@@ -23580,9 +23585,15 @@ var Header = function (_React$Component) {
           'ADD EXPENSE'
         ),
         this.state.authenticated ? _react2.default.createElement(
-          'a',
-          { href: '#', onClick: this.logout.bind(this) },
-          'Sign Out'
+          'div',
+          null,
+          this.state.email,
+          ' ',
+          _react2.default.createElement(
+            'a',
+            { href: '#', onClick: this.logout.bind(this) },
+            'Sign Out'
+          )
         ) : _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/login' },
