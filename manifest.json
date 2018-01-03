@@ -2,8 +2,8 @@
   "short_name": "MyExpense",
   "name": "My Expense Manager",
   "description": "Expense Manager app built with React JS and firebase.",
-  "version": "0.0.3.0",
-  "manifest_version": 6,
+  "version": "0.0.3.5",
+  "manifest_version": 7,
   "icons": [
     {
       "src": "icon_64.png",
@@ -29,5 +29,5 @@
   "background_color": "#f7f7f7",
   "theme_color": "#4099ff",
   "display": "standalone",
-  "start_url": "/#/"
+  "start_url": "index.html/#/"
 }
