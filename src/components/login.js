@@ -15,19 +15,20 @@ class Login extends React.Component {
     e.preventDefault();
     let email = this.state.email, password = this.state.password;
     console.log(email, password);
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        this.setState({
+          email: "",
+          password: ""
+        })
+        this.props.history.push('/');
+      }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
     });
 
-    this.setState({
-      email: "",
-      password: ""
-    })
-    this.props.history.push('/');
+    
   }
   handleInput(e){
     this.setState({
