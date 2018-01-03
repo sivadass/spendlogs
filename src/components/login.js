@@ -7,7 +7,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: ""
     }
     this.loginUser = this.loginUser.bind(this);
   }
@@ -21,14 +22,15 @@ class Login extends React.Component {
           password: ""
         })
         this.props.history.push('/');
-      }).catch(function(error) {
+      }).catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+        this.setState({
+          error: errorCode + errorMessage
+        })
       // ...
     });
-
-    
   }
   handleInput(e){
     this.setState({
@@ -40,6 +42,7 @@ class Login extends React.Component {
       <div className="container">
         <h1>Login</h1>
         <form onSubmit={this.loginUser}>
+          {this.state.error && <p>Invalid username or password!</p>}
           <input type="email" name="email" onChange={this.handleInput.bind(this)} value={this.state.email} placeholder="Email"/>
           <input type="password" name="password" onChange={this.handleInput.bind(this)} value={this.state.password} placeholder="Password"/>
           <button type="submit">Login</button>

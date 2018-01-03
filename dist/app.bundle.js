@@ -23651,7 +23651,8 @@ var Login = function (_React$Component) {
 
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: ""
     };
     _this.loginUser = _this.loginUser.bind(_this);
     return _this;
@@ -23676,6 +23677,9 @@ var Login = function (_React$Component) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        _this2.setState({
+          error: errorCode + errorMessage
+        });
         // ...
       });
     }
@@ -23698,6 +23702,11 @@ var Login = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.loginUser },
+          this.state.error && _react2.default.createElement(
+            'p',
+            null,
+            'Invalid username or password!'
+          ),
           _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
           _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleInput.bind(this), value: this.state.password, placeholder: 'Password' }),
           _react2.default.createElement(
