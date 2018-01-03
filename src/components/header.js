@@ -5,6 +5,9 @@ import firebase from 'firebase';
 class Header extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      authenticated: false
+    }
     this.logout = this.logout.bind(this);
   }
   logout(){
@@ -14,13 +17,21 @@ class Header extends React.Component{
       // An error happened.
     });
   }
+  componentDidMount(user){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authenticated: true });
+      } else {
+        this.setState({ authenticated: false });
+      }
+    });
+  }
   render(){
-    const user = firebase.auth().currentUser;
-    console.log(user);
+    console.log(this.state.authenticated);
     return(
       <header className="container">
         <Link to="/">My Expense</Link> <Link className="primary-cta" to="/add-expense">ADD EXPENSE</Link>
-        {user ? <a href="#" onClick={this.logout}>Logout</a> : <Link to="/login">Login</Link>}
+        {this.state.authenticated ? <a href="#" onClick={this.logout.bind(this)}>Sign Out</a> : <Link to="/login">Login</Link>}
       </header>
     )
   }
