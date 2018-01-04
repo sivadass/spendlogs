@@ -63,7 +63,7 @@ self.addEventListener('fetch', function (event) {
 
     if (request.mode === 'navigate') {
       return event.respondWith(
-        fetch(event.request).catch(() => console.log('I am offline!')))
+        fetch(event.request).catch(() => console.log('I am offline!'))
       );
     }
   
