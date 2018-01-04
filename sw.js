@@ -60,6 +60,12 @@ self.addEventListener('fetch', function (event) {
       console.log('WORKER: fetch event ignored.', request.method, request.url);
       return;
     }
+
+    if (request.mode === 'navigate') {
+      return event.respondWith(
+        fetch(event.request).catch(() => console.log('I am offline!')))
+      );
+    }
   
     //Tell the browser to wait for network request and respond with below
     event.respondWith(
