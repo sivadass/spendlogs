@@ -1,4 +1,4 @@
-var cacheName = 'cache-v2.1.9'; //Cache Name
+var cacheName = 'cache-v3.1.0'; //Cache Name
 
 //Files to cache
 var filesToCache = [
