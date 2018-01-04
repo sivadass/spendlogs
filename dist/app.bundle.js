@@ -23031,13 +23031,6 @@ var App = function (_React$Component) {
         });
       });
     }
-    // Goto Details Page
-
-  }, {
-    key: 'gotoDetails',
-    value: function gotoDetails(id) {
-      this.props.history.push('/expense-details/' + id);
-    }
   }, {
     key: 'categoryIcon',
     value: function categoryIcon(icon) {
@@ -24014,6 +24007,8 @@ var _moment = __webpack_require__(104);
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _reactRouterDom = __webpack_require__(33);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24032,12 +24027,20 @@ var ExpenseItem = function (_React$Component) {
   }
 
   _createClass(ExpenseItem, [{
+    key: 'gotoDetails',
+
+    // Goto Details Page
+    value: function gotoDetails(id) {
+      console.log('hi...');
+      this.props.history.push('/expense-details/' + id);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var data = this.props.data;
       return _react2.default.createElement(
         'tr',
-        null,
+        { onClick: this.gotoDetails.bind(this, data.id) },
         _react2.default.createElement(
           'td',
           { className: 'data-category' },
@@ -24084,7 +24087,7 @@ var ExpenseItem = function (_React$Component) {
   return ExpenseItem;
 }(_react2.default.Component);
 
-exports.default = ExpenseItem;
+exports.default = (0, _reactRouterDom.withRouter)(ExpenseItem);
 
 /***/ }),
 /* 219 */

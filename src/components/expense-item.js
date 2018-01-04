@@ -1,11 +1,17 @@
 import React from 'react';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 
 class ExpenseItem extends React.Component {
+  // Goto Details Page
+  gotoDetails(id){
+    console.log('hi...');
+    this.props.history.push(`/expense-details/${ id }`);
+  }
   render(){
     let data =  this.props.data;
     return(
-      <tr>
+      <tr onClick={this.gotoDetails.bind(this, data.id)}>
         <td className="data-category">
           <i className="material-icons category-icon">{this.props.setCategoryIcon(data.category)}</i>
         </td>
@@ -18,4 +24,4 @@ class ExpenseItem extends React.Component {
   }
 }
 
-export default ExpenseItem;
+export default withRouter(ExpenseItem);

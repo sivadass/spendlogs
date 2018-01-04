@@ -44,10 +44,6 @@ class App extends React.Component{
       });
     })
   }
-  // Goto Details Page
-  gotoDetails(id){
-    this.props.history.push(`/expense-details/${ id }`);
-  }
   categoryIcon(icon){
     console.log("hi--");
     switch(icon) {
@@ -85,7 +81,7 @@ class App extends React.Component{
       renderExpenseItems = <ExpenseItemLoading />
     }else{
       renderExpenseItems = expenseArr.map((item) => (
-        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon}/>
+        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon} />
       ))
     }
     return(
