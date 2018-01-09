@@ -23018,9 +23018,9 @@ var App = function (_React$Component) {
   }, {
     key: 'fetchExpenses',
     value: function fetchExpenses() {
-      var ref = _firebase2.default.database().ref('expenseso');
+      var ref = _firebase2.default.database().ref('expenses');
       var self = this;
-      ref.orderByChild('datejj').limitToLast(10).on('value', function (snapshot) {
+      ref.orderByChild('').limitToLast(5).on('value', function (snapshot) {
         var expenseData = [];
         snapshot.forEach(function (childSnapshot) {
           var childData = childSnapshot.val();
