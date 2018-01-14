@@ -7,7 +7,8 @@ class Header extends React.Component{
     super(props);
     this.state = {
       authenticated: false,
-      email: ""
+      email: "",
+      displayName: ""
     }
     this.logout = this.logout.bind(this);
   }
@@ -21,9 +22,11 @@ class Header extends React.Component{
   componentDidMount(user){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
         this.setState({ 
           authenticated: true,
-          email: user.email
+          email: user.email,
+          displayName: user.displayName
         });
         console.log(user);
       } else {
@@ -36,7 +39,7 @@ class Header extends React.Component{
     return(
       <header className="container">
         <Link to="/">My Expense</Link> <Link className="primary-cta" to="/add-expense">ADD EXPENSE</Link>
-        {this.state.authenticated ? <div>{this.state.email} <a href="#" onClick={this.logout.bind(this)}>Sign Out</a></div> : <Link to="/login">Login</Link>}
+        {this.state.authenticated ? <div>{this.state.displayName} <a href="#" onClick={this.logout.bind(this)}>Sign Out</a></div> : <Link to="/login">Login</Link>}
       </header>
     )
   }

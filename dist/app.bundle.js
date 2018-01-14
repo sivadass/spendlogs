@@ -31639,7 +31639,8 @@ var Header = function (_React$Component) {
 
     _this.state = {
       authenticated: false,
-      email: ""
+      email: "",
+      displayName: ""
     };
     _this.logout = _this.logout.bind(_this);
     return _this;
@@ -31661,9 +31662,11 @@ var Header = function (_React$Component) {
 
       _firebase2.default.auth().onAuthStateChanged(function (user) {
         if (user) {
+          console.log(user);
           _this2.setState({
             authenticated: true,
-            email: user.email
+            email: user.email,
+            displayName: user.displayName
           });
           console.log(user);
         } else {
@@ -31692,7 +31695,7 @@ var Header = function (_React$Component) {
         this.state.authenticated ? _react2.default.createElement(
           'div',
           null,
-          this.state.email,
+          this.state.displayName,
           ' ',
           _react2.default.createElement(
             'a',
@@ -31875,7 +31878,8 @@ var Register = function (_React$Component) {
 
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      displayName: ""
     };
     _this.registerUser = _this.registerUser.bind(_this);
     return _this;
@@ -31886,18 +31890,37 @@ var Register = function (_React$Component) {
     value: function registerUser(e) {
       e.preventDefault();
       var email = this.state.email,
-          password = this.state.password;
-      console.log(email, password);
-      _firebase.auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+          password = this.state.password,
+          displayName = this.state.displayName;
+      console.log(email, password, displayName);
+      _firebase.auth.createUserWithEmailAndPassword(email, password).then(function (user) {
+        // [END createwithemail]
+        // callSomeFunction(); Optional
+        // var user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: displayName
+        }).then(function () {
+          // Update successful.
+        }, function (error) {
+          // An error happened.
+        });
+      }, function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        // ...
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          console.error(error);
+        }
+        // [END_EXCLUDE]
       });
 
       this.setState({
         email: "",
-        password: ""
+        password: "",
+        displayName: ""
       });
       this.props.history.push('/');
       alert('Registered Successfully!');
@@ -31921,6 +31944,7 @@ var Register = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.registerUser },
+          _react2.default.createElement('input', { type: 'text', name: 'displayName', onChange: this.handleInput.bind(this), value: this.state.displayName, placeholder: 'Full Name' }),
           _react2.default.createElement('input', { type: 'email', name: 'email', onChange: this.handleInput.bind(this), value: this.state.email, placeholder: 'Email' }),
           _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleInput.bind(this), value: this.state.password, placeholder: 'Password' }),
           _react2.default.createElement(
