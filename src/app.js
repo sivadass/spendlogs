@@ -5,7 +5,7 @@ import {removeExpense, addExpense, fetchExpenses} from './actions/index';
 import moment from 'moment';
 const css = require('./stylesheets/style.scss');
 import { Link, withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import { db } from './firebase';
 
 import ExpenseItem from './components/expense-item';
 import ExpenseItemLoading from './components/expense-item-loading';
@@ -31,18 +31,27 @@ class App extends React.Component{
   }
   // Load Initial Data
   fetchExpenses(){
-    var ref = firebase.database().ref('expenses');
     var self = this;
-    ref.orderByChild('date').on('value', snapshot => {
+    // ref.orderByChild('date').on('value', snapshot => {
+    //   var expenseData = [];
+    //   snapshot.forEach(function(childSnapshot) {
+    //     var childData = childSnapshot.val();
+    //     expenseData.push(childData);
+    //   });
+    //   self.setState({expenses: expenseData}, function(){
+    //     console.log(self.state.expenses);
+    //   });
+    // })
+    db.collection("expenses").get().then(function(querySnapshot) {
       var expenseData = [];
-      snapshot.forEach(function(childSnapshot) {
-        var childData = childSnapshot.val();
-        expenseData.push(childData);
+      querySnapshot.forEach(function(doc) {
+          //console.log(doc.id, " => ", doc.data());
+          expenseData.push(doc.data());
+          self.setState({expenses: expenseData}, function(){
+            console.log(self.state.expenses);
+          });
       });
-      self.setState({expenses: expenseData}, function(){
-        console.log(self.state.expenses);
-      });
-    })
+    });
   }
   categoryIcon(icon){
     console.log("hi--");

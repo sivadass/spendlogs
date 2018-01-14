@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+import {db} from '.././firebase';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -15,8 +15,8 @@ class ExpenseDetails extends React.Component{
     this.fetchExpenseDetails();
   }
   componentWillUnmount(){
-    var ref = firebase.database().ref('expenses');
-    ref.off();
+    // var ref = firebase.database().ref('expenses');
+    // ref.off();
   }
   // Load Initial Data
   fetchExpenseDetails(){

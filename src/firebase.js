@@ -1,10 +1,16 @@
+import * as firebase from 'firebase';
+require("firebase/firestore"); // Required for side-effects
+
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyC4KIa7QIZb7XxgfW6vKm3emLeq7zNBif0",
-  authDomain: "myspendz.firebaseapp.com",
-  databaseURL: "https://myspendz.firebaseio.com",
-  projectId: "myspendz",
-  storageBucket: "",
-  messagingSenderId: "738205482933"
+  apiKey: "AIzaSyB9dji8xyx0DjSyv-nCYw8qaWYHvvHZUaY",
+  authDomain: "spend-manager.firebaseapp.com",
+  databaseURL: "https://spend-manager.firebaseio.com",
+  projectId: "spend-manager",
+  storageBucket: "spend-manager.appspot.com",
+  messagingSenderId: "451959094458"
 };
 firebase.initializeApp(config);
+
+export const db = firebase.firestore();
+export const auth = firebase.auth();
