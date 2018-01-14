@@ -1,18 +1,18 @@
-import firebase from 'firebase';
+import {db} from '.././firebase';
 
 // Add an Item
 export function postExpense(payee, amount, category, comment){
   return dispatch => {
-    var ref = firebase.database().ref('expenses').push();
-    var id = ref.key;
-    ref.set(
+    //var ref = firebase.database().ref('expenses').push();
+    var ref = db.collection("expenses");
+    // var id = ref.key;
+    ref.add(
       {
-        id: id,
         payee: payee,
         amount: amount,
         category: category,
-        comment: comment,
-        date: firebase.database.ServerValue.TIMESTAMP
+        comments: comment,
+        date_added: new Date()
       }
     )
   }

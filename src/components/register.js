@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+import {auth} from '.././firebase';
 import { withRouter, Link } from 'react-router-dom';
 
 class Register extends React.Component {
@@ -15,7 +15,7 @@ class Register extends React.Component {
     e.preventDefault();
     let email = this.state.email, password = this.state.password;
     console.log(email, password);
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    auth.createUserWithEmailAndPassword(email, password)
       .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

@@ -23,8 +23,8 @@ class App extends React.Component{
     this.fetchExpenses();
   }
   componentWillUnmount(){
-    var ref = firebase.database().ref('expenses');
-    ref.off();
+    // var ref = firebase.database().ref('expenses');
+    // ref.off();
   }
   removeExpense(key){
     this.props.removeExpense(key);
@@ -42,19 +42,31 @@ class App extends React.Component{
     //     console.log(self.state.expenses);
     //   });
     // })
-    db.collection("expenses").get().then(function(querySnapshot) {
+    var first = db.collection("expenses")
+      .orderBy("amount")
+      .limit(3);
+    first.get().then(function (documentSnapshots) {
+      console.log("filtered list", documentSnapshots);
+      // Get the last visible document
+      var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+      console.log("last", lastVisible);
+    
+      // Construct a new query starting at this document,
+      // get the next 25 cities.
+      var next = db.collection("expenses")
+              .orderBy("payee")
+              .startAfter(lastVisible)
+              .limit(3);
+    });
+    db.collection("expenses").orderBy("payee","desc").limit(4).get().then(function(querySnapshot) {
       var expenseData = [];
       querySnapshot.forEach(function(doc) {
-          //console.log(doc.id, " => ", doc.data());
           expenseData.push(doc.data());
-          self.setState({expenses: expenseData}, function(){
-            console.log(self.state.expenses);
-          });
+          self.setState({expenses: expenseData});
       });
     });
   }
   categoryIcon(icon){
-    console.log("hi--");
     switch(icon) {
       case 'books':
         return "book";
@@ -90,7 +102,7 @@ class App extends React.Component{
       renderExpenseItems = <ExpenseItemLoading />
     }else{
       renderExpenseItems = expenseArr.map((item) => (
-        <ExpenseItem key={item.id} data={item} setCategoryIcon={this.categoryIcon} />
+        <ExpenseItem key={item.amount} data={item} setCategoryIcon={this.categoryIcon} />
       ))
     }
     return(

@@ -15,8 +15,7 @@ class ExpenseDetails extends React.Component{
     this.fetchExpenseDetails();
   }
   componentWillUnmount(){
-    // var ref = firebase.database().ref('expenses');
-    // ref.off();
+    
   }
   // Load Initial Data
   fetchExpenseDetails(){
