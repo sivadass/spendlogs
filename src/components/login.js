@@ -20,6 +20,7 @@ class Login extends React.Component {
     e.preventDefault();
     let email = this.state.email, password = this.state.password;
     console.log(email, password);
+    this.validate();
     auth.signInWithEmailAndPassword(email, password).then(() => {
         this.setState({
           email: "",
@@ -41,7 +42,7 @@ class Login extends React.Component {
       [e.target.name] : e.target.value
     })
   }
-  
+
   validate(e){
  	  e.preventDefault();
     let valid = true;
