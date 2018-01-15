@@ -8,7 +8,11 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      errors: ""
+      errors: "",
+      errorMessages: {
+      	email: [],
+        password: []
+      }
     }
     this.loginUser = this.loginUser.bind(this);
   }
@@ -36,6 +40,37 @@ class Login extends React.Component {
     this.setState({
       [e.target.name] : e.target.value
     })
+  }
+  
+  validate(e){
+ 	  e.preventDefault();
+    let valid = true;
+    let { email, password } = this.state;
+    let errorMessages = {
+      email: [],
+      password: []
+    };
+  
+    if (email === null || email === '') {
+      valid = false;
+      errorMessages['email'].push('Email is required');
+    }
+
+    if (password === null || password === '') {
+      valid = false;
+      errorMessages['password'].push('Password is required');
+    } 
+
+   console.log(this.state);
+   console.log(errorMessages);
+   
+   this.setState({
+     errorMessages: errorMessages
+   });
+   
+   if (valid) {
+     // Don't forget to POST this form or something!
+   }
   }
   render(){
     return(

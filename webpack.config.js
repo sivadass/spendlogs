@@ -44,6 +44,3 @@ module.exports = {
     new ExtractTextPlugin('style.css'),
   ]
 };
-
-// Configuration refernce:
-// https://blog.madewithenvy.com/getting-started-with-webpack-2-ed2b86c68783
