@@ -76,7 +76,7 @@ class Login extends React.Component {
   render(){
     return(
       <div className="container">
-        <h1>Login</h1>
+        <h1>Sign in</h1>
         <form onSubmit={this.loginUser}>
           {this.state.error && <p>Invalid username or password!</p>}
           <input type="email" name="email" onChange={this.handleInput.bind(this)} value={this.state.email} placeholder="Email"/>
