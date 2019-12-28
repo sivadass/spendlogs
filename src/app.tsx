@@ -1,37 +1,33 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
-
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: "Inter UI";
-    font-style: normal;
-    font-weight: 400;
-    src: url("./fonts/Inter-UI-Regular.woff2?v=1.0") format("woff2"), url("./fonts/Inter-UI-Regular.woff?v=1.0") format("woff");
-  }
-
-  @font-face {
-    font-family: "Inter UI";
-    font-style: bold;
-    font-weight: 600;
-    src: url("../fonts/Inter-UI-Bold.woff2?v=2.1") format("woff2"), url("../fonts/Inter-UI-Bold.woff?v=2.1") format("woff");
-  }
-
-  body {
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    line-height: 24px;
-    font-family: "Inter UI", Arial, Helvetica, sans-serif;
-  }
-
-`;
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Home from "./pages/index";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import GlobalStyles from "./styled/global";
+import { Wrapper } from "./styled/common";
 
 function App() {
   return (
-    <div>
-      <GlobalStyle />
-      <h1>Hey</h1>
-    </div>
+    <Router>
+      <GlobalStyles />
+      <Wrapper>
+        <Header />
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <Footer />
+      </Wrapper>
+    </Router>
   );
 }
 
