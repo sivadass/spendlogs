@@ -1,12 +1,12 @@
 import React from "react";
-import { PageContainer, PageTitle, Container } from "../styled/common";
+import { FixedContainer, PageTitle, Container } from "../styled/common";
 
 const Home = () => {
   return (
-    <PageContainer>
+    <FixedContainer>
       <PageTitle>Expense Manager</PageTitle>
       <Container>Home Page</Container>
-    </PageContainer>
+    </FixedContainer>
   );
 };
 
