@@ -6,6 +6,7 @@ import ExpenseList from "./pages/expense-list";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import ExpenseDetails from "./pages/expense-details";
+import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper } from "./styled/common";
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/details/:id">
             <ExpenseDetails />
+          </Route>
+          <Route path="/search">
+            <Search />
           </Route>
         </Switch>
         <Footer />

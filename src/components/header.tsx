@@ -2,32 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Icon } from "./core";
-import { FixedContainer } from "../styled/common";
+import { FixedContainer, Wrapper } from "../styled/common";
 import IMG_LOGO from "../assets/images/expense-manager-white-logo.svg";
 
 const Header = () => {
   return (
     <StyledHeader>
       <FixedContainer>
-        <NavLink to="/" exact>
-          <Logo src={IMG_LOGO} alt="Expense Manager" />
+        <Wrapper>
+          <MenuButton>
+            <Icon name="menu" />
+          </MenuButton>
+          <NavLink to="/" exact>
+            <Logo src={IMG_LOGO} alt="Expense Manager" />
+          </NavLink>
+        </Wrapper>
+        <NavLink to="/search">
+          <Icon name="search" />
         </NavLink>
-
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/" exact>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
-          </ul>
-        </nav>
       </FixedContainer>
     </StyledHeader>
   );
@@ -35,32 +27,40 @@ const Header = () => {
 
 const StyledHeader = styled.header`
   background: #4099ff;
-  padding: 16px 0;
+  padding: 8px 0;
   color: #fff;
-  ${FixedContainer} {
+  & > ${FixedContainer} {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  nav {
-    ul {
-      li {
-        display: inline-block;
-      }
-    }
-    a {
-      color: #fff;
-      padding: 4px 16px;
-      &.active {
-        background: rgba(255, 255, 255, 0.33);
-      }
-    }
+  ${Wrapper} {
+    display: flex;
+    align-items: center;
+  }
+  i {
+    color: #fff;
+    vertical-align: middle;
   }
 `;
 
 const Logo = styled.img`
   display: block;
   max-width: 210px;
+`;
+
+const MenuButton = styled.button`
+  display: block;
+  margin-right: 16px;
+  background: transparent;
+  padding: 0 12px;
+  &:hover {
+    border-radius: 24px;
+    background: rgba(14, 125, 251, 0.5803921568627451);
+    i {
+      color: #fff;
+    }
+  }
 `;
 
 export default Header;

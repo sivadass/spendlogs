@@ -62,6 +62,30 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  input,
+  select,
+  textarea,
+  button {
+    height: 48px;
+    border-radius: 4px;
+    padding: 0 16px;
+    border: 1px solid #4099ff;
+    color: #232323;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    display: block;
+    width: 100%;
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+
 `;
 
 export default GlobalStyles;
