@@ -10,7 +10,7 @@ import { Wrapper } from "./styled/common";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/expense-manager">
       <GlobalStyles />
       <Wrapper>
         <Header />
