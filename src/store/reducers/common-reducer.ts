@@ -4,7 +4,7 @@ export const commonInitialState = {
   isMenuOpen: false
 };
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   switch (action.type) {
     case actionTypes.TOGGLE_MENU:
       return { ...state, isMenuOpen: !state.isMenuOpen };

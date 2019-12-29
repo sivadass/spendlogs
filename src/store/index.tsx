@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, Dispatch } from "react";
 import useCombinedReducers from "use-combined-reducers";
 import _get from "lodash/get";
 import {
@@ -10,10 +10,40 @@ import {
   expenseInitialState
 } from "./reducers";
 
-export const Store = React.createContext(null);
+interface StateProps {
+  auth: {
+    isAuthenticated: boolean;
+    user: {};
+  };
+  common: {
+    isMenuOpen: boolean;
+  };
+  expense: {
+    list: {
+      loading: boolean;
+      error: string;
+      data: {}[];
+      pageNumber: number;
+      totalPages: number;
+      filter: any;
+    };
+  };
+}
+
+interface Actions {
+  type: string;
+  value: any;
+}
+
+interface ContextProps {
+  state: StateProps;
+  dispatch: Dispatch<Actions>;
+}
+
+export const Store = React.createContext({} as ContextProps);
 const APP_STATE = "appState";
 
-const localState = JSON.parse(localStorage.getItem(APP_STATE) || "");
+const localState = JSON.parse(localStorage.getItem(APP_STATE) || "{}");
 
 export function StoreProvider(props: any) {
   const [state, dispatch] = useCombinedReducers({
@@ -22,12 +52,12 @@ export function StoreProvider(props: any) {
       commonReducer,
       _get(localState, "common") || commonInitialState
     ),
-    invoice: useReducer(
+    expense: useReducer(
       expenseReducer,
       _get(localState, "expense") || expenseInitialState
     )
   });
-  const value = { state, dispatch };
+  const value: any = { state, dispatch };
   useEffect(() => {
     localStorage.setItem(APP_STATE, JSON.stringify(state));
   }, [state]);

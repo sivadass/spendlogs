@@ -16,9 +16,9 @@ export const expenseInitialState = {
   }
 };
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   switch (action.type) {
-    case actionTypes.CLIENTS_REQUEST:
+    case actionTypes.EXPENSES_REQUEST:
       return {
         ...state,
         list: {
@@ -27,7 +27,7 @@ function reducer(state, action) {
           error: null
         }
       };
-    case actionTypes.CLIENTS_SUCCESS:
+    case actionTypes.EXPENSES_SUCCESS:
       return {
         ...state,
         list: {
@@ -37,7 +37,7 @@ function reducer(state, action) {
           data: action.payload
         }
       };
-    case actionTypes.CLIENTS_FAILURE:
+    case actionTypes.EXPENSES_FAILURE:
       return {
         ...state,
         list: {
@@ -46,7 +46,7 @@ function reducer(state, action) {
           error: action.payload
         }
       };
-    case actionTypes.CLIENT_DETAILS_REQUEST:
+    case actionTypes.EXPENSE_DETAILS_REQUEST:
       return {
         ...state,
         details: {
@@ -55,7 +55,7 @@ function reducer(state, action) {
           error: null
         }
       };
-    case actionTypes.CLIENT_DETAILS_SUCCESS:
+    case actionTypes.EXPENSE_DETAILS_SUCCESS:
       return {
         ...state,
         details: {
@@ -65,7 +65,7 @@ function reducer(state, action) {
           data: action.payload
         }
       };
-    case actionTypes.CLIENT_DETAILS_FAILURE:
+    case actionTypes.EXPENSE_DETAILS_FAILURE:
       return {
         ...state,
         details: {

@@ -4,7 +4,7 @@ export const authInitialState = {
   isAuthenticated: false
 };
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -21,8 +21,6 @@ function reducer(state, action) {
       };
     case actionTypes.LOGOUT_SUCCESS:
       return { ...state, isAuthenticated: false, user: null };
-    case actionTypes.CLIENTS_SUCCESS:
-      return { ...state, clients: action.payload };
     default:
       return state;
   }
