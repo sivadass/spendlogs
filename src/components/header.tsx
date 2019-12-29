@@ -3,15 +3,14 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Icon } from "./core";
 import { FixedContainer } from "../styled/common";
+import IMG_LOGO from "../assets/images/expense-manager-white-logo.svg";
 
 const Header = () => {
   return (
     <StyledHeader>
       <FixedContainer>
         <NavLink to="/" exact>
-          <h1>
-            <Icon name="receipt" /> Expenses
-          </h1>
+          <Logo src={IMG_LOGO} alt="Expense Manager" />
         </NavLink>
 
         <nav>
@@ -43,17 +42,6 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: center;
   }
-  h1 {
-    color: #fff;
-    line-height: 36px;
-    font-size: 24px;
-    i {
-      font-size: 36px;
-      line-height: 36px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-  }
   nav {
     ul {
       li {
@@ -68,6 +56,11 @@ const StyledHeader = styled.header`
       }
     }
   }
+`;
+
+const Logo = styled.img`
+  display: block;
+  max-width: 210px;
 `;
 
 export default Header;
