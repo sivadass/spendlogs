@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Home from "./pages/index";
+import ExpenseList from "./pages/expense-list";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import ExpenseDetails from "./pages/expense-details";
 import GlobalStyles from "./styled/global";
 import { Wrapper } from "./styled/common";
 
@@ -21,8 +22,11 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/">
-            <Home />
+          <Route path="/" exact>
+            <ExpenseList />
+          </Route>
+          <Route path="/details/:id">
+            <ExpenseDetails />
           </Route>
         </Switch>
         <Footer />

@@ -1,11 +1,11 @@
 import React from "react";
-import { FixedContainer, PageTitle, Container } from "../styled/common";
+import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
 
 const Login = () => {
   return (
     <FixedContainer>
       <PageTitle>Login</PageTitle>
-      <Container>Login now to access your expense book</Container>
+      <Wrapper>Login now to access your expense book</Wrapper>
     </FixedContainer>
   );
 };

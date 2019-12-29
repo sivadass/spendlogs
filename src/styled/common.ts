@@ -28,11 +28,12 @@ export const MaterialIcon = styled.i`
 export const FixedContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 16px;
 `;
 export const PageTitle = styled.h3`
-  margin: 0 0 16px 0;
+  margin: 16px 0;
 `;
 export const Container = styled.div`
-  padding: 16px;
+  padding: 0 16px;
 `;
 export const Wrapper = styled.div``;

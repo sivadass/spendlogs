@@ -5,7 +5,8 @@ const Footer = () => {
   return (
     <StyledFooter>
       <p>
-        &copy; 2020 <a href="/">Expense Manager</a>
+        &copy; 2020{" "}
+        <a href="https://sivadass.in">Expense Manager by Sivadass</a>
       </p>
     </StyledFooter>
   );
