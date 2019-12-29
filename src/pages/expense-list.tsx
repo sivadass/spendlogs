@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
 
 interface ExpenseData {
@@ -85,18 +86,35 @@ const ExpenseList = () => {
       <Wrapper>
         {listData.map(data => {
           return (
-            <div key={data.id}>
+            <ExpenseListItem key={data.id}>
               <Link to={`/details/${data.id}`}>
                 <p>{data.createdOn}</p>
                 <p>{data.category}</p>
                 <p>{data.amount}</p>
               </Link>
-            </div>
+            </ExpenseListItem>
           );
         })}
       </Wrapper>
     </FixedContainer>
   );
 };
+
+const ExpenseListItem = styled.div`
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #999;
+    background: #fff;
+    transition: all 300ms ease-out;
+    &:hover {
+      text-decoration: none;
+      background: #4099ff;
+      color: #fff;
+    }
+  }
+`;
 
 export default ExpenseList;
