@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Icon } from "./core";
 import { FixedContainer } from "../styled/common";
 
 const Header = () => {
   return (
     <StyledHeader>
       <FixedContainer>
-        <h1>Expense Manager</h1>
+        <NavLink to="/" exact>
+          <h1>
+            <Icon name="receipt" /> Expenses
+          </h1>
+        </NavLink>
+
         <nav>
           <ul>
             <li>
@@ -35,6 +41,18 @@ const StyledHeader = styled.header`
   ${FixedContainer} {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    color: #fff;
+    line-height: 36px;
+    font-size: 24px;
+    i {
+      font-size: 36px;
+      line-height: 36px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
   }
   nav {
     ul {
