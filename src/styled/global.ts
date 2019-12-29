@@ -1,18 +1,20 @@
 import { createGlobalStyle } from "styled-components";
+import InterUIRegular from "../assets/fonts/Inter-UI-Regular.woff2";
+import InterUIBold from "../assets/fonts/Inter-UI-Bold.woff2";
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: "Inter UI";
     font-style: normal;
     font-weight: 400;
-    src: url("../assets/fonts/Inter-UI-Regular.woff2?v=1.0") format("woff2"), url("../assets/fonts/Inter-UI-Regular.woff?v=1.0") format("woff");
+    src: url(${InterUIRegular}) format("woff2");
   }
 
   @font-face {
     font-family: "Inter UI";
     font-style: bold;
     font-weight: 600;
-    src: url("../fonts/Inter-UI-Bold.woff2?v=2.1") format("woff2"), url("../fonts/Inter-UI-Bold.woff?v=2.1") format("woff");
+    src: url(${InterUIBold}) format("woff2");
   }
 
   * {
