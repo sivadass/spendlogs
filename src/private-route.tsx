@@ -6,9 +6,10 @@ import PrivateLayout from "./private-layout";
 
 interface PrivateRouteProps {
   children: any;
+  path: string;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, path }) => {
   const {
     state: { auth }
   } = useContext(Store);
@@ -16,8 +17,9 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   console.log("user", user);
   return (
     <Route
+      path={path}
       render={({ location }) =>
-        _get(user, "_id", null) && isAuthenticated ? (
+        !_get(user, "_id", null) && !isAuthenticated ? (
           <PrivateLayout>{children}</PrivateLayout>
         ) : (
           <Redirect

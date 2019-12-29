@@ -11,9 +11,9 @@ interface PrivateLayoutProps {
 
 const PrivateLayout: React.FC<PrivateLayoutProps> = ({ children }) => {
   const { state, dispatch } = useContext(Store);
+  console.log(state);
   return (
     <Container>
-      {_get(state, "common.isMenuOpen") && <SidebarMenu />}
       <div>{children}</div>
     </Container>
   );

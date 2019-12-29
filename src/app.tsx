@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import _get from "lodash/get";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import ExpenseList from "./pages/expense-list";
@@ -9,31 +10,38 @@ import ExpenseDetails from "./pages/expense-details";
 import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper } from "./styled/common";
+import PrivateRoute from "./private-route";
+import { Store } from "./store";
+import SidebarMenu from "./components/SidebarMenu";
 
 function App() {
+  const { state, dispatch } = useContext(Store);
   return (
     <Router basename="/expense-manager">
       <GlobalStyles />
       <Wrapper>
-        <Header />
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/" exact>
-            <ExpenseList />
-          </Route>
-          <Route path="/details/:id">
-            <ExpenseDetails />
-          </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
-        </Switch>
-        <Footer />
+        <SidebarMenu />
+        <Wrapper>
+          <Header />
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/" exact>
+              <ExpenseList />
+            </Route>
+            <PrivateRoute path="/details/:id">
+              <ExpenseDetails />
+            </PrivateRoute>
+            <PrivateRoute path="/search">
+              <Search />
+            </PrivateRoute>
+          </Switch>
+          <Footer />
+        </Wrapper>
       </Wrapper>
     </Router>
   );

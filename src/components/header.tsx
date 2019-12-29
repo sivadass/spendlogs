@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Icon } from "./core";
+import { Store } from "../store";
+import { commonActions } from "../store/actions";
 import { FixedContainer, Wrapper } from "../styled/common";
 import IMG_LOGO from "../assets/images/expense-manager-white-logo.svg";
 
 const Header = () => {
+  const { state, dispatch } = useContext(Store);
   return (
     <StyledHeader>
       <FixedContainer>
         <Wrapper>
-          <MenuButton>
+          <MenuButton onClick={() => commonActions.toggleMenu(dispatch)}>
             <Icon name="menu" />
           </MenuButton>
           <NavLink to="/" exact>
