@@ -236,7 +236,9 @@ const ExpenseDetails = styled.div`
     width: 100%;
     h6 {
       font-size: 16px;
+      font-weight: 400;
       line-height: 20px;
+      color: #666;
       width: 90%;
       white-space: nowrap;
       overflow: hidden;
@@ -244,15 +246,16 @@ const ExpenseDetails = styled.div`
       text-overflow: ellipsis;
     }
     p {
-      font-size: 14px;
+      font-size: 13px;
       width: 90%;
       white-space: nowrap;
       overflow: hidden;
       display: block;
+      color: #999;
       text-overflow: ellipsis;
       span:nth-child(2) {
         color: red;
-        padding: 3px 6px;
+        padding: 2px 6px;
         border-radius: 8px;
         font-size: 12px;
         background: #ddd;
