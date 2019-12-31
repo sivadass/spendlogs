@@ -7,6 +7,7 @@ import ExpenseList from "./pages/expense-list";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import ExpenseDetails from "./pages/expense-details";
+import ExpenseAdd from "./pages/expense-add";
 import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper } from "./styled/common";
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <PrivateRoute path="/details/:id">
               <ExpenseDetails />
+            </PrivateRoute>
+            <PrivateRoute path="/add">
+              <ExpenseAdd />
             </PrivateRoute>
             <PrivateRoute path="/search">
               <Search />

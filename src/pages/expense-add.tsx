@@ -9,15 +9,22 @@ import { Alert, Button, FormControl } from "../components/core";
 import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
 import { EXPENSE_CATEGORIES } from "../constants/common";
 
-const RegisterSchema = Yup.object().shape({
-  fullName: Yup.string().required("Required"),
-  email: Yup.string()
-    .email("Invalid email")
+const ExpenseSchema = Yup.object().shape({
+  amount: Yup.number()
+    .min(1, "Should be greater than 1!")
+    .max(100000000, "Too Long!")
     .required("Required"),
-  password: Yup.string().required("Required")
+  vendor: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  category: Yup.string().required("Required"),
+  comment: Yup.string()
+    .min(4, "Too Short!")
+    .max(250, "Too Long!")
 });
 
-const Register = () => {
+const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
   let location = useLocation();
@@ -30,13 +37,13 @@ const Register = () => {
   }, []);
   return (
     <FixedContainer>
-      <PageTitle>Register</PageTitle>
+      <PageTitle>Add Expense</PageTitle>
       <Wrapper>
         <Formik
-          initialValues={{ fullName: "", email: "", password: "" }}
-          validationSchema={RegisterSchema}
+          initialValues={{ amount: "", vendor: "", category: "", comment: "" }}
+          validationSchema={ExpenseSchema}
           onSubmit={(values, { setSubmitting }) => {
-            console.log("register form values...", values);
+            console.log("expense form values...", values);
             setError("");
             return authActions
               .login(values)
@@ -57,22 +64,27 @@ const Register = () => {
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               <Field
-                placeholder="Full Name"
+                placeholder="Payee"
                 type="text"
-                name="fullName"
+                name="vendor"
                 component={FormControl.Input}
               />
               <Field
-                placeholder="Email"
-                type="email"
-                name="email"
+                placeholder="Amount"
+                type="number"
+                name="amount"
                 component={FormControl.Input}
               />
               <Field
-                placeholder="Password"
-                type="password"
-                name="password"
-                component={FormControl.Input}
+                placeholder="Category"
+                name="category"
+                component={FormControl.Select}
+                options={EXPENSE_CATEGORIES}
+              />
+              <Field
+                placeholder="Comment"
+                name="comment"
+                component={FormControl.TextArea}
               />
               <Button
                 type="submit"
@@ -80,7 +92,7 @@ const Register = () => {
                 onClick={() => {}}
                 loading={isSubmitting}
               >
-                Register
+                SAVE
               </Button>
               {error && <Alert type="error" message={error} />}
             </form>
@@ -91,4 +103,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default AddExpense;
