@@ -25,13 +25,18 @@ const Select: React.FC<SelectProps> = ({
   className,
   field,
   form: { touched, errors, setFieldValue },
-  borderBottom = false,
+  required = false,
   ...props
 }) => {
+  const isError = touched[field.name] && errors[field.name];
   const customStyles = {
     option: (provided: any, state: any) => ({
       ...provided,
-      background: state.isSelected ? "#377ef9" : "#fff",
+      background: state.isSelected
+        ? "#4099ff"
+        : state.isFocused
+        ? "#ecf3fb"
+        : "#fff",
       color: state.isSelected ? "#fff" : "#232323",
       padding: "8px 16px"
     }),
@@ -40,25 +45,25 @@ const Select: React.FC<SelectProps> = ({
       height: 42,
       margin: "0 !important"
     }),
-    control: (provided: any, state: any) => ({
+    control: (provided: any) => ({
       ...provided,
-      borderTop: borderBottom && "0px",
-      borderBottom: borderBottom && "0px",
-      borderLeft: borderBottom && "0px",
-      borderRight: borderBottom && "0px",
-      background: borderBottom && "#eaeaea",
       boxShadow: "none",
-      borderRadius: "4px"
+      borderRadius: "4px",
+      borderColor: isError ? "#f44336" : "#ccc"
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,
       display: "none"
     }),
+    placeholder: (provided: any, state: any) => ({
+      ...provided,
+      top: state.isFocused ? 28 : 24,
+      transform: "translateY(-12px)"
+    }),
     singleValue: (provided: any, state: any) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = "opacity 300ms";
-
-      return { ...provided, opacity, transition };
+      return { ...provided, opacity, transition, top: 28, lineHeight: 24 };
     }
   };
   const onChange = (option: any) => {
@@ -81,43 +86,50 @@ const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <StyledSelect>
-      <div
-        className={classNames("form-group", className, {
-          error: touched[field.name] && errors[field.name]
-        })}
-      >
-        {label && (
-          <label className="form-label" htmlFor={field.name}>
-            {label}
-          </label>
-        )}
-        <ReactSelect
-          styles={customStyles}
-          options={options}
-          isMulti={multi}
-          value={getValue()}
-          onChange={onChange}
-          name={field.name}
-        />
-        {touched[field.name] && errors[field.name] && (
-          <div className="form-error">{errors[field.name]}</div>
-        )}
-      </div>
-    </StyledSelect>
+    <FormGroup>
+      {label && (
+        <FormLabel htmlFor={field.name}>
+          {label} {required && <span>*</span>}
+        </FormLabel>
+      )}
+      <ReactSelect
+        styles={customStyles}
+        options={options}
+        isMulti={multi}
+        value={getValue()}
+        onChange={onChange}
+        name={field.name}
+      />
+      {touched[field.name] && errors[field.name] && (
+        <FormHelperText>{errors[field.name]}</FormHelperText>
+      )}
+    </FormGroup>
   );
 };
 
-const StyledSelect = styled.div`
-  .form-group {
-    margin-bottom: 16px;
-  }
-  .form-error {
+const FormHelperText = styled.p`
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  line-height: 13px;
+  color: #f44336;
+`;
+
+const FormLabel = styled.label`
+  font-size: 13px;
+  line-height: 20px;
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 0.54);
+  span {
     color: #ff5722;
   }
-  .form-group.error .form-control {
-    border-color: #ff5722;
-  }
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 16px;
 `;
 
 export default Select;
