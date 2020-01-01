@@ -37,3 +37,20 @@ export const Container = styled.div`
   padding: 0 16px;
 `;
 export const Wrapper = styled.div``;
+
+export const FixedFormWrapper = styled.div`
+  max-width: 360px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 75px;
+  margin: 32px auto;
+  padding: 32px;
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  ${PageTitle} {
+    text-align: center;
+    margin-top: 0;
+  }
+  @media (max-width: 480px) {
+    padding: 16px;
+    box-shadow: none;
+  }
+`;

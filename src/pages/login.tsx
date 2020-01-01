@@ -6,7 +6,12 @@ import _get from "lodash/get";
 import { Store } from "../store";
 import { actionTypes, authActions } from "../store/actions";
 import { Alert, Button, FormControl } from "../components/core";
-import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
+import {
+  FixedContainer,
+  PageTitle,
+  Wrapper,
+  FixedFormWrapper
+} from "../styled/common";
 import { EXPENSE_CATEGORIES } from "../constants/common";
 
 const LoginSchema = Yup.object().shape({
@@ -29,57 +34,59 @@ const Login = () => {
   }, []);
   return (
     <FixedContainer>
-      <PageTitle>Login</PageTitle>
-      <Wrapper>
-        <Formik
-          initialValues={{ username: "", password: "" }}
-          validationSchema={LoginSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log("login form values...", values);
-            setError("");
-            return authActions
-              .login(values)
-              .then(d => {
-                // dispatch({
-                //   type: actionTypes.LOGIN_SUCCESS,
-                //   payload: d
-                // });
-                setSubmitting(false);
-                history.replace(from);
-              })
-              .catch(err => {
-                setSubmitting(false);
-                setError(err);
-              });
-          }}
-        >
-          {({ handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
-              <Field
-                placeholder="Username"
-                type="text"
-                name="username"
-                component={FormControl.Input}
-              />
-              <Field
-                placeholder="Password"
-                type="text"
-                name="password"
-                component={FormControl.Input}
-              />
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                onClick={() => {}}
-                loading={isSubmitting}
-              >
-                LOGIN
-              </Button>
-              {error && <Alert type="error" message={error} />}
-            </form>
-          )}
-        </Formik>
-      </Wrapper>
+      <FixedFormWrapper>
+        <PageTitle>Login</PageTitle>
+        <Wrapper>
+          <Formik
+            initialValues={{ username: "", password: "" }}
+            validationSchema={LoginSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log("login form values...", values);
+              setError("");
+              return authActions
+                .login(values)
+                .then(d => {
+                  // dispatch({
+                  //   type: actionTypes.LOGIN_SUCCESS,
+                  //   payload: d
+                  // });
+                  setSubmitting(false);
+                  history.replace(from);
+                })
+                .catch(err => {
+                  setSubmitting(false);
+                  setError(err);
+                });
+            }}
+          >
+            {({ handleSubmit, isSubmitting }) => (
+              <form onSubmit={handleSubmit}>
+                <Field
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                  component={FormControl.Input}
+                />
+                <Field
+                  placeholder="Password"
+                  type="text"
+                  name="password"
+                  component={FormControl.Input}
+                />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={() => {}}
+                  loading={isSubmitting}
+                >
+                  LOGIN
+                </Button>
+                {error && <Alert type="error" message={error} />}
+              </form>
+            )}
+          </Formik>
+        </Wrapper>
+      </FixedFormWrapper>
     </FixedContainer>
   );
 };
