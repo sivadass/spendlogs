@@ -41,16 +41,17 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
   height: 100%;
   width: ${({ isOpen }) => (isOpen ? "100%" : 0)};
   position: fixed;
-  z-index: 10;
+  z-index: 30;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: rgba(0, 0, 0, 0.75);
   overflow-x: hidden;
   transition: 300ms;
   ${Container} {
     max-width: 280px;
     height: 100%;
-    background: #232323;
+    background-color: #1fc8db;
+    background-image: linear-gradient(141deg, #3a97c3 0%, #a0dd9d 75%);
     position: relative;
     padding: 32px 0;
     ul {
@@ -58,6 +59,7 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
         a {
           display: block;
           padding: 8px 16px;
+          color: #fff;
         }
       }
     }

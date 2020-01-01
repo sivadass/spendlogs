@@ -30,7 +30,7 @@ const Select: React.FC<SelectProps> = ({
     option: (provided: any, state: any) => ({
       ...provided,
       background: state.isSelected
-        ? "#4099ff"
+        ? "#66c2aa"
         : state.isFocused
         ? "#ecf3fb"
         : "#fff",

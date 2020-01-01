@@ -35,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     line-height: 24px;
     font-family: "Inter UI", Arial, Helvetica, sans-serif;
+    color: #1d2840;
   }
 
   p,
@@ -69,8 +70,8 @@ const GlobalStyles = createGlobalStyle`
     height: 48px;
     border-radius: 4px;
     padding: 0 16px;
-    border: 1px solid #4099ff;
-    color: #232323;
+    border: 1px solid #66c2aa;
+    color: #1d2840;
     outline: none;
     font-size: inherit;
     font-family: inherit;

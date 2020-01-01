@@ -4,7 +4,7 @@ import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
 const ExpenseDetails = () => {
   return (
     <FixedContainer>
-      <PageTitle>Expense Details</PageTitle>
+      <PageTitle>Hathway Internet</PageTitle>
       <Wrapper>
         <p>Expense Description</p>
       </Wrapper>

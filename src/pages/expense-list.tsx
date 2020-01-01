@@ -208,7 +208,8 @@ const CategoryIcon = styled.div`
   text-align: center;
   color: #fff;
   border-radius: 50%;
-  background: #4099ff;
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
   border: 1px solid transparent;
   transition: all 300ms ease-in;
   i {
@@ -223,18 +224,16 @@ const ExpenseListItem = styled.div`
     padding: 8px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     color: #999;
-    background: #fff;
+    background-image: #fff;
     transition: all 300ms ease-in;
     &:hover {
       text-decoration: none;
-      background: #ecf3fb;
-      color: #4099ff;
+      background-image: linear-gradient(
+        141deg,
+        rgba(100, 194, 172, 0.12941176470588237) 0%,
+        rgba(160, 221, 157, 0.2901960784313726) 75%
+      );
       border-bottom-color: transparent;
-      ${CategoryIcon} {
-        background: #fff;
-        color: #4099ff;
-        border-color: #4099ff;
-      }
     }
   }
 `;
@@ -280,6 +279,7 @@ const ExpenseAmount = styled.div`
   width: 90px;
   flex-shrink: 0;
   h4 {
+    color: #232323;
     text-align: right;
     line-height: 44px;
     font-size: 18px;

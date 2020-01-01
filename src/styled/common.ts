@@ -31,26 +31,42 @@ export const FixedContainer = styled.div`
   padding: 0 16px;
 `;
 export const PageTitle = styled.h3`
-  margin: 16px 0;
+  margin: 16px 0 24px 0;
+  font-size: 24px;
+  color: #1d2840;
 `;
 export const Container = styled.div`
   padding: 0 16px;
 `;
 export const Wrapper = styled.div``;
 
+export const Main = styled.div`
+  z-index: 21;
+  position: relative;
+  margin: 74px auto 16px auto;
+  background: #fff;
+  padding: 16px;
+  min-height: 300px;
+  border-radius: 16px;
+  max-width: 1200px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 75px;
+  @media (max-width: 1200px) {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;
+
 export const FixedFormWrapper = styled.div`
   max-width: 360px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 75px;
-  margin: 32px auto;
-  padding: 32px;
-  background: rgb(255, 255, 255);
-  border-radius: 16px;
+  margin: 0 auto;
+  padding: 64px 16px;
   ${PageTitle} {
     text-align: center;
     margin-top: 0;
   }
   @media (max-width: 480px) {
     padding: 16px;
-    box-shadow: none;
   }
 `;

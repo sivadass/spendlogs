@@ -42,6 +42,8 @@ const StyledButton = styled.button`
   display: block;
   width: 100%;
   background: #377ef9;
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
   border-color: transparent;
   color: #fff;
   text-transform: uppercase;

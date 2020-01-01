@@ -59,7 +59,7 @@ const FormControl = styled.input`
   outline: none;
   &:active,
   &:focus {
-    border-color: #4099ff;
+    border-color: #66c2aa;
   }
 `;
 
