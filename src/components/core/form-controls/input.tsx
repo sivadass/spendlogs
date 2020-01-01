@@ -5,7 +5,6 @@ interface InputProps {
   type: string;
   label: string;
   placeholder?: string;
-  className?: string;
   required?: boolean;
   field: any;
   form: any;
@@ -15,7 +14,6 @@ const Input: React.FC<InputProps> = ({
   type,
   label,
   placeholder,
-  className,
   required = false,
   field,
   form: { touched, errors },

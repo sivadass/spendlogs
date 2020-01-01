@@ -185,6 +185,9 @@ const ExpenseList = () => {
                     </p>
                   </Wrapper>
                 </ExpenseDetails>
+                <ExpenseDescription>
+                  <p>{data.description}</p>
+                </ExpenseDescription>
                 <ExpenseAmount>
                   <h4>{formatAmount(data.amount)}</h4>
                 </ExpenseAmount>
@@ -239,6 +242,7 @@ const ExpenseListItem = styled.div`
 const ExpenseDetails = styled.div`
   flex-grow: 1;
   overflow: hidden;
+  max-width: 400px;
   ${Wrapper} {
     margin-left: 16px;
     width: 100%;
@@ -281,6 +285,18 @@ const ExpenseAmount = styled.div`
     font-size: 18px;
     font-weight: bold;
     margin-left: 16px;
+  }
+`;
+
+export const ExpenseDescription = styled.div`
+  flex-grow: 2;
+  overflow: hidden;
+  max-width: 600px;
+  p {
+    line-height: 44px;
+  }
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 

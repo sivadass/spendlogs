@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import ReactSelect from "react-select";
 import styled from "styled-components";
 
@@ -9,7 +8,6 @@ interface SelectProps {
   type: string;
   label: string;
   placeholder?: string;
-  className?: string;
   required?: boolean;
   field: any;
   form: any;
@@ -22,7 +20,6 @@ const Select: React.FC<SelectProps> = ({
   type,
   label,
   placeholder,
-  className,
   field,
   form: { touched, errors, setFieldValue },
   required = false,
