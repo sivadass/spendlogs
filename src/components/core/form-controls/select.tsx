@@ -37,8 +37,8 @@ const Select: React.FC<SelectProps> = ({
     }),
     input: (provided: any) => ({
       ...provided,
-      height: 54,
-      marginBottom: 0
+      height: 42,
+      margin: "0 !important"
     }),
     control: (provided: any, state: any) => ({
       ...provided,
@@ -48,7 +48,7 @@ const Select: React.FC<SelectProps> = ({
       borderRight: borderBottom && "0px",
       background: borderBottom && "#eaeaea",
       boxShadow: "none",
-      borderRadius: "6px"
+      borderRadius: "4px"
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,

@@ -21,23 +21,18 @@ const Input: React.FC<InputProps> = ({
   form: { touched, errors },
   ...props
 }) => (
-  <FormGroup>
-    <FormLabel htmlFor={field.name}>
-      {label} {required && <span>*</span>}
-    </FormLabel>
+  <FormGroup isError={touched[field.name] && errors[field.name]}>
+    {label && (
+      <FormLabel htmlFor={field.name}>
+        {label} {required && <span>*</span>}
+      </FormLabel>
+    )}
     <FormControl type={type} {...field} {...props} placeholder={placeholder} />
     {touched[field.name] && errors[field.name] && (
       <FormHelperText>{errors[field.name]}</FormHelperText>
     )}
   </FormGroup>
 );
-
-const FormGroup = styled.div`
-  margin-bottom: 16px;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-`;
 
 const FormLabel = styled.label`
   font-size: 13px;
@@ -52,28 +47,43 @@ const FormLabel = styled.label`
     color: #ff5722;
   }
 `;
+
 const FormControl = styled.input`
   font-size: inherit;
-  height: 32px;
-  padding: 0;
-  margin: 20px 0 0 0;
-  border: none;
-  border-radius: 0;
+  height: 48px;
+  padding: 0 8px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   display: block;
   width: 100%;
   background: transparent;
   outline: none;
-  border-bottom: 1px solid #ccc;
   &:active,
   &:focus {
-    border-bottom-color: #4099ff;
+    border-color: #4099ff;
   }
 `;
+
 const FormHelperText = styled.p`
   margin: 4px 0 0 0;
   font-size: 13px;
   line-height: 13px;
-  color: #333;
+  color: #f44336;
+`;
+
+const FormGroup = styled.div<{ isError: boolean }>`
+  margin-bottom: 16px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  ${props =>
+    props.isError &&
+    `
+    ${FormControl} {
+      border-color: #f44336;
+    }
+  `}
 `;
 
 export default Input;

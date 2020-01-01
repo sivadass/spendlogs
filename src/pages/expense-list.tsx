@@ -197,23 +197,6 @@ const ExpenseList = () => {
   );
 };
 
-const ExpenseListItem = styled.div`
-  a {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    color: #999;
-    background: #fff;
-    transition: all 300ms ease-out;
-    &:hover {
-      text-decoration: none;
-      background: #ecf3fb;
-      color: #4099ff;
-    }
-  }
-`;
-
 const CategoryIcon = styled.div`
   flex-shrink: 0;
   height: 44px;
@@ -223,8 +206,33 @@ const CategoryIcon = styled.div`
   color: #fff;
   border-radius: 50%;
   background: #4099ff;
+  border: 1px solid transparent;
+  transition: all 300ms ease-in;
   i {
     line-height: 44px;
+  }
+`;
+
+const ExpenseListItem = styled.div`
+  a {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: #999;
+    background: #fff;
+    transition: all 300ms ease-in;
+    &:hover {
+      text-decoration: none;
+      background: #ecf3fb;
+      color: #4099ff;
+      border-bottom-color: transparent;
+      ${CategoryIcon} {
+        background: #fff;
+        color: #4099ff;
+        border-color: #4099ff;
+      }
+    }
   }
 `;
 

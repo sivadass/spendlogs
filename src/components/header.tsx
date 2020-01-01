@@ -21,7 +21,9 @@ const Header = () => {
           </NavLink>
         </Wrapper>
         <NavLink to="/search">
-          <Icon name="search" />
+          <SearchButton>
+            <Icon name="search" />
+          </SearchButton>
         </NavLink>
       </FixedContainer>
     </StyledHeader>
@@ -50,11 +52,29 @@ const StyledHeader = styled.header`
 const Logo = styled.img`
   display: block;
   max-width: 210px;
+  @media (max-width: 360px) {
+    max-width: 194px;
+  }
 `;
 
 const MenuButton = styled.button`
   display: block;
   margin-right: 16px;
+  background: transparent;
+  padding: 0 12px;
+  &:hover {
+    border-radius: 24px;
+    background: rgba(14, 125, 251, 0.5803921568627451);
+    i {
+      color: #fff;
+    }
+  }
+`;
+
+const SearchButton = styled.button`
+  display: block;
+  margin-left: 16px;
+  width: 48px;
   background: transparent;
   padding: 0 12px;
   &:hover {
