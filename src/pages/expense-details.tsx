@@ -1,15 +1,85 @@
 import React from "react";
+import styled from "styled-components";
 import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
+import Icon from "../components/core/icon";
+import { getCategory, formatAmount } from "../utils/common";
 
 const ExpenseDetails = () => {
   return (
     <FixedContainer>
-      <PageTitle>Hathway Internet</PageTitle>
+      <PageTitle>{formatAmount(65789)}</PageTitle>
       <Wrapper>
-        <p>Expense Description</p>
+        <Amount></Amount>
+        <MediaObject>
+          <MediaObjectFigure>
+            <Icon name="date_range" />
+          </MediaObjectFigure>
+          <MediaObjectBody>
+            <h4>25th April, 2020</h4>
+            <p>8% Greater than last month</p>
+          </MediaObjectBody>
+        </MediaObject>
+
+        <MediaObject>
+          <MediaObjectFigure>
+            <Icon name="public" />
+          </MediaObjectFigure>
+          <MediaObjectBody>
+            <h4>Internet</h4>
+            <p>5th Most spent category of this month</p>
+          </MediaObjectBody>
+        </MediaObject>
+
+        <MediaObject>
+          <MediaObjectFigure>
+            <Icon name="chat" />
+          </MediaObjectFigure>
+          <MediaObjectBody>
+            <h4>Hathway Broadband Solutions</h4>
+            <p>Internet charges</p>
+          </MediaObjectBody>
+        </MediaObject>
       </Wrapper>
     </FixedContainer>
   );
 };
+
+const Amount = styled.div`
+  font-size: 36px;
+`;
+
+const MediaObject = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+`;
+
+const MediaObjectFigure = styled.div`
+  margin-right: 8px;
+  i {
+    margin-right: 8px;
+    background: #f5f7f9;
+    color: #94aab9;
+    margin-right: 16px;
+    display: block;
+    padding: 12px;
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+  }
+`;
+
+const MediaObjectBody = styled.div`
+  flex: 1;
+  h4 {
+    font-size: 14px;
+    line-height: 18px;
+    color: #666;
+  }
+  p {
+    font-size: 12px;
+    color: #999;
+  }
+`;
 
 export default ExpenseDetails;
