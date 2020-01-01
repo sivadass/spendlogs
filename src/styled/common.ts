@@ -33,8 +33,9 @@ export const FixedContainer = styled.div`
 `;
 export const PageTitle = styled.h3`
   margin: 16px 0 24px 0;
-  font-size: 24px;
-  color: #1d2840;
+  font-size: 20px;
+  font-weight: normal;
+  color: #999;
 `;
 export const Container = styled.div`
   padding: 0 16px;

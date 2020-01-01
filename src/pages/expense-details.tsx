@@ -7,9 +7,9 @@ import { getCategory, formatAmount } from "../utils/common";
 const ExpenseDetails = () => {
   return (
     <FixedContainer>
-      <PageTitle>{formatAmount(65789)}</PageTitle>
+      <PageTitle>Details</PageTitle>
       <Wrapper>
-        <Amount></Amount>
+        <Amount>{formatAmount(65789)}</Amount>
         <MediaObject>
           <MediaObjectFigure>
             <Icon name="date_range" />
@@ -39,13 +39,27 @@ const ExpenseDetails = () => {
             <p>Internet charges</p>
           </MediaObjectBody>
         </MediaObject>
+
+        <MediaObject>
+          <MediaObjectFigure>
+            <Icon name="attach_file" />
+          </MediaObjectFigure>
+          <MediaObjectBody>
+            <h4>Bill</h4>
+            <p>
+              <img src="https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg" />
+            </p>
+          </MediaObjectBody>
+        </MediaObject>
       </Wrapper>
     </FixedContainer>
   );
 };
 
 const Amount = styled.div`
-  font-size: 36px;
+  font-size: 42px;
+  line-height: 42px;
+  margin-bottom: 36px;
 `;
 
 const MediaObject = styled.div`
@@ -79,6 +93,15 @@ const MediaObjectBody = styled.div`
   p {
     font-size: 12px;
     color: #999;
+    img {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 1px solid #f7f7f7;
+      margin: 8px 0 0 0;
+      border-radius: 6px;
+      max-width: 600px;
+    }
   }
 `;
 
