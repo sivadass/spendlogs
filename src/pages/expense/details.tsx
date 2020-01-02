@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
-import Icon from "../components/core/icon";
-import { getCategory, formatAmount } from "../utils/common";
+import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
+import Icon from "../../components/core/icon";
+import { getCategory, formatAmount } from "../../utils/common";
 
 const ExpenseDetails = () => {
   return (

@@ -56,7 +56,7 @@ export const EXPENSE_CATEGORIES: {
   {
     label: "Transportation & Auto",
     value: "transportation_and_auto",
-    icon: "local_car_wash"
+    icon: "motorcycle"
   },
   {
     label: "Entertainment",

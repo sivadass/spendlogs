@@ -3,16 +3,16 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
-import { Store } from "../store";
-import { actionTypes, authActions } from "../store/actions";
-import { Alert, Button, FormControl } from "../components/core";
+import { Store } from "../../store";
+import { actionTypes, authActions } from "../../store/actions";
+import { Alert, Button, FormControl } from "../../components/core";
 import {
   FixedContainer,
   PageTitle,
   Wrapper,
   FixedFormWrapper
-} from "../styled/common";
-import { EXPENSE_CATEGORIES } from "../constants/common";
+} from "../../styled/common";
+import { EXPENSE_CATEGORIES } from "../../constants/common";
 
 const ExpenseSchema = Yup.object().shape({
   amount: Yup.number()

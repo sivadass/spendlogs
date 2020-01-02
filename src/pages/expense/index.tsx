@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
-import { Icon } from "../components/core";
-import { FixedContainer, PageTitle, Wrapper } from "../styled/common";
-import { getCategory, formatAmount } from "../utils/common";
+import { Icon } from "../../components/core";
+import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
+import { getCategory, formatAmount } from "../../utils/common";
 
 interface ExpenseData {
   category: string;
@@ -172,7 +172,7 @@ const ExpenseList = () => {
           const category = getCategory(data.category);
           return (
             <ExpenseListItem key={data.id}>
-              <Link to={`/details/${data.id}`}>
+              <Link to={`expense/details/${data.id}`}>
                 <CategoryIcon>
                   <Icon name={_get(category, "icon", "")} />
                 </CategoryIcon>

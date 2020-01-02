@@ -26,10 +26,10 @@ export const MaterialIcon = styled.i`
   font-feature-settings: "liga";
 `;
 
-export const FixedContainer = styled.div`
+export const FixedContainer = styled.div<{ padding?: string }>`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: ${({ padding }) => (padding ? padding : "0 16px")};
 `;
 export const PageTitle = styled.h3`
   margin: 16px 0 24px 0;
