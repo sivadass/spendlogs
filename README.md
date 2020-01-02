@@ -1,6 +1,6 @@
 # Expense Manager
 
-[https://sivadas.github.io/expense-manager](https://sivadas.github.io/expense-manager)
+[https://sivadass.github.io/expense-manager](https://sivadass.github.io/expense-manager)
 
 Expense manager app build for my own personal use.
 
