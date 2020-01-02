@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
 import Icon from "../../components/core/icon";
@@ -7,7 +8,26 @@ import { getCategory, formatAmount } from "../../utils/common";
 const ExpenseDetails = () => {
   return (
     <FixedContainer>
-      <PageTitle>Details</PageTitle>
+      <Header>
+        <PageTitle>Details</PageTitle>
+        <Actions>
+          <li>
+            <Link to="/expense/add">
+              <Icon name="add_circle_outline" /> Add New
+            </Link>
+          </li>
+          <li>
+            <Link to="/expense/123/edit">
+              <Icon name="edit" /> Edit
+            </Link>
+          </li>
+          <li>
+            <a onClick={() => {}}>
+              <Icon name="delete_outline" /> Delete
+            </a>
+          </li>
+        </Actions>
+      </Header>
       <Wrapper>
         <Amount>{formatAmount(65789)}</Amount>
         <MediaObject>
@@ -102,6 +122,35 @@ const MediaObjectBody = styled.div`
       border-radius: 6px;
       max-width: 600px;
     }
+  }
+`;
+
+const Actions = styled.ul`
+  li {
+    display: inline-block;
+    a {
+      line-height: 20px;
+      display: block;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      margin-left: 16px;
+      &:hover {
+        text-decoration: none;
+      }
+      i {
+        margin-right: 4px;
+        font-size: 20px;
+      }
+    }
+  }
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  ${Actions} {
+    margin-left: auto;
   }
 `;
 
