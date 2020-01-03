@@ -19,7 +19,7 @@ import SidebarMenu from "./components/sidebar-menu";
 function App() {
   const { state, dispatch } = useContext(Store);
   return (
-    <Router basename="/expense-manager">
+    <Router basename="/spendlogs">
       <GlobalStyles />
       <Wrapper>
         <SidebarMenu />
