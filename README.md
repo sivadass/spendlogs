@@ -1,8 +1,7 @@
-# Expense Manager
+# SpendLogs
+An Expense Manager app build for my own needs.
 
-[https://sivadass.github.io/expense-manager](https://sivadass.github.io/expense-manager)
-
-Expense manager app build for my own personal use.
+[https://sivadass.github.io/spendlogs](https://sivadass.github.io/spendlogs)
 
 ### Tech Stack (MERN)
 
