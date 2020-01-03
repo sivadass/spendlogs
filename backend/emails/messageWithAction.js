@@ -116,7 +116,7 @@ module.exports = (title, message, url, buttonLabel = "Click here!") => `
                   <tr>
                     <td>
                       <a href="https://spendlogs.app" target="_blank"><img
-                            src="https://res.cloudinary.com/ui-jobs/image/upload/v1566662094/branding/ui-jobs-logo-small_vafu2j.png"
+                            src="https://res.cloudinary.com/spendlogs/image/upload/v1578090007/branding/spendlogs-logo-green_ynjqex.png"
                             alt="Spendlogs"
                             style="display: block; margin-top: 24px; margin-bottom: 24px; margin-left: auto; margin-right: auto; max-width: 90px; "
                         /></a>
@@ -162,15 +162,9 @@ module.exports = (title, message, url, buttonLabel = "Click here!") => `
                         >
                           For any support/feedback reach us at <br />
                           <a
-                            href="mailto:uijobs.in@gmail.com"
+                            href="mailto:spendlogs.app@gmail.com"
                             style="text-decoration: none; color: #333"
-                            >uijobs.in@gmail.com</a
-                          >
-                          or
-                          <a
-                            href="https://twitter.com/ui_jobs_india"
-                            style="text-decoration: none; color: #333"
-                            >@ui_jobs_india</a
+                            >spendlogs.app@gmail.com</a
                           >
                         </p>
                       </td>

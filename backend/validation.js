@@ -34,58 +34,40 @@ const categoryValidation = data => {
   const schema = {
     value: Joi.string()
       .min(3)
-      .max(200)
+      .max(30)
       .required(),
     label: Joi.string()
-      .min(3)
-      .max(200)
-      .required()
-  };
-  return Joi.validate(data, schema);
-};
-
-const cityValidation = data => {
-  const schema = {
-    value: Joi.string()
-      .min(3)
-      .max(200)
-      .required(),
-    label: Joi.string()
-      .min(3)
-      .max(200)
-      .required()
-  };
-  return Joi.validate(data, schema);
-};
-
-const jobValidation = data => {
-  const schema = {
-    title: Joi.string()
-      .min(6)
-      .max(200)
-      .required(),
-    description: Joi.string()
-      .min(20)
-      .required(),
-    cityId: Joi.string().required(),
-    categoryId: Joi.string().required(),
-    pay: Joi.object().keys({
-      minimum: Joi.number()
-        .min(1)
-        .required(),
-      maximum: Joi.number()
-        .min(1)
-        .required()
-    }),
-    experience: Joi.number()
       .min(1)
-      .required()
+      .max(30)
+      .required(),
+    icon: Joi.string()
+      .min(3)
+      .max(30)
+      .required(),
+    color: Joi.string()
+      .min(7)
+      .max(7)
+  };
+  return Joi.validate(data, schema);
+};
+
+const expenseValidation = data => {
+  const schema = {
+    amount: Joi.number()
+      .min(1)
+      .max(99999999)
+      .required(),
+    payee: Joi.string()
+      .min(1)
+      .max(50)
+      .required(),
+    categoryId: Joi.string().required(),
+    comment: Joi.string().max(200)
   };
   return Joi.validate(data, schema);
 };
 
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
-module.exports.jobValidation = jobValidation;
+module.exports.expenseValidation = expenseValidation;
 module.exports.categoryValidation = categoryValidation;
-module.exports.cityValidation = cityValidation;

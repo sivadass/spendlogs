@@ -6,10 +6,8 @@ const dotenv = require("dotenv");
 const path = require("path");
 // import routes
 const authRoute = require("./routes/auth");
-const jobRoute = require("./routes/job");
+const expenseRoute = require("./routes/expense");
 const categoryRoute = require("./routes/category");
-const cityRoute = require("./routes/city");
-const newsLetterRoute = require("./routes/news-letter");
 
 const seedData = require("./seed");
 
@@ -32,10 +30,8 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 
 // route middlewares
 app.use("/api/v1/user", authRoute);
-app.use("/api/v1/job", jobRoute);
+app.use("/api/v1/expense", expenseRoute);
 app.use("/api/v1/category", categoryRoute);
-app.use("/api/v1/city", cityRoute);
-app.use("/api/v1/newsletter", newsLetterRoute);
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/index.html"));

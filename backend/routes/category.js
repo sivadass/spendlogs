@@ -8,7 +8,9 @@ router.post("/", verify, async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
   const category = new Category({
     value: req.body.value,
-    label: req.body.label
+    label: req.body.label,
+    icon: req.body.icon,
+    color: req.body.color
   });
   try {
     if (req.user.role === "admin") {

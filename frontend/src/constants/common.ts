@@ -2,130 +2,156 @@ export const EXPENSE_CATEGORIES: {
   label: string;
   value: string;
   icon: string;
+  color?: string;
 }[] = [
   {
     label: "Dine Out",
     value: "dine_out",
-    icon: "local_dining"
+    icon: "local_dining",
+    color: "#4099ff"
   },
   {
     label: "Taxes",
     value: "taxes",
-    icon: "receipt"
+    icon: "receipt",
+    color: "#4099ff"
   },
   {
     label: "Kids",
     value: "kids",
-    icon: "child_friendly"
+    icon: "child_friendly",
+    color: "#4099ff"
   },
   {
     label: "Pets",
     value: "pets",
-    icon: "pets"
+    icon: "pets",
+    color: "#4099ff"
   },
   {
     label: "Travel",
     value: "travel",
-    icon: "commute"
+    icon: "commute",
+    color: "#4099ff"
   },
   {
     label: "Electricity",
     value: "electricity",
-    icon: "power"
+    icon: "power",
+    color: "#4099ff"
   },
   {
     label: "Milk",
     value: "milk",
-    icon: "local_cafe"
+    icon: "local_cafe",
+    color: "#4099ff"
   },
   {
     label: "Water",
     value: "water",
-    icon: "local_drink"
+    icon: "local_drink",
+    color: "#4099ff"
   },
   {
     label: "Fruits & Vegetables",
     value: "fruits_and_vegetables",
-    icon: "shopping_basket"
+    icon: "shopping_basket",
+    color: "#4099ff"
   },
   {
     label: "Groceries",
     value: "groceries",
-    icon: "store"
+    icon: "store",
+    color: "#4099ff"
   },
   {
     label: "Transportation & Auto",
     value: "transportation_and_auto",
-    icon: "motorcycle"
+    icon: "motorcycle",
+    color: "#4099ff"
   },
   {
     label: "Entertainment",
     value: "entertainment",
-    icon: "local_movies"
+    icon: "local_movies",
+    color: "#4099ff"
   },
   {
     label: "Medical",
     value: "medical",
-    icon: "local_hospital"
+    icon: "local_hospital",
+    color: "#4099ff"
   },
   {
     label: "Gym",
     value: "gym",
-    icon: "fitness_center"
+    icon: "fitness_center",
+    color: "#4099ff"
   },
   {
     label: "Snacks",
     value: "snacks",
-    icon: "fastfood"
+    icon: "fastfood",
+    color: "#4099ff"
   },
   {
     label: "Shopping",
     value: "shopping",
-    icon: "local_grocery_store"
+    icon: "local_grocery_store",
+    color: "#4099ff"
   },
   {
     label: "Gifts & Donations",
     value: "gifts_and_donations",
-    icon: "local_florist"
+    icon: "local_florist",
+    color: "#4099ff"
   },
   {
     label: "LPG Gas",
     value: "lpg_gas",
-    icon: "whatshot"
+    icon: "whatshot",
+    color: "#4099ff"
   },
   {
     label: "Meats & Fishes",
     value: "meats_and_fishes",
-    icon: "kitchen"
+    icon: "kitchen",
+    color: "#4099ff"
   },
   {
     label: "Investments",
     value: "investments",
-    icon: "people"
+    icon: "people",
+    color: "#4099ff"
   },
   {
     label: "Internet",
     value: "internet",
-    icon: "public"
+    icon: "public",
+    color: "#4099ff"
   },
   {
     label: "Mobile",
     value: "mobile",
-    icon: "phone_iphone"
+    icon: "phone_iphone",
+    color: "#4099ff"
   },
   {
     label: "Services & Maintenance",
     value: "services_and_maintenance",
-    icon: "ac_unit"
+    icon: "ac_unit",
+    color: "#4099ff"
   },
   {
     label: "Spa & Parlour",
     value: "spa_and_parlour",
-    icon: "spa"
+    icon: "spa",
+    color: "#4099ff"
   },
   {
     label: "Misc",
     value: "misc",
-    icon: "style"
+    icon: "style",
+    color: "#4099ff"
   }
 ];
