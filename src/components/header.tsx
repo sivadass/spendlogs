@@ -57,9 +57,9 @@ const StyledHeader = styled.header`
 
 const Logo = styled.img`
   display: block;
-  max-width: 210px;
+  max-width: 180px;
   @media (max-width: 360px) {
-    max-width: 194px;
+    max-width: 150px;
   }
 `;
 
