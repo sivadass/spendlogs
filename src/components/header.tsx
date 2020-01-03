@@ -5,7 +5,7 @@ import { Icon } from "./core";
 import { Store } from "../store";
 import { commonActions } from "../store/actions";
 import { FixedContainer, Wrapper } from "../styled/common";
-import IMG_LOGO from "../assets/images/expense-manager-white-logo.svg";
+import IMG_LOGO from "../assets/images/spendlogs-logo-white.svg";
 
 const Header = () => {
   const { state, dispatch } = useContext(Store);
@@ -17,7 +17,7 @@ const Header = () => {
             <Icon name="menu" />
           </MenuButton>
           <NavLink to="/" exact>
-            <Logo src={IMG_LOGO} alt="Expense Manager" />
+            <Logo src={IMG_LOGO} alt="Spend Logs" />
           </NavLink>
         </Wrapper>
         <NavLink to="/search">

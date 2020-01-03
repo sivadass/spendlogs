@@ -1,5 +1,6 @@
 # SpendLogs
-An Expense Manager app build for my own needs.
+
+Your Personal Expense Manager
 
 [https://sivadass.github.io/spendlogs](https://sivadass.github.io/spendlogs)
 
