@@ -11,7 +11,7 @@ Node JS based rest API server build with MongoDB
 
 ## Demo
 
-[https://ui-jobs.herokuapp.com/](https://ui-jobs.herokuapp.com/)
+[https://spendlogs.herokuapp.com/](https://spendlogs.herokuapp.com/)
 
 ## Development
 
