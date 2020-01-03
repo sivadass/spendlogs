@@ -57,7 +57,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://sivadass.github.io/expense-manager",
+  "homepage": "https://sivadass.github.io/spendlogs",
   "devDependencies": {
     "gh-pages": "^2.1.1"
   }
