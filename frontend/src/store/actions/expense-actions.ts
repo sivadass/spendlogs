@@ -1,9 +1,8 @@
 import { postJSON, getJSON } from "../../utils/axios";
 
-const addClient = (values: {}) => {
+const addExpense = (values: {}) => {
   return postJSON("/client", values)
     .then(d => {
-      console.log("client data", d);
       return d;
     })
     .catch(err => {
@@ -11,8 +10,8 @@ const addClient = (values: {}) => {
     });
 };
 
-const getClients = () => {
-  return getJSON("/client")
+const getExpenses = () => {
+  return getJSON("/expense")
     .then(d => {
       return d;
     })
@@ -21,8 +20,8 @@ const getClients = () => {
     });
 };
 
-const getClientDetails = (id: string) => {
-  return getJSON(`/client/${id}`)
+const getExpenseDetails = (id: string) => {
+  return getJSON(`/expense/${id}`)
     .then(d => {
       return d;
     })
@@ -31,4 +30,4 @@ const getClientDetails = (id: string) => {
     });
 };
 
-export default { addClient, getClients, getClientDetails };
+export default { addExpense, getExpenses, getExpenseDetails };

@@ -2,18 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
+import moment from "moment";
 import { Icon } from "./core";
 import { Wrapper } from "../styled/common";
-import { getCategory, formatAmount } from "../utils/common";
+import { formatAmount } from "../utils/common";
 
 export interface ExpenseItemData {
-  category: string;
-  description: string;
+  id: string;
+  amount: number;
+  comment: string;
+  payee: string;
+  paidOn: Date;
+  category: {
+    value: string;
+    label: string;
+    icon: string;
+    color: string;
+  };
   createdOn: string;
   updatedOn: string;
-  amount: number;
-  vendor: string;
-  id: string;
 }
 
 export interface ExpenseListProps {
@@ -22,6 +29,7 @@ export interface ExpenseListProps {
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
+  console.log(data);
   if (loading) {
     return (
       <Wrapper>
@@ -31,33 +39,35 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
   }
   return (
     <Wrapper>
-      {data.map(expense => {
-        const category = getCategory(expense.category);
-        return (
-          <ExpenseListItem key={expense.id}>
-            <Link to={`expense/details/${expense.id}`}>
-              <CategoryIcon>
-                <Icon name={_get(category, "icon", "")} />
-              </CategoryIcon>
-              <ExpenseDetails>
-                <Wrapper>
-                  <h6>{_get(expense, "vendor", "")}</h6>
-                  <p>
-                    <span>{expense.createdOn}</span>,{" "}
-                    <span>{_get(category, "label", "-")}</span>
-                  </p>
-                </Wrapper>
-              </ExpenseDetails>
-              <ExpenseDescription>
-                <p>{expense.description}</p>
-              </ExpenseDescription>
-              <ExpenseAmount>
-                <h4>{formatAmount(expense.amount)}</h4>
-              </ExpenseAmount>
-            </Link>
-          </ExpenseListItem>
-        );
-      })}
+      {data &&
+        data.map(expense => {
+          return (
+            <ExpenseListItem key={expense.id}>
+              <Link to={`expense/details/${expense.id}`}>
+                <CategoryIcon>
+                  <Icon name={_get(expense, "category.icon", "")} />
+                </CategoryIcon>
+                <ExpenseDetails>
+                  <Wrapper>
+                    <h6>{_get(expense, "payee", "")}</h6>
+                    <p>
+                      <span>
+                        {moment(expense.paidOn).format("h:mm a, MMM D")}
+                      </span>
+                      , <span>{_get(expense, "category.label", "")}</span>
+                    </p>
+                  </Wrapper>
+                </ExpenseDetails>
+                <ExpenseDescription>
+                  <p>{expense.comment}</p>
+                </ExpenseDescription>
+                <ExpenseAmount>
+                  <h4>{formatAmount(expense.amount)}</h4>
+                </ExpenseAmount>
+              </Link>
+            </ExpenseListItem>
+          );
+        })}
     </Wrapper>
   );
 };
@@ -138,7 +148,7 @@ const ExpenseDetails = styled.div`
   }
 `;
 const ExpenseAmount = styled.div`
-  width: 90px;
+  width: 132px;
   flex-shrink: 0;
   h4 {
     color: #232323;
@@ -147,6 +157,12 @@ const ExpenseAmount = styled.div`
     font-size: 18px;
     font-weight: bold;
     margin-left: 16px;
+  }
+  @media (max-width: 480px) {
+    width: 120px;
+    h4 {
+      font-size: 16px;
+    }
   }
 `;
 

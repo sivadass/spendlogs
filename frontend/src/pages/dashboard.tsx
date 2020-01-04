@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import _get from "lodash/get";
@@ -7,57 +7,10 @@ import { actionTypes, authActions } from "../store/actions";
 import { FixedContainer, PageTitle, Wrapper, Main } from "../styled/common";
 import ExpenseList from "../components/expense-list";
 import { Icon } from "../components/core";
-import { getCategory, formatAmount } from "../utils/common";
-
-const last5Transactions = [
-  {
-    category: "travel",
-    description: "Metro Pass Recharge",
-    createdOn: "15/01/2022",
-    updatedOn: "15/01/2022",
-    amount: 200,
-    vendor: "Chennai Metro",
-    id: "15"
-  },
-  {
-    category: "gym",
-    description: "Gym Fees",
-    createdOn: "10/01/2020",
-    updatedOn: "10/01/2020",
-    amount: 1000,
-    vendor: "OMR Fitness Studio",
-    id: "12"
-  },
-  {
-    category: "pets",
-    description: "Pedigree",
-    createdOn: "12/01/2020",
-    updatedOn: "12/01/2020",
-    amount: 3000,
-    vendor: "Pet Shop",
-    id: "13"
-  },
-  {
-    category: "kids",
-    description: "Sketchbook",
-    createdOn: "15/01/2022",
-    updatedOn: "15/01/2022",
-    amount: 180,
-    vendor: "Stationary Shop",
-    id: "14"
-  },
-  {
-    category: "transportation_and_auto",
-    description: "Oil Change",
-    createdOn: "15/01/2022",
-    updatedOn: "15/01/2022",
-    amount: 750,
-    vendor: "Athvith Suzuki",
-    id: "15"
-  }
-];
+import { formatAmount } from "../utils/common";
 
 const AddExpense = () => {
+  const { state, dispatch } = useContext(Store);
   return (
     <FixedContainer padding={"0 16px"}>
       <DashboardContainer>
@@ -95,7 +48,10 @@ const AddExpense = () => {
         </KPIContainer>
         <ExpenseListContainer>
           <h2>Recent 5 Transactions</h2>
-          <ExpenseList data={last5Transactions} />
+          <ExpenseList
+            data={_get(state, "expense.list.data")}
+            loading={_get(state, "expense.list.loading")}
+          />
         </ExpenseListContainer>
       </DashboardContainer>
     </FixedContainer>
@@ -187,6 +143,7 @@ const KPIContainer = styled.div`
 
 const ExpenseListContainer = styled.div`
   h2 {
+    font-size: 16px;
     margin-bottom: 16px;
   }
 `;

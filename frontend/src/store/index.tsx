@@ -32,7 +32,7 @@ interface StateProps {
 
 interface Actions {
   type: string;
-  value: any;
+  payload: any;
 }
 
 interface ContextProps {
