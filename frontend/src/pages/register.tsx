@@ -14,19 +14,21 @@ import {
 } from "../styled/common";
 
 const RegisterSchema = Yup.object().shape({
-  fullName: Yup.string().required("Required"),
+  name: Yup.string().required("Required"),
   email: Yup.string()
     .email("Invalid email")
     .required("Required"),
-  password: Yup.string().required("Required")
+  password: Yup.string().required("Required"),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Required")
 });
 
 const Register = () => {
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   useEffect(() => {
     if (_get(state, "auth.isAuthenticated")) {
       history.replace("/");
@@ -38,20 +40,21 @@ const Register = () => {
         <PageTitle>Register</PageTitle>
         <Wrapper>
           <Formik
-            initialValues={{ fullName: "", email: "", password: "" }}
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+              passwordConfirm: ""
+            }}
             validationSchema={RegisterSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("register form values...", values);
+              delete values.passwordConfirm;
               setError("");
               return authActions
-                .login(values)
+                .register(values)
                 .then(d => {
-                  // dispatch({
-                  //   type: actionTypes.LOGIN_SUCCESS,
-                  //   payload: d
-                  // });
                   setSubmitting(false);
-                  history.replace(from);
+                  setSuccess(true);
                 })
                 .catch(err => {
                   setSubmitting(false);
@@ -64,7 +67,7 @@ const Register = () => {
                 <Field
                   placeholder="Full Name"
                   type="text"
-                  name="fullName"
+                  name="name"
                   component={FormControl.Input}
                 />
                 <Field
@@ -79,6 +82,12 @@ const Register = () => {
                   name="password"
                   component={FormControl.Input}
                 />
+                <Field
+                  placeholder="Confirm Password"
+                  type="password"
+                  name="passwordConfirm"
+                  component={FormControl.Input}
+                />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -87,6 +96,12 @@ const Register = () => {
                 >
                   Register
                 </Button>
+                {success && (
+                  <Alert
+                    message="Please check your inbox for confirmation email with verification code!"
+                    type="success"
+                  />
+                )}
                 {error && <Alert type="error" message={error} />}
               </form>
             )}

@@ -25,7 +25,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
       path={path}
       exact={exact}
       render={({ location }) =>
-        !_get(user, "_id", null) && !isAuthenticated ? (
+        _get(user, "_id", null) && isAuthenticated ? (
           <PrivateLayout>{children}</PrivateLayout>
         ) : (
           <Redirect

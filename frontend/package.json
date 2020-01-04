@@ -41,7 +41,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "npm run build && gh-pages -d frontend/build"
+    "deploy": "npm run build && gh-pages -d build -e frontend"
   },
   "eslintConfig": {
     "extends": "react-app"

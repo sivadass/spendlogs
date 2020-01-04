@@ -12,10 +12,9 @@ import {
   Wrapper,
   FixedFormWrapper
 } from "../styled/common";
-import { EXPENSE_CATEGORIES } from "../constants/common";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string()
+  email: Yup.string()
     .email("Invalid email")
     .required("Required"),
   password: Yup.string().required("Required")
@@ -38,18 +37,17 @@ const Login = () => {
         <PageTitle>Login</PageTitle>
         <Wrapper>
           <Formik
-            initialValues={{ username: "", password: "" }}
+            initialValues={{ email: "", password: "" }}
             validationSchema={LoginSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("login form values...", values);
               setError("");
               return authActions
                 .login(values)
                 .then(d => {
-                  // dispatch({
-                  //   type: actionTypes.LOGIN_SUCCESS,
-                  //   payload: d
-                  // });
+                  dispatch({
+                    type: actionTypes.LOGIN_SUCCESS,
+                    payload: d
+                  });
                   setSubmitting(false);
                   history.replace(from);
                 })
@@ -62,14 +60,14 @@ const Login = () => {
             {({ handleSubmit, isSubmitting }) => (
               <form onSubmit={handleSubmit}>
                 <Field
-                  placeholder="Username"
-                  type="text"
-                  name="username"
+                  placeholder="Email"
+                  type="email"
+                  name="email"
                   component={FormControl.Input}
                 />
                 <Field
                   placeholder="Password"
-                  type="text"
+                  type="password"
                   name="password"
                   component={FormControl.Input}
                 />

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styled, { keyframes } from "styled-components";
+import Icon from "./icon";
 
 interface AlertProps {
   message: string;
@@ -23,19 +24,8 @@ const Alert: React.FC<AlertProps> = ({ message, type = "info" }) => {
     }
   };
   return (
-    <AlertContainer>
-      <div
-        className={classNames(
-          "alert",
-          { info: type === "info" },
-          { warning: type === "warning" },
-          { success: type === "success" },
-          { error: type === "error" }
-        )}
-        role="alert"
-      >
-        <i className="material-icons"> {getIcon(type)}</i> {message}
-      </div>
+    <AlertContainer type={type} role="alert">
+      <Icon name={getIcon(type)} /> {message}
     </AlertContainer>
   );
 };
@@ -54,44 +44,50 @@ export const fadeInUp = keyframes`
     }
 `;
 
-const AlertContainer = styled.div`
-  .alert {
-    border: 1px solid transparent;
-    margin-bottom: 16px;
-    margin-top: 16px;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 14px;
-    animation-name: ${fadeInUp};
-    animation-duration: 400ms;
-    animation-fill-mode: both;
-    display: flex;
-  }
-  .alert .material-icons {
+const AlertContainer = styled.div<{ type: AlertProps["type"] }>`
+  border: 1px solid transparent;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  animation-name: ${fadeInUp};
+  animation-duration: 400ms;
+  animation-fill-mode: both;
+  display: flex;
+  i {
     margin-right: 8px;
     opacity: 0.33;
     vertical-align: middle;
   }
-  .info {
+  ${props =>
+    props.type === "info" &&
+    `
     color: #004085;
     background-color: #cce5ff;
     border-color: #b8daff;
-  }
-  .warning {
+  `}
+  ${props =>
+    props.type === "warning" &&
+    `
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
-  }
-  .success {
+  `}
+  ${props =>
+    props.type === "success" &&
+    `
     color: #155724;
     background-color: #d4edda;
     border-color: #c3e6cb;
-  }
-  .error {
+  `}
+  ${props =>
+    props.type === "error" &&
+    `
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
-  }
+  `}
 `;
 
 export default Alert;

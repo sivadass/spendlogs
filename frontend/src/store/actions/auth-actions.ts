@@ -16,10 +16,9 @@ const login = (values: {}) =>
     });
 
 const register = (values: {}) => {
-  const data = { ...values, role: "client" };
+  const data = { ...values, role: "user" };
   return postJSON("/user/register", data)
     .then(d => {
-      console.log("register data", d);
       return d;
     })
     .catch(err => {
