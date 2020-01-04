@@ -1,28 +1,9 @@
 import React, { useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import _get from "lodash/get";
 import { Store } from "../../store";
 import { expenseActions, actionTypes } from "../../store/actions";
 import ExpenseList from "../../components/expense-list";
 import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
-import { getCategory, formatAmount } from "../../utils/common";
-
-interface ExpenseData {
-  id: string;
-  amount: number;
-  comment: string;
-  payee: string;
-  paidOn: string;
-  category: {
-    value: string;
-    label: string;
-    icon: string;
-    color: string;
-  };
-  createdOn: string;
-  updatedOn: string;
-}
 
 const AllExpenseList = () => {
   const { state, dispatch } = useContext(Store);
