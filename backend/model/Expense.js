@@ -22,6 +22,10 @@ const expenseSchema = new mongoose.Schema(
       type: String,
       max: 200
     },
+    paidOn: {
+      type: Date,
+      default: Date.now
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

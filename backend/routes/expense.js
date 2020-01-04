@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
   try {
     const allExpenses = await Expense.find(query).populate(
       "category",
-      "label value -_id"
+      "label value icon color -_id"
     );
     res.send(allExpenses);
   } catch (err) {
@@ -47,6 +47,42 @@ router.get("/:id", async (req, res) => {
       "label value -_id"
     );
     res.send(expenseDetails);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    Expense.findOneAndUpdate(
+      {
+        _id: req.params.id
+      },
+      {
+        amount: req.body.amount,
+        payee: req.body.payee,
+        categoryId: req.body.categoryId,
+        comment: req.body.comment,
+        paidOn: req.body.paidOn
+      },
+      err => {
+        if (err) {
+          return res.send(err);
+        }
+        return res.send("Successfully updated!");
+      }
+    );
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const data = await Expense.deleteOne({ _id: req.params.id });
+    if (data.ok === 1) {
+      return res.send("Successfully deleted!");
+    }
   } catch (err) {
     res.status(400).send(err);
   }
