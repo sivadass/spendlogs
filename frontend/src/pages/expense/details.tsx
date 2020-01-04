@@ -1,33 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
+import { FixedContainer, Wrapper } from "../../styled/common";
 import Icon from "../../components/core/icon";
+import PageHeader from "../../components/page-header";
 import { getCategory, formatAmount } from "../../utils/common";
 
 const ExpenseDetails = () => {
   return (
     <FixedContainer>
-      <Header>
-        <PageTitle>Details</PageTitle>
-        <Actions>
-          <li>
-            <Link to="/expense/add">
-              <Icon name="add_circle_outline" /> Add New
-            </Link>
-          </li>
-          <li>
-            <Link to="/expense/123/edit">
-              <Icon name="edit" /> Edit
-            </Link>
-          </li>
-          <li>
-            <a onClick={() => {}}>
-              <Icon name="delete_outline" /> Delete
-            </a>
-          </li>
-        </Actions>
-      </Header>
+      <PageHeader title="Details" />
       <Wrapper>
         <Amount>{formatAmount(65789)}</Amount>
         <MediaObject>
@@ -71,6 +53,23 @@ const ExpenseDetails = () => {
             </p>
           </MediaObjectBody>
         </MediaObject>
+        <Actions>
+          <li>
+            <Link to="/expense/add">
+              <Icon name="add_circle_outline" /> Add New
+            </Link>
+          </li>
+          <li>
+            <Link to="/expense/123/edit">
+              <Icon name="edit" /> Edit
+            </Link>
+          </li>
+          <li>
+            <a onClick={() => {}}>
+              <Icon name="delete_outline" /> Delete
+            </a>
+          </li>
+        </Actions>
       </Wrapper>
     </FixedContainer>
   );
@@ -143,14 +142,6 @@ const Actions = styled.ul`
         font-size: 20px;
       }
     }
-  }
-`;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  ${Actions} {
-    margin-left: auto;
   }
 `;
 

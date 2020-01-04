@@ -3,6 +3,7 @@ import _get from "lodash/get";
 import { Store } from "../../store";
 import { expenseActions, actionTypes } from "../../store/actions";
 import ExpenseList from "../../components/expense-list";
+import PageHeader from "../../components/page-header";
 import { FixedContainer, PageTitle, Wrapper } from "../../styled/common";
 
 const AllExpenseList = () => {
@@ -29,7 +30,7 @@ const AllExpenseList = () => {
   }, []);
   return (
     <FixedContainer>
-      <PageTitle>My Expenses</PageTitle>
+      <PageHeader title="My Expenses" />
       <Wrapper>
         <ExpenseList
           data={_get(state, "expense.list.data")}

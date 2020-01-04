@@ -34,12 +34,8 @@ const AddExpense = () => {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
-  useEffect(() => {
-    if (_get(state, "auth.isAuthenticated")) {
-      history.replace("/");
-    }
-  }, []);
   return (
     <FixedContainer>
       <FixedFormWrapper>
@@ -105,7 +101,10 @@ const AddExpense = () => {
                 >
                   SAVE
                 </Button>
-                {error && <Alert type="error" message={error} />}
+                {success && (
+                  <Alert message="Job successfully created!" type="success" />
+                )}
+                {error && <Alert message={error} type="error" />}
               </form>
             )}
           </Formik>
