@@ -4,7 +4,7 @@ import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../../store";
-import { actionTypes, authActions } from "../../store/actions";
+import { actionTypes, expenseActions } from "../../store/actions";
 import { Alert, Button, FormControl } from "../../components/core";
 import {
   FixedContainer,
@@ -19,11 +19,11 @@ const ExpenseSchema = Yup.object().shape({
     .min(1, "Should be greater than 1!")
     .max(100000000, "Too Long!")
     .required("Required"),
-  vendor: Yup.string()
+  payee: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  category: Yup.string().required("Required"),
+  categoryId: Yup.string().required("Required"),
   comment: Yup.string()
     .min(4, "Too Short!")
     .max(250, "Too Long!")
@@ -44,23 +44,19 @@ const AddExpense = () => {
           <Formik
             initialValues={{
               amount: "",
-              vendor: "",
-              category: "",
+              payee: "",
+              categoryId: "",
               comment: ""
             }}
             validationSchema={ExpenseSchema}
             onSubmit={(values, { setSubmitting }) => {
               console.log("expense form values...", values);
               setError("");
-              return authActions
-                .login(values)
+              return expenseActions
+                .addExpense(values)
                 .then(d => {
-                  // dispatch({
-                  //   type: actionTypes.LOGIN_SUCCESS,
-                  //   payload: d
-                  // });
                   setSubmitting(false);
-                  history.replace(from);
+                  history.push(`/expense/${d.data.id}/details`);
                 })
                 .catch(err => {
                   setSubmitting(false);
@@ -73,7 +69,7 @@ const AddExpense = () => {
                 <Field
                   placeholder="Payee"
                   type="text"
-                  name="vendor"
+                  name="payee"
                   component={FormControl.Input}
                 />
                 <Field
@@ -84,7 +80,7 @@ const AddExpense = () => {
                 />
                 <Field
                   placeholder="Category"
-                  name="category"
+                  name="categoryId"
                   component={FormControl.Select}
                   options={EXPENSE_CATEGORIES}
                 />

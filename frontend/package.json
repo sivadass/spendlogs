@@ -1,6 +1,6 @@
 {
-  "name": "expense-manager",
-  "version": "0.1.0",
+  "name": "spendlogs",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -41,7 +41,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "npm run build && gh-pages -d build -e frontend"
+    "deploy": "now --prod"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,9 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://sivadass.github.io/spendlogs",
-  "devDependencies": {
-    "gh-pages": "^2.1.1"
   }
 }

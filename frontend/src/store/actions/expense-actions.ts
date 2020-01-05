@@ -1,7 +1,7 @@
 import { postJSON, getJSON } from "../../utils/axios";
 
 const addExpense = (values: {}) => {
-  return postJSON("/client", values)
+  return postJSON("/expense", values)
     .then(d => {
       return d;
     })

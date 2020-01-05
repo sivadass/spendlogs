@@ -9,6 +9,7 @@ import {
   expenseReducer,
   expenseInitialState
 } from "./reducers";
+import { setAuthHeader } from "../utils/axios";
 
 interface StateProps {
   auth: {
@@ -46,6 +47,7 @@ const APP_STATE = "appState";
 const localState = JSON.parse(localStorage.getItem(APP_STATE) || "{}");
 
 export function StoreProvider(props: any) {
+  setAuthHeader(_get(localState, "auth.token", ""));
   const [state, dispatch] = useCombinedReducers({
     auth: useReducer(authReducer, _get(localState, "auth") || authInitialState),
     common: useReducer(
