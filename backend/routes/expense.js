@@ -23,7 +23,7 @@ router.post("/", verify, async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", verify, async (req, res) => {
   const { categoryId } = req.query;
   let query = {};
   if (categoryId) {
@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", verify, async (req, res) => {
   try {
     const expenseDetails = await Expense.findById(req.params.id).populate(
       "category",
