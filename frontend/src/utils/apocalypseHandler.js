@@ -1,23 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import _get from "lodash/get";
-import App from "./app";
-import { StoreProvider } from "./store";
-import { ServiceWorkerProvider } from "./hooks/useServiceWorker";
-import * as serviceWorker from "./serviceWorker";
-// import * as apocalypseHandler from "./utils/apocalypseHandler";
-
-ReactDOM.render(
-  <ServiceWorkerProvider>
-    <StoreProvider>
-      <App />
-    </StoreProvider>
-  </ServiceWorkerProvider>,
-  document.getElementById("root")
-);
-
-serviceWorker.register();
-
 window.addEventListener("error", async err => {
   // Since we are handling the error here, we must make
   // sure we log it into the console nonetheless, otherwise

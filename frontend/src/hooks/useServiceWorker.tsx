@@ -18,10 +18,6 @@ export const ServiceWorkerProvider: React.FC<{}> = ({ children }) => {
   }, []);
 
   React.useEffect(() => {
-    // We setup an event listener to automatically reload the page
-    // after the Service Worker has been updated, this will trigger
-    // on all the open tabs of our application, so that we don't leave
-    // any tab in an incosistent state
     if (waitingServiceWorker) {
       // @ts-ignore
       waitingServiceWorker.addEventListener("statechange", (event: any) => {
@@ -37,8 +33,6 @@ export const ServiceWorkerProvider: React.FC<{}> = ({ children }) => {
       isUpdateAvailable,
       updateAssets: () => {
         if (waitingServiceWorker) {
-          // We send the SKIP_WAITING message to tell the Service Worker
-          // to update its cache and flush the old one
           // @ts-ignore
           waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
         }

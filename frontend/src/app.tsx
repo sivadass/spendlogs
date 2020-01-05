@@ -21,17 +21,10 @@ function App() {
   const { state, dispatch } = useContext(Store);
   // @ts-ignore
   const { isUpdateAvailable, updateAssets } = useServiceWorker();
+  console.log("useServiceWorker", isUpdateAvailable, updateAssets);
   return (
     <Router>
       <GlobalStyles />
-      {isUpdateAvailable && (
-        <div>
-          A new version of this app is available!
-          <button type="button" onClick={updateAssets}>
-            Update now
-          </button>
-        </div>
-      )}
       <Wrapper>
         <SidebarMenu />
         <Wrapper>
@@ -61,6 +54,14 @@ function App() {
               </PrivateRoute>
             </Switch>
           </Main>
+          {isUpdateAvailable && (
+            <div>
+              A new version of this app is available!
+              <button type="button" onClick={updateAssets}>
+                Update now
+              </button>
+            </div>
+          )}
           <Footer />
         </Wrapper>
       </Wrapper>
