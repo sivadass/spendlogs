@@ -1,23 +1,66 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useParams, RouteProps } from "react-router-dom";
 import styled from "styled-components";
+import _get from "lodash/get";
+import moment from "moment";
+import { Store } from "../../store";
 import { FixedContainer, Wrapper } from "../../styled/common";
 import Icon from "../../components/core/icon";
 import PageHeader from "../../components/page-header";
-import { getCategory, formatAmount } from "../../utils/common";
+import { formatAmount } from "../../utils/common";
+import { expenseActions, actionTypes } from "../../store/actions";
+import Spinner from "../../components/core/form-controls/spinner";
 
-const ExpenseDetails = () => {
+type IProps = RouteProps;
+
+const ExpenseDetails: React.FC<IProps> = () => {
+  let { id = "" } = useParams();
+  const { state, dispatch } = useContext(Store);
+  const getDetails = () => {
+    dispatch({ type: actionTypes.EXPENSE_DETAILS_REQUEST, payload: {} });
+    return expenseActions
+      .getExpenseDetails(id)
+      .then((d: any) => {
+        dispatch({
+          type: actionTypes.EXPENSE_DETAILS_SUCCESS,
+          payload: _get(d, "data", [])
+        });
+      })
+      .catch((err: any) => {
+        dispatch({
+          type: actionTypes.EXPENSE_DETAILS_FAILURE,
+          payload: err.message
+        });
+      });
+  };
+  useEffect(() => {
+    getDetails();
+  }, [id]);
+
+  if (_get(state, "expense.details.loading")) {
+    return (
+      <FixedContainer>
+        <Spinner block />
+      </FixedContainer>
+    );
+  }
   return (
     <FixedContainer>
       <PageHeader title="Details" />
       <Wrapper>
-        <Amount>{formatAmount(65789)}</Amount>
+        <Amount>
+          {formatAmount(_get(state, "expense.details.data.amount", 0))}
+        </Amount>
         <MediaObject>
           <MediaObjectFigure>
             <Icon name="date_range" />
           </MediaObjectFigure>
           <MediaObjectBody>
-            <h4>25th April, 2020</h4>
+            <h4>
+              {moment(_get(state, "expense.details.data.paidOn", "")).format(
+                "DD MMM YYYY, h:mm a"
+              )}
+            </h4>
             <p>8% Greater than last month</p>
           </MediaObjectBody>
         </MediaObject>
@@ -37,8 +80,8 @@ const ExpenseDetails = () => {
             <Icon name="chat" />
           </MediaObjectFigure>
           <MediaObjectBody>
-            <h4>Hathway Broadband Solutions</h4>
-            <p>Internet charges</p>
+            <h4>{_get(state, "expense.details.data.payee", "")}</h4>
+            <p>{_get(state, "expense.details.data.comment", "")}</p>
           </MediaObjectBody>
         </MediaObject>
 

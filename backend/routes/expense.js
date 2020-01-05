@@ -44,10 +44,19 @@ router.get("/", verify, async (req, res) => {
 });
 
 router.get("/:id", verify, async (req, res) => {
+  let query = {};
+  if (req.user.role !== "admin") {
+    query.owner = req.user._id;
+  }
   try {
-    const expenseDetails = await Expense.findById(req.params.id).populate(
-      "category",
-      "label value -_id"
+    const expenseDetails = await Expense.findById(
+      req.params.id,
+      (err, detail) => {
+        var opts = [{ path: "category", match: { owner: req.user._id } }];
+        Expense.populate(detail, opts, function(err, details) {
+          console.log(details);
+        });
+      }
     );
     res.send(expenseDetails);
   } catch (err) {
@@ -86,6 +95,29 @@ router.delete("/:id", async (req, res) => {
     if (data.ok === 1) {
       return res.send("Successfully deleted!");
     }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+var getTotal = function(ownerId) {
+  Expense.aggregate(
+    [{ $group: { total: { $sum: "$amount" } } }, { $sort: { total: -1 } }],
+    function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
+      return result;
+    }
+  );
+};
+
+router.get("/stats", verify, async (req, res) => {
+  try {
+    const data = await getTotal(req.user._id);
+    res.send(data);
   } catch (err) {
     res.status(400).send(err);
   }

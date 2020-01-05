@@ -3,81 +3,60 @@ import classNames from "classnames";
 import styled from "styled-components";
 
 interface SpinnerProps {
-  loading?: boolean;
   size?: number;
   color?: string;
+  block?: boolean;
 }
 
 const Spinner: React.FC<SpinnerProps> = ({
-  loading = false,
-  size = 32,
-  color = "#409ff"
+  size = 48,
+  color = "#0a6b8a",
+  block = false
 }) => {
   return (
-    <StyledSpinner>
+    <StyledSpinner display={block}>
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
-        viewBox="0 0 44 44"
-        stroke={color}
-        className={classNames("peace-spinner", { loading: loading })}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid"
       >
-        <g fill="none" fillRule="evenodd" strokeWidth="2">
-          <circle cx="22" cy="22" r="16.4636">
-            <animate
-              attributeName="r"
-              begin="0s"
-              dur="1.8s"
-              values="1; 20"
-              calcMode="spline"
-              keyTimes="0; 1"
-              keySplines="0.165, 0.84, 0.44, 1"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="stroke-opacity"
-              begin="0s"
-              dur="1.8s"
-              values="1; 0"
-              calcMode="spline"
-              keyTimes="0; 1"
-              keySplines="0.3, 0.61, 0.355, 1"
-              repeatCount="indefinite"
-            />
-          </circle>
-          <circle cx="22" cy="22" r="19.9127">
-            <animate
-              attributeName="r"
-              begin="-0.9s"
-              dur="1.8s"
-              values="1; 20"
-              calcMode="spline"
-              keyTimes="0; 1"
-              keySplines="0.165, 0.84, 0.44, 1"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="stroke-opacity"
-              begin="-0.9s"
-              dur="1.8s"
-              values="1; 0"
-              calcMode="spline"
-              keyTimes="0; 1"
-              keySplines="0.3, 0.61, 0.355, 1"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </g>
+        <circle
+          cx="50"
+          cy="50"
+          r="32"
+          strokeWidth="8"
+          stroke={color}
+          strokeDasharray="50.26548245743669 50.26548245743669"
+          fill="none"
+          strokeLinecap="round"
+          transform="rotate(298.787 50 50)"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            repeatCount="indefinite"
+            dur="1s"
+            keyTimes="0;1"
+            values="0 50 50;360 50 50"
+          ></animateTransform>
+        </circle>
       </svg>
     </StyledSpinner>
   );
 };
 
-const StyledSpinner = styled.div`
-  .peace-spinner {
+const StyledSpinner = styled.div<{ display: boolean }>`
+  ${props =>
+    props.display &&
+    `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+  `}
+  svg {
     vertical-align: middle;
-    margin-right: 8px;
   }
 `;
 

@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       type={type}
     >
-      {loading && <Spinner loading={loading} />}
+      {loading && <Spinner size={24} color="#fff" />}
       {children}
     </StyledButton>
   );
@@ -51,6 +51,9 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  svg {
+    margin-right: 8px;
+  }
 `;
 
 export default Button;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import _get from "lodash/get";
 import moment from "moment";
 import { Icon } from "./core";
+import Spinner from "./core/form-controls/spinner";
 import { Wrapper } from "../styled/common";
 import { formatAmount } from "../utils/common";
 
@@ -32,7 +33,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
   if (loading) {
     return (
       <Wrapper>
-        <p>Loading</p>
+        <Spinner block />
       </Wrapper>
     );
   }

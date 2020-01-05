@@ -7,6 +7,7 @@ import { actionTypes, expenseActions } from "../store/actions";
 import { FixedContainer, PageTitle, Wrapper, Main } from "../styled/common";
 import ExpenseList from "../components/expense-list";
 import { Icon } from "../components/core";
+import Spinner from "../components/core/form-controls/spinner";
 import { formatAmount } from "../utils/common";
 
 const AddExpense = () => {
