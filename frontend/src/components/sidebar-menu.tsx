@@ -71,7 +71,7 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
   background-color: rgba(0, 0, 0, 0.75);
   overflow-x: hidden;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  transition: all 300ms ease-in;
+  transition: opacity 300ms ease-in;
   ${Container} {
     max-width: ${({ isOpen }) => (isOpen ? "280px" : 0)};
     height: 100%;

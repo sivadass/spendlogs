@@ -53,7 +53,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                       <span>
                         {moment(expense.paidOn).format("h:mm a, MMM D")}
                       </span>
-                      , <span>{_get(expense, "category.label", "")}</span>
+                      <span>{_get(expense, "category.label", "")}</span>
                     </p>
                   </Wrapper>
                 </ExpenseDetails>
@@ -141,7 +141,11 @@ const ExpenseDetails = styled.div`
         border-radius: 8px;
         font-size: 12px;
         background: #ddd;
+        margin-left: 8px;
         color: #666;
+        @media (max-width: 480px) {
+          display: none;
+        }
       }
     }
   }

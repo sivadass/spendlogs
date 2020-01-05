@@ -15,12 +15,23 @@ import { Wrapper, Main } from "./styled/common";
 import PrivateRoute from "./private-route";
 import { Store } from "./store";
 import SidebarMenu from "./components/sidebar-menu";
+import { useServiceWorker } from "./hooks/useServiceWorker";
 
 function App() {
   const { state, dispatch } = useContext(Store);
+  // @ts-ignore
+  const { isUpdateAvailable, updateAssets } = useServiceWorker();
   return (
     <Router>
       <GlobalStyles />
+      {isUpdateAvailable && (
+        <div>
+          A new version of this app is available!
+          <button type="button" onClick={updateAssets}>
+            Update now
+          </button>
+        </div>
+      )}
       <Wrapper>
         <SidebarMenu />
         <Wrapper>
