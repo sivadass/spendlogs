@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import _get from "lodash/get";
 import { Store } from "./store";
 import PrivateLayout from "./private-layout";
+import { setAuthHeader } from "./utils/axios";
 
 interface PrivateRouteProps {
   children: any;
@@ -18,8 +19,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   const {
     state: { auth }
   } = useContext(Store);
-  const { isAuthenticated, user } = auth;
-  console.log("user", user);
+  const { isAuthenticated, user, token } = auth;
+  setAuthHeader(token);
   return (
     <Route
       path={path}

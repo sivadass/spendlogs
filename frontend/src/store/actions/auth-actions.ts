@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+import actionTypes from "./action-types";
 import { postJSON } from "../../utils/axios";
 
 const login = (values: {}) =>
@@ -49,4 +50,9 @@ const updatePassword = (values: any) => {
     });
 };
 
-export default { login, register, forgotPassword, updatePassword };
+const logout = (dispatch: any) => {
+  console.log("whats in dispatch", dispatch);
+  return dispatch({ type: actionTypes.LOGOUT_SUCCESS });
+};
+
+export default { login, register, forgotPassword, updatePassword, logout };

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import _get from "lodash/get";
 import { Icon } from "./core";
 import { Store } from "../store";
 import { commonActions } from "../store/actions";
@@ -20,11 +21,19 @@ const Header = () => {
             <Logo src={IMG_LOGO} alt="Spend Logs" />
           </NavLink>
         </Wrapper>
-        <NavLink to="/search">
-          <SearchButton>
-            <Icon name="search" />
-          </SearchButton>
-        </NavLink>
+        {_get(state, "auth.isAuthenticated") ? (
+          <NavLink to="/search">
+            <SearchButton>
+              <Icon name="search" />
+            </SearchButton>
+          </NavLink>
+        ) : (
+          <NavLink to="/login">
+            <LoginButton>
+              <Icon name="account_circle" />
+            </LoginButton>
+          </NavLink>
+        )}
       </FixedContainer>
     </StyledHeader>
   );
@@ -86,6 +95,25 @@ const SearchButton = styled.button`
   background: transparent;
   border-color: transparent;
   padding: 0 12px;
+  &:hover {
+    border-radius: 24px;
+    background: #0a6b8a;
+    i {
+      color: #fff;
+    }
+  }
+`;
+
+const LoginButton = styled.button`
+  display: block;
+  margin-left: 16px;
+  width: 48px;
+  background: transparent;
+  border-color: transparent;
+  padding: 0 4px;
+  i {
+    font-size: 36px;
+  }
   &:hover {
     border-radius: 24px;
     background: #0a6b8a;

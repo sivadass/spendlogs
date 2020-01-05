@@ -29,11 +29,14 @@ router.get("/", verify, async (req, res) => {
   if (categoryId) {
     query.categoryId = categoryId;
   }
+  if (req.user.role !== "admin") {
+    query.owner = req.user._id;
+  }
   try {
-    const allExpenses = await Expense.find(query).populate(
-      "category",
-      "label value icon color -_id"
-    );
+    const allExpenses = await Expense.find(query)
+      .sort("-paidOn")
+      .limit(5)
+      .populate("category", "label value icon color -_id");
     res.send(allExpenses);
   } catch (err) {
     res.status(400).send(err);

@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../../store";
-import { actionTypes, expenseActions } from "../../store/actions";
+import { expenseActions } from "../../store/actions";
 import { Alert, Button, FormControl } from "../../components/core";
 import {
   FixedContainer,
@@ -50,13 +50,13 @@ const AddExpense = () => {
             }}
             validationSchema={ExpenseSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("expense form values...", values);
               setError("");
               return expenseActions
                 .addExpense(values)
                 .then(d => {
                   setSubmitting(false);
-                  history.push(`/expense/${d.data.id}/details`);
+                  setSuccess(true);
+                  history.push(`/expense/${d.data.id}`);
                 })
                 .catch(err => {
                   setSubmitting(false);
@@ -98,7 +98,7 @@ const AddExpense = () => {
                   SAVE
                 </Button>
                 {success && (
-                  <Alert message="Job successfully created!" type="success" />
+                  <Alert message="Successfully saved!" type="success" />
                 )}
                 {error && <Alert message={error} type="error" />}
               </form>

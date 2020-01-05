@@ -29,7 +29,6 @@ export interface ExpenseListProps {
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
-  console.log(data);
   if (loading) {
     return (
       <Wrapper>
@@ -43,7 +42,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
         data.map(expense => {
           return (
             <ExpenseListItem key={expense.id}>
-              <Link to={`expense/details/${expense.id}`}>
+              <Link to={`expense/${expense.id}`}>
                 <CategoryIcon>
                   <Icon name={_get(expense, "category.icon", "")} />
                 </CategoryIcon>

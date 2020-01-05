@@ -9,12 +9,13 @@ import {
   expenseReducer,
   expenseInitialState
 } from "./reducers";
-import { setAuthHeader } from "../utils/axios";
+import { APP_STATE } from "../constants/common";
 
 interface StateProps {
   auth: {
     isAuthenticated: boolean;
     user: {};
+    token: string;
   };
   common: {
     isMenuOpen: boolean;
@@ -42,12 +43,10 @@ interface ContextProps {
 }
 
 export const Store = React.createContext({} as ContextProps);
-const APP_STATE = "appState";
 
 const localState = JSON.parse(localStorage.getItem(APP_STATE) || "{}");
 
 export function StoreProvider(props: any) {
-  setAuthHeader(_get(localState, "auth.token", ""));
   const [state, dispatch] = useCombinedReducers({
     auth: useReducer(authReducer, _get(localState, "auth") || authInitialState),
     common: useReducer(

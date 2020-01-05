@@ -33,17 +33,17 @@ function App() {
               <Route path="/register">
                 <Register />
               </Route>
-              <Route path="/" exact>
+              <PrivateRoute path="/" exact>
                 <Dashboard />
-              </Route>
+              </PrivateRoute>
               <PrivateRoute path="/expense" exact>
                 <ExpenseList />
               </PrivateRoute>
-              <PrivateRoute path="/expense/details/:id">
-                <ExpenseDetails />
-              </PrivateRoute>
               <PrivateRoute path="/expense/add">
                 <ExpenseAdd />
+              </PrivateRoute>
+              <PrivateRoute path="/expense/:id">
+                <ExpenseDetails />
               </PrivateRoute>
               <PrivateRoute path="/search">
                 <Search />

@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import styled, { keyframes } from "styled-components";
 import Icon from "./icon";
 

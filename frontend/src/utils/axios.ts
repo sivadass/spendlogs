@@ -3,8 +3,9 @@ import _get from "lodash/get";
 
 const getURL = (url: string) => `${process.env.REACT_APP_API_HOST}${url}`;
 
-export function setAuthHeader(token: string = "") {
-  if (token.length > 0) {
+export function setAuthHeader(token: string) {
+  console.log("===> called setAuthHeader");
+  if (token) {
     axios.defaults.headers["auth-token"] = token;
   } else {
     delete axios.defaults.headers["auth-token"];

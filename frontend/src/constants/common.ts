@@ -1,3 +1,5 @@
+export const APP_STATE = "appState";
+
 export const EXPENSE_CATEGORIES: {
   label: string;
   value: string;

@@ -1,4 +1,3 @@
-import _get from "lodash/get";
 import { EXPENSE_CATEGORIES } from "../constants/common";
 
 export const getCategory = (category: string) =>
@@ -8,7 +7,7 @@ export const formatAmount = (price: number) => {
   const priceString = price.toString();
   let lastThree = priceString.substring(priceString.length - 3);
   const otherNumbers = priceString.substring(0, priceString.length - 3);
-  if (otherNumbers != "") {
+  if (otherNumbers !== "") {
     lastThree = "," + lastThree;
   }
   const result =

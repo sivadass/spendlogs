@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import _get from "lodash/get";
 import { Store } from "../store";
-import { actionTypes, authActions } from "../store/actions";
+import { actionTypes, expenseActions } from "../store/actions";
 import { FixedContainer, PageTitle, Wrapper, Main } from "../styled/common";
 import ExpenseList from "../components/expense-list";
 import { Icon } from "../components/core";
@@ -11,6 +11,26 @@ import { formatAmount } from "../utils/common";
 
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
+  const getRecentExpenses = () => {
+    dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
+    return expenseActions
+      .getExpenses()
+      .then((d: any) => {
+        dispatch({
+          type: actionTypes.EXPENSES_SUCCESS,
+          payload: _get(d, "data", [])
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: actionTypes.EXPENSES_FAILURE,
+          payload: err.message
+        });
+      });
+  };
+  useEffect(() => {
+    getRecentExpenses();
+  }, []);
   return (
     <FixedContainer padding={"0 16px"}>
       <DashboardContainer>

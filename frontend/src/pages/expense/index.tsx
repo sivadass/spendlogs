@@ -26,7 +26,7 @@ const AllExpenseList = () => {
       });
   };
   useEffect(() => {
-    getExpenses().catch((err: any) => console.log(err));
+    getExpenses();
   }, []);
   return (
     <FixedContainer>
