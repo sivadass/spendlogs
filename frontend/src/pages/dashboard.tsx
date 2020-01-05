@@ -133,17 +133,20 @@ const KPIContainer = styled.div`
   }
   ${KPIItem}:nth-child(${2}) {
     ${Wrapper} {
-      background-image: linear-gradient(141deg,#FF9800 0%,#f3d9b4 75%);
+      background-image: linear-gradient(141deg, #70afc1 0%, #06537b 75%);
+      /* background-image: linear-gradient(141deg,#FF9800 0%,#f3d9b4 75%); */
     }
   }
   ${KPIItem}:nth-child(${3}) {
     ${Wrapper} {
-      background-image: linear-gradient(141deg, #606af7 0%, #2932b5 75%);
+      background-image: linear-gradient(141deg, #70afc1 0%, #06537b 75%);
+      /* background-image: linear-gradient(141deg, #606af7 0%, #2932b5 75%); */
     }
   }
   ${KPIItem}:nth-child(${4}) {
     ${Wrapper} {
-      background-image: linear-gradient(141deg,#4CAF50 0%,#FFEB3B 75%);
+      background-image: linear-gradient(141deg, #70afc1 0%, #06537b 75%);
+      /* background-image: linear-gradient(141deg,#4CAF50 0%,#FFEB3B 75%); */
     }
   }
   ${KPIItem}:last-child {

@@ -5,10 +5,14 @@ import { NavLink, useHistory } from "react-router-dom";
 import { Store } from "../store";
 import { commonActions, authActions } from "../store/actions";
 import { Container } from "../styled/common";
-import { Icon } from "./core";
+import { useServiceWorker } from "../hooks/useServiceWorker";
+import { Icon, Button } from "./core";
 
 const SidebarMenu = () => {
   const history = useHistory();
+  // @ts-ignore
+  const { isUpdateAvailable, updateAssets } = useServiceWorker();
+  console.log("useServiceWorker", isUpdateAvailable, updateAssets);
   const { state, dispatch } = useContext(Store);
   const isOpen = _get(state, "common.isMenuOpen", false);
 
@@ -24,24 +28,36 @@ const SidebarMenu = () => {
       onClick={() => commonActions.toggleMenu(dispatch)}
     >
       <Container>
-        <p>Hey {_get(state, "auth.user.name", "")}</p>
+        {isUpdateAvailable && (
+          <UpdateMessage>
+            <p>New version of this app is available!</p>
+            <Button onClick={updateAssets}>
+              <Icon name="sync" /> Update now
+            </Button>
+          </UpdateMessage>
+        )}
+        <WelcomeMessage>Hey {_get(state, "auth.user.name", "")}</WelcomeMessage>
         <ul>
           {_get(state, "auth.isAuthenticated", false) ? (
             <>
               <li>
                 <NavLink to="/" exact>
-                  Dashboard
+                  <Icon name="speed" /> Dashboard
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/expense">My Expenses</NavLink>
+                <NavLink to="/expense">
+                  <Icon name="receipt" /> My Expenses
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/expense/add">Add Expense</NavLink>
+                <NavLink to="/expense/add">
+                  <Icon name="add_circle_outline" /> Add Expense
+                </NavLink>
               </li>
               <li>
                 <a href="#" onClick={(e: any) => logout(e)}>
-                  Logout
+                  <Icon name="exit_to_app" /> Logout
                 </a>
               </li>
             </>
@@ -61,6 +77,31 @@ const SidebarMenu = () => {
   );
 };
 
+const UpdateMessage = styled.div`
+  padding: 24px;
+  background: #fbfaee;
+  margin: 0 0 32px 0;
+  min-height: 122px;
+  width: 100%;
+  p {
+    font-size: 14px;
+    margin-bottom: 16px;
+    padding: 0 !important;
+    line-height: 14px;
+    color: #232323 !important;
+  }
+  button {
+    i {
+      margin-right: 8px;
+    }
+  }
+`;
+
+const WelcomeMessage = styled.p`
+  padding: 32px 16px 24px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.052);
+`;
+
 const MenuContainer = styled.div<{ isOpen: boolean }>`
   height: 100%;
   width: ${({ isOpen }) => (isOpen ? "100%" : 0)};
@@ -72,13 +113,19 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
   overflow-x: hidden;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   transition: opacity 300ms ease-in;
+  ${UpdateMessage} {
+    transition: opacity 300ms ease-in;
+    transition-delay: 600mx;
+    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+    visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+  }
   ${Container} {
     max-width: ${({ isOpen }) => (isOpen ? "280px" : 0)};
     height: 100%;
     background-color: #1fc8db;
     background-image: linear-gradient(141deg, #06537b 0%, #70afc1 75%);
     position: relative;
-    padding: 32px 0;
+    padding: 0;
     transition-delay: 300ms;
     transition: all 300ms ease-in;
     p {
@@ -114,8 +161,13 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
         }
         a {
           display: block;
-          padding: 8px 16px;
+          padding: 12px 16px;
           color: #fff;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.052);
+          i {
+            margin-right: 12px;
+            opacity: 0.45;
+          }
         }
       }
     }

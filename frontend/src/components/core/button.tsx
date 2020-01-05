@@ -7,9 +7,9 @@ interface ButtonProps {
   children: any;
   className?: string;
   onClick: (e: any) => any;
-  loading: boolean;
-  disabled: boolean;
-  type: "button" | "submit";
+  loading?: boolean;
+  disabled?: boolean;
+  type?: "button" | "submit";
 }
 
 const Button: React.FC<ButtonProps> = ({

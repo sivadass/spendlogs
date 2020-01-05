@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import _get from "lodash/get";
 import Header from "./components/header";
@@ -13,15 +13,9 @@ import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper, Main } from "./styled/common";
 import PrivateRoute from "./private-route";
-import { Store } from "./store";
 import SidebarMenu from "./components/sidebar-menu";
-import { useServiceWorker } from "./hooks/useServiceWorker";
 
 function App() {
-  const { state, dispatch } = useContext(Store);
-  // @ts-ignore
-  const { isUpdateAvailable, updateAssets } = useServiceWorker();
-  console.log("useServiceWorker", isUpdateAvailable, updateAssets);
   return (
     <Router>
       <GlobalStyles />
@@ -54,14 +48,6 @@ function App() {
               </PrivateRoute>
             </Switch>
           </Main>
-          {isUpdateAvailable && (
-            <div>
-              A new version of this app is available!
-              <button type="button" onClick={updateAssets}>
-                Update now
-              </button>
-            </div>
-          )}
           <Footer />
         </Wrapper>
       </Wrapper>
