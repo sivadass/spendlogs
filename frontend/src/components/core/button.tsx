@@ -1,39 +1,40 @@
 import React from "react";
-import classNames from "classnames";
 import styled from "styled-components";
 import Spinner from "./form-controls/spinner";
 
 interface ButtonProps {
   children: any;
-  className?: string;
   onClick: (e: any) => any;
   loading?: boolean;
   disabled?: boolean;
   type?: "button" | "submit";
+  variant?: "default" | "primary" | "secondary";
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  className,
   onClick,
   loading = false,
   disabled = false,
-  type = "button"
+  type = "button",
+  variant = "primary"
 }) => {
   return (
     <StyledButton
-      className={classNames("button", className)}
       onClick={e => onClick(e)}
       disabled={disabled}
       type={type}
+      variant={variant}
     >
-      {loading && <Spinner size={24} color="#fff" />}
+      {loading && (
+        <Spinner size={24} color={variant === "primary" ? "#fff" : "#0a6b8a"} />
+      )}
       {children}
     </StyledButton>
   );
 };
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ variant: string }>`
   font-size: inherit;
   height: 44px;
   padding: 0 16px;
@@ -41,9 +42,6 @@ const StyledButton = styled.button`
   border-radius: 4px;
   display: block;
   width: 100%;
-  background: #377ef9;
-  background-color: #1fc8db;
-  background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
   border-color: transparent;
   color: #fff;
   text-transform: uppercase;
@@ -54,6 +52,27 @@ const StyledButton = styled.button`
   svg {
     margin-right: 8px;
   }
+  ${props =>
+    props.variant === "default" &&
+    `
+    color: #0a6b8a;
+    background-color: 0a6b8a;
+    border-color: #transparent;
+  `}
+  ${props =>
+    props.variant === "primary" &&
+    `
+    color: #fff;
+    background-color: #64c2ac;
+    background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+  `}
+  ${props =>
+    props.variant === "secondary" &&
+    `
+    color: #0a6b8a;
+    background-color: #fff;
+    border-color: #0a6b8a;
+  `}
 `;
 
 export default Button;

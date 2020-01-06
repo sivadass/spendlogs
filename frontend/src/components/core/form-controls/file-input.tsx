@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import Dropzone from "react-dropzone";
 import styled from "styled-components";
-import axios from "axios";
+import { uploadInstance } from "../../../utils/axios";
 import Spinner from "./spinner";
 
 const UploadingView = () => {
@@ -14,36 +14,34 @@ const UploadingView = () => {
 };
 
 interface UploadedListProps {
-  images: any;
-  onRemove: any;
+  file: string;
+  onRemove: (e: any) => any;
 }
 
-const UploadedList: React.FC<UploadedListProps> = ({ images, onRemove }) => {
+const UploadedList: React.FC<UploadedListProps> = ({ file, onRemove }) => {
   return (
     <ul className="uploaded-list">
-      {images.map((image: any) => (
-        <li key={image}>
-          <div className="image-preview">
-            <img src={image} alt="Preview" />
-          </div>
-          <div className="image-meta">
-            <a href={image} target="_blank" rel="noopener noreferrer">
-              {image}
-            </a>
-          </div>
-          <div className="image-actions">
-            <button
-              className="remove"
-              onClick={e => {
-                e.preventDefault();
-                onRemove(image, e);
-              }}
-            >
-              &times;
-            </button>
-          </div>
-        </li>
-      ))}
+      <li key={file}>
+        <div className="image-preview">
+          <img src={file} alt="Preview" />
+        </div>
+        <div className="image-meta">
+          <a href={file} target="_blank" rel="noopener noreferrer">
+            {file}
+          </a>
+        </div>
+        <div className="image-actions">
+          <button
+            className="remove"
+            onClick={e => {
+              e.preventDefault();
+              onRemove(e);
+            }}
+          >
+            &times;
+          </button>
+        </div>
+      </li>
     </ul>
   );
 };
@@ -55,7 +53,6 @@ interface FileInputProps {
   className: string;
   field: any;
   form: any;
-  setFieldValue: any;
 }
 
 interface IUser {
@@ -70,12 +67,11 @@ const FileInput: React.FC<FileInputProps> = ({
   placeholder,
   className,
   field,
-  form: { touched, errors },
-  setFieldValue,
+  form: { touched, errors, setFieldValue },
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
+  const [fileURL, setFileURL] = useState<string>(field.value);
 
   const onDrop = (acceptedFiles: any, rejectedFiles: any) => {
     handleImageUpload(acceptedFiles);
@@ -85,21 +81,15 @@ const FileInput: React.FC<FileInputProps> = ({
     const file = fileData[0];
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "x5xzimft");
-    formData.append("folder", "clients-logo");
+    formData.append(
+      "upload_preset",
+      `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+    );
     setIsLoading(true);
-    axios({
-      url: process.env.REACT_APP_CLOUDINARY_URL,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      data: formData
-    })
+    uploadInstance
+      .post("/", formData)
       .then(res => {
-        const updatedImages = [...images, res.data.secure_url];
-        setImages(updatedImages);
-        setFieldValue(field.name, images);
+        setFileURL(res.data.secure_url);
       })
       .catch(err => {
         console.log(err);
@@ -110,12 +100,12 @@ const FileInput: React.FC<FileInputProps> = ({
   };
 
   const handelImageRemove = (image: any) => {
-    let images = [...image];
-    const index = images.indexOf(image);
-    images.splice(index, 1);
-    setImages(images);
-    setFieldValue(field.name, images);
+    setFileURL("");
   };
+
+  useEffect(() => {
+    setFieldValue(field.name, fileURL);
+  }, [fileURL]);
 
   return (
     <StyledDropZone>
@@ -145,8 +135,8 @@ const FileInput: React.FC<FileInputProps> = ({
           );
         }}
       </Dropzone>
-      {images.length > 0 && (
-        <UploadedList images={images} onRemove={handelImageRemove} />
+      {fileURL.length > 0 && (
+        <UploadedList file={fileURL} onRemove={handelImageRemove} />
       )}
     </StyledDropZone>
   );
@@ -198,6 +188,7 @@ const StyledDropZone = styled.div`
         padding: 8px 0;
         a {
           color: #666;
+          font-size: 14px;
         }
       }
       .image-actions {

@@ -11,6 +11,11 @@ export function setAuthHeader(token: string) {
   }
 }
 
+export const uploadInstance = axios.create({
+  baseURL: process.env.REACT_APP_CLOUDINARY_URL,
+  headers: {}
+});
+
 export function getJSON(url: string, token?: string) {
   return axios
     .get(getURL(url), {

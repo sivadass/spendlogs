@@ -62,7 +62,8 @@ const expenseValidation = data => {
       .max(50)
       .required(),
     categoryId: Joi.string().required(),
-    comment: Joi.string().max(200)
+    comment: Joi.string().max(200),
+    attachment: Joi.string()
   };
   return Joi.validate(data, schema);
 };

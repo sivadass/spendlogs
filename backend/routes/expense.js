@@ -75,7 +75,8 @@ router.put("/:id", async (req, res) => {
         payee: req.body.payee,
         categoryId: req.body.categoryId,
         comment: req.body.comment,
-        paidOn: req.body.paidOn
+        paidOn: req.body.paidOn,
+        attachment: req.body.attachment
       },
       err => {
         if (err) {

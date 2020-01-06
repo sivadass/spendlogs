@@ -53,6 +53,10 @@ const ExpenseDetails: React.FC<IProps> = () => {
         });
       });
   };
+
+  const goToEdit = () => {
+    history.push(`/expense/${id}/edit`);
+  };
   useEffect(() => {
     getDetails();
   }, [id]);
@@ -112,27 +116,29 @@ const ExpenseDetails: React.FC<IProps> = () => {
           <MediaObjectBody>
             <h4>Bill</h4>
             <p>
-              <img src="https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/cauliflower.jpg" />
+              <img src={_get(state, "expense.details.data.attachment", "")} />
             </p>
           </MediaObjectBody>
         </MediaObject>
         <Actions>
           <li>
-            <Link to="/expense/add">
-              <Icon name="add_circle_outline" /> Add New
-            </Link>
-          </li>
-          <li>
-            <Link to="/expense/123/edit">
+            <Button onClick={() => goToEdit()} variant="default">
               <Icon name="edit" /> Edit
-            </Link>
+            </Button>
           </li>
           <li>
             <Button
+              variant="secondary"
               onClick={() => deleteExpense()}
               loading={_get(state, "expense.details.deleting", false)}
             >
-              <Icon name="delete_outline" /> Delete
+              {_get(state, "expense.details.deleting", false) ? (
+                "Deleting"
+              ) : (
+                <>
+                  <Icon name="delete_outline" /> Delete
+                </>
+              )}
             </Button>
           </li>
         </Actions>
@@ -193,19 +199,9 @@ const MediaObjectBody = styled.div`
 const Actions = styled.ul`
   li {
     display: inline-block;
-    a {
-      line-height: 20px;
-      display: block;
-      padding: 8px;
-      background: #f5f5f5;
-      border-radius: 4px;
-      margin-left: 16px;
-      &:hover {
-        text-decoration: none;
-      }
+    button {
       i {
-        margin-right: 4px;
-        font-size: 20px;
+        margin-right: 8px;
       }
     }
   }

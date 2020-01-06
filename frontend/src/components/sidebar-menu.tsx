@@ -12,7 +12,6 @@ const SidebarMenu = () => {
   const history = useHistory();
   // @ts-ignore
   const { isUpdateAvailable, updateAssets } = useServiceWorker();
-  console.log("useServiceWorker", isUpdateAvailable, updateAssets);
   const { state, dispatch } = useContext(Store);
   const isOpen = _get(state, "common.isMenuOpen", false);
 

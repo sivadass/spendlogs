@@ -31,7 +31,6 @@ const forgotPassword = (values: any) => {
   const data = { ...values, role: "client" };
   return postJSON("/user/resetPassword", data)
     .then(d => {
-      console.log("register data", d);
       return d;
     })
     .catch(err => {
@@ -51,7 +50,6 @@ const updatePassword = (values: any) => {
 };
 
 const logout = (dispatch: any) => {
-  console.log("whats in dispatch", dispatch);
   return dispatch({ type: actionTypes.LOGOUT_SUCCESS });
 };
 

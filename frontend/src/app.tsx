@@ -9,6 +9,7 @@ import Dashboard from "./pages/dashboard";
 import ExpenseList from "./pages/expense/index";
 import ExpenseDetails from "./pages/expense/details";
 import ExpenseAdd from "./pages/expense/add";
+import ExpenseEdit from "./pages/expense/edit";
 import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper, Main } from "./styled/common";
@@ -40,8 +41,11 @@ function App() {
               <PrivateRoute path="/expense/add">
                 <ExpenseAdd />
               </PrivateRoute>
-              <PrivateRoute path="/expense/:id">
+              <PrivateRoute path="/expense/:id" exact>
                 <ExpenseDetails />
+              </PrivateRoute>
+              <PrivateRoute path="/expense/:id/edit">
+                <ExpenseEdit />
               </PrivateRoute>
               <PrivateRoute path="/search">
                 <Search />

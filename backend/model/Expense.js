@@ -26,6 +26,10 @@ const expenseSchema = new mongoose.Schema(
       type: Date,
       default: Date.now
     },
+    attachment: {
+      type: String,
+      default: ""
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
