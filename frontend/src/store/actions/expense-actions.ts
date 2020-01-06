@@ -1,4 +1,4 @@
-import { postJSON, getJSON } from "../../utils/axios";
+import { postJSON, getJSON, putJSON, deleteJSON } from "../../utils/axios";
 
 const addExpense = (values: {}) => {
   return postJSON("/expense", values)
@@ -30,4 +30,30 @@ const getExpenseDetails = (id: string) => {
     });
 };
 
-export default { addExpense, getExpenses, getExpenseDetails };
+const updateExpense = (id: string, values: any) => {
+  return putJSON(`/expense/${id}`, values)
+    .then(d => {
+      return d;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
+const deleteExpense = (id: string) => {
+  return deleteJSON(`/expense/${id}`)
+    .then(d => {
+      return d;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
+export default {
+  addExpense,
+  getExpenses,
+  getExpenseDetails,
+  updateExpense,
+  deleteExpense
+};

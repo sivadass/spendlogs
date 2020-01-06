@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useParams, RouteProps } from "react-router-dom";
+import { Link, useParams, useHistory, RouteProps } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
 import moment from "moment";
@@ -10,11 +10,13 @@ import PageHeader from "../../components/page-header";
 import { formatAmount } from "../../utils/common";
 import { expenseActions, actionTypes } from "../../store/actions";
 import Spinner from "../../components/core/form-controls/spinner";
+import { Button } from "../../components/core";
 
 type IProps = RouteProps;
 
 const ExpenseDetails: React.FC<IProps> = () => {
   let { id = "" } = useParams();
+  let history = useHistory();
   const { state, dispatch } = useContext(Store);
   const getDetails = () => {
     dispatch({ type: actionTypes.EXPENSE_DETAILS_REQUEST, payload: {} });
@@ -23,12 +25,30 @@ const ExpenseDetails: React.FC<IProps> = () => {
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSE_DETAILS_SUCCESS,
-          payload: _get(d, "data", [])
+          payload: _get(d, "data", {})
         });
       })
       .catch((err: any) => {
         dispatch({
           type: actionTypes.EXPENSE_DETAILS_FAILURE,
+          payload: err.message
+        });
+      });
+  };
+  const deleteExpense = () => {
+    dispatch({ type: actionTypes.EXPENSE_DELETE_REQUEST, payload: {} });
+    return expenseActions
+      .deleteExpense(id)
+      .then((d: any) => {
+        dispatch({
+          type: actionTypes.EXPENSE_DELETE_SUCCESS,
+          payload: _get(d, "data", {})
+        });
+        history.push(`/expense`);
+      })
+      .catch((err: any) => {
+        dispatch({
+          type: actionTypes.EXPENSE_DELETE_FAILURE,
           payload: err.message
         });
       });
@@ -108,9 +128,12 @@ const ExpenseDetails: React.FC<IProps> = () => {
             </Link>
           </li>
           <li>
-            <a onClick={() => {}}>
+            <Button
+              onClick={() => deleteExpense()}
+              loading={_get(state, "expense.details.deleting", false)}
+            >
               <Icon name="delete_outline" /> Delete
-            </a>
+            </Button>
           </li>
         </Actions>
       </Wrapper>

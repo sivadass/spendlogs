@@ -2,7 +2,7 @@
 
 Your Personal Expense Manager
 
-[https://sivadass.github.io/spendlogs](https://sivadass.github.io/spendlogs)
+[https://spendlogs.now.sh](https://spendlogs.now.sh)
 
 ### Tech Stack (MERN)
 

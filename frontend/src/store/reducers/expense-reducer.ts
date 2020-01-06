@@ -11,6 +11,8 @@ export const expenseInitialState = {
   },
   details: {
     loading: false,
+    deleting: false,
+    updating: false,
     error: null,
     data: {}
   }
@@ -71,6 +73,62 @@ function reducer(state: any, action: any) {
         details: {
           ...state.details,
           loading: false,
+          error: action.payload
+        }
+      };
+    case actionTypes.EXPENSE_DELETE_REQUEST:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          deleting: true,
+          error: null
+        }
+      };
+    case actionTypes.EXPENSE_DELETE_SUCCESS:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          deleting: false,
+          data: {}
+        }
+      };
+
+    case actionTypes.EXPENSE_DELETE_FAILURE:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          deleting: false,
+          error: action.payload
+        }
+      };
+    case actionTypes.EXPENSE_UPDATE_REQUEST:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          updating: true,
+          error: null
+        }
+      };
+    case actionTypes.EXPENSE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          updating: false,
+          data: action.payload
+        }
+      };
+
+    case actionTypes.EXPENSE_UPDATE_FAILURE:
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          updating: false,
           error: action.payload
         }
       };
