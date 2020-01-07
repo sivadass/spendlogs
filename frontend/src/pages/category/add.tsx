@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Formik, Field } from "formik";
@@ -39,17 +39,37 @@ const CategoryInput: React.FC<{
     tags: string[];
   }[];
 }> = () => {
+  const [term, setTerm] = useState("");
+  const handleSearch = (e: any) => {
+    setTerm(e.target.value);
+  };
+  function searchingFor(t: string) {
+    return function(x: any) {
+      return x.name.toLowerCase().includes(t.toLowerCase()) || !term;
+    };
+  }
+  useEffect(() => {
+    searchingFor(term);
+  }, [term]);
+
+  console.log("s term", term);
   return (
     <CategoryInputContainer>
-      {CATEGORY_ICONS.map(icon => {
-        return (
-          <li key={icon.name}>
-            <span>
-              <Icon name={icon.name} />
-            </span>
-          </li>
-        );
-      })}
+      <input
+        placeholder="Search for icons"
+        onChange={(e: any) => handleSearch(e)}
+      />
+      <ul>
+        {CATEGORY_ICONS.filter(searchingFor(term)).map(icon => {
+          return (
+            <li key={icon.name}>
+              <span>
+                <Icon name={icon.name} />
+              </span>
+            </li>
+          );
+        })}
+      </ul>
     </CategoryInputContainer>
   );
 };
@@ -123,23 +143,32 @@ const AddExpense = () => {
   );
 };
 
-const CategoryInputContainer = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  li {
-    width: 20%;
-    span {
-      display: block;
-      width: 48px;
-      height: 48px;
-      line-height: 48px;
-      text-align: center;
-      border-radius: 24px;
-      background-color: #1fc8db;
-      color: #fff;
-      margin: 16px;
-      background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+const CategoryInputContainer = styled.div`
+  ul {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    li {
+      span {
+        display: block;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        border-radius: 24px;
+        background-color: #1fc8db;
+        color: #fff;
+        margin: 16px auto;
+        background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+      }
+    }
+    @media (max-width: 480px) {
+      grid-template-columns: auto auto auto auto auto auto;
+    }
+    @media (max-width: 480px) {
+      grid-template-columns: auto auto auto auto auto;
+    }
+    @media (max-width: 360px) {
+      grid-template-columns: auto auto auto auto;
     }
   }
 `;

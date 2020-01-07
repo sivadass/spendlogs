@@ -51,6 +51,70 @@ export const CATEGORY_ICONS: {
   {
     name: "local_drink",
     tags: ["kids", "baby", "son", "daughter"]
+  },
+  {
+    name: "shopping_basket",
+    tags: ["fruits", "vegetables", "shopping", "grocery"]
+  },
+  {
+    name: "store",
+    tags: ["grocery", "market", "shop", "vendor"]
+  },
+  {
+    name: "motorcycle",
+    tags: ["bike", "scooter", "automobiles", "transportation"]
+  },
+  {
+    name: "local_movies",
+    tags: ["movies", "cinema", "entertainment", "drama"]
+  },
+  {
+    name: "local_hospital",
+    tags: ["hospital", "clinic", "medical", "medicines"]
+  },
+  {
+    name: "fitness_center",
+    tags: ["gym", "exercise", "fitness", "workout"]
+  },
+  {
+    name: "fastfood",
+    tags: ["snacks", "tea", "coffee", "beverages"]
+  },
+  {
+    name: "local_grocery_store",
+    tags: ["grocery", "shopping"]
+  },
+  {
+    name: "local_florist",
+    tags: ["gifts", "donation"]
+  },
+  {
+    name: "whatshot",
+    tags: ["fuel", "lpg", "gasoline", "stove"]
+  },
+  {
+    name: "kitchen",
+    tags: ["fishes", "meats", "curry", "kitchen"]
+  },
+  {
+    name: "people",
+    tags: ["investment", "people", "family"]
+  },
+  {
+    name: "public",
+    tags: ["internet", "data", "connection", "globe"]
+  },
+  {
+    name: "ac_unit",
+    tags: ["ac", "service", "maintenance", "fridge"]
+  },
+  {
+    name: "spa",
+    tags: ["spa", "parlour", "massage"]
+  },
+  {
+    name: "style",
+    tags: ["others", "misc", "uncategorized"]
   }
 ];
 export const EXPENSE_CATEGORIES: {
@@ -63,7 +127,7 @@ export const EXPENSE_CATEGORIES: {
     label: "Dine Out",
     value: "dine_out",
     icon: "local_dining",
-    color: "#4099ff"
+    color: "#4099fe"
   },
   {
     label: "Taxes",
