@@ -37,6 +37,9 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
       </Wrapper>
     );
   }
+  if (!loading && data.length === 0) {
+    return <Wrapper>No Expenses found!</Wrapper>;
+  }
   return (
     <Wrapper>
       {data &&

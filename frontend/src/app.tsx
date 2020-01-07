@@ -10,6 +10,11 @@ import ExpenseList from "./pages/expense/index";
 import ExpenseDetails from "./pages/expense/details";
 import ExpenseAdd from "./pages/expense/add";
 import ExpenseEdit from "./pages/expense/edit";
+import CategoryList from "./pages/category/index";
+import CategoryDetails from "./pages/category/details";
+import CategoryAdd from "./pages/category/add";
+import CategoryEdit from "./pages/category/edit";
+
 import Search from "./pages/search";
 import GlobalStyles from "./styled/global";
 import { Wrapper, Main } from "./styled/common";
@@ -46,6 +51,18 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/expense/:id/edit">
                 <ExpenseEdit />
+              </PrivateRoute>
+              <PrivateRoute path="/category" exact>
+                <CategoryList />
+              </PrivateRoute>
+              <PrivateRoute path="/category/add">
+                <CategoryAdd />
+              </PrivateRoute>
+              <PrivateRoute path="/category/:id" exact>
+                <CategoryDetails />
+              </PrivateRoute>
+              <PrivateRoute path="/category/:id/edit">
+                <CategoryEdit />
               </PrivateRoute>
               <PrivateRoute path="/search">
                 <Search />

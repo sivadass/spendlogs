@@ -1,20 +1,22 @@
 import React, { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import styled from "styled-components";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../../store";
 import { expenseActions } from "../../store/actions";
-import { Alert, Button, FormControl } from "../../components/core";
+import { Alert, Button, FormControl, Icon } from "../../components/core";
 import {
   FixedContainer,
-  PageHeader,
+  PageTitle,
   Wrapper,
   FixedFormWrapper,
+  PageHeader,
   PageActions
 } from "../../styled/common";
 import BreadCrumbs from "../../components/breadcrumbs";
-import { EXPENSE_CATEGORIES } from "../../constants/common";
+import { CATEGORY_ICONS } from "../../constants/common";
 
 const ExpenseSchema = Yup.object().shape({
   amount: Yup.number()
@@ -31,6 +33,27 @@ const ExpenseSchema = Yup.object().shape({
     .max(250, "Too Long!")
 });
 
+const CategoryInput: React.FC<{
+  icons: {
+    name: string;
+    tags: string[];
+  }[];
+}> = () => {
+  return (
+    <CategoryInputContainer>
+      {CATEGORY_ICONS.map(icon => {
+        return (
+          <li key={icon.name}>
+            <span>
+              <Icon name={icon.name} />
+            </span>
+          </li>
+        );
+      })}
+    </CategoryInputContainer>
+  );
+};
+
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
@@ -43,7 +66,7 @@ const AddExpense = () => {
       <PageHeader>
         <BreadCrumbs
           links={[
-            { name: "My Expenses", url: "/expense" },
+            { name: "My Categories", url: "/category" },
             { name: "Add New", url: "" }
           ]}
         />
@@ -52,10 +75,8 @@ const AddExpense = () => {
       <Wrapper>
         <Formik
           initialValues={{
-            amount: "",
-            payee: "",
-            categoryId: "",
-            comment: ""
+            name: "",
+            icon: ""
           }}
           validationSchema={ExpenseSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -76,32 +97,12 @@ const AddExpense = () => {
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               <Field
-                placeholder="Amount"
-                type="number"
-                name="amount"
-                label="Amount"
-                component={FormControl.Input}
-              />
-              <Field
-                placeholder="Payee"
+                placeholder="Category Name"
                 type="text"
                 name="payee"
-                label="Payee"
                 component={FormControl.Input}
               />
-              <Field
-                placeholder="Category"
-                name="categoryId"
-                component={FormControl.Select}
-                options={EXPENSE_CATEGORIES}
-                label="Category"
-              />
-              <Field
-                placeholder="Comment"
-                name="comment"
-                component={FormControl.TextArea}
-                label="Comments"
-              />
+              <CategoryInput icons={CATEGORY_ICONS} />
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -121,5 +122,26 @@ const AddExpense = () => {
     </FixedContainer>
   );
 };
+
+const CategoryInputContainer = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  li {
+    width: 20%;
+    span {
+      display: block;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      border-radius: 24px;
+      background-color: #1fc8db;
+      color: #fff;
+      margin: 16px;
+      background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+    }
+  }
+`;
 
 export default AddExpense;

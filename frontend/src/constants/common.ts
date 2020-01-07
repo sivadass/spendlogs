@@ -1,5 +1,58 @@
 export const APP_STATE = "appState";
 
+export const CATEGORY_ICONS: {
+  name: string;
+  tags: string[];
+}[] = [
+  {
+    name: "credit_card",
+    tags: ["credit", "debit", "card", "payments", "money"]
+  },
+  {
+    name: "account_balance",
+    tags: [
+      "bank",
+      "account",
+      "savings",
+      "investment",
+      "deposit",
+      "recurring",
+      "fixed"
+    ]
+  },
+  {
+    name: "local_dining",
+    tags: ["restaurant", "swiggy", "zomato", "food", "dinner", "lunch"]
+  },
+  {
+    name: "receipt",
+    tags: ["tax", "income", "property", "bill", "receipt"]
+  },
+  {
+    name: "child_friendly",
+    tags: ["kids", "baby", "son", "daughter"]
+  },
+  {
+    name: "pets",
+    tags: ["pets", "dogs", "cats"]
+  },
+  {
+    name: "commute",
+    tags: ["travel"]
+  },
+  {
+    name: "local_cafe",
+    tags: ["kids", "baby", "son", "daughter"]
+  },
+  {
+    name: "power",
+    tags: ["kids", "baby", "son", "daughter"]
+  },
+  {
+    name: "local_drink",
+    tags: ["kids", "baby", "son", "daughter"]
+  }
+];
 export const EXPENSE_CATEGORIES: {
   label: string;
   value: string;

@@ -1,15 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { useParams, useHistory, RouteProps } from "react-router-dom";
+import { Link, useParams, useHistory, RouteProps } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
 import moment from "moment";
 import { Store } from "../../store";
-import {
-  FixedContainer,
-  Wrapper,
-  PageHeader,
-  PageActions
-} from "../../styled/common";
+import { FixedContainer, Wrapper } from "../../styled/common";
 import Icon from "../../components/core/icon";
 import { formatAmount } from "../../utils/common";
 import { expenseActions, actionTypes } from "../../store/actions";
@@ -75,38 +70,12 @@ const ExpenseDetails: React.FC<IProps> = () => {
   }
   return (
     <FixedContainer>
-      <PageHeader>
-        <BreadCrumbs
-          links={[
-            { name: "My Expenses", url: "/expense" },
-            { name: "Details", url: "" }
-          ]}
-        />
-        <PageActions>
-          <ul>
-            <li>
-              <Button onClick={() => goToEdit()} variant="default">
-                <Icon name="edit" />
-              </Button>
-            </li>
-            <li>
-              <Button
-                variant="default"
-                onClick={() => deleteExpense()}
-                loading={_get(state, "expense.details.deleting", false)}
-              >
-                {_get(state, "expense.details.deleting", false) ? (
-                  ""
-                ) : (
-                  <>
-                    <Icon name="delete_outline" />
-                  </>
-                )}
-              </Button>
-            </li>
-          </ul>
-        </PageActions>
-      </PageHeader>
+      <BreadCrumbs
+        links={[
+          { name: "My Categories", url: "/category" },
+          { name: "Details", url: "" }
+        ]}
+      />
       <Wrapper>
         <Amount>
           {formatAmount(_get(state, "expense.details.data.amount", 0))}
@@ -156,6 +125,28 @@ const ExpenseDetails: React.FC<IProps> = () => {
             </p>
           </MediaObjectBody>
         </MediaObject>
+        <Actions>
+          <li>
+            <Button onClick={() => goToEdit()} variant="default">
+              <Icon name="edit" /> Edit
+            </Button>
+          </li>
+          <li>
+            <Button
+              variant="secondary"
+              onClick={() => deleteExpense()}
+              loading={_get(state, "expense.details.deleting", false)}
+            >
+              {_get(state, "expense.details.deleting", false) ? (
+                "Deleting"
+              ) : (
+                <>
+                  <Icon name="delete_outline" /> Delete
+                </>
+              )}
+            </Button>
+          </li>
+        </Actions>
       </Wrapper>
     </FixedContainer>
   );

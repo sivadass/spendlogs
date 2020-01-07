@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import _get from "lodash/get";
+import { Link, useHistory } from "react-router-dom";
 import { Store } from "../../store";
 import { expenseActions, actionTypes } from "../../store/actions";
 import ExpenseList from "../../components/expense-list";
@@ -13,7 +13,7 @@ import {
   Wrapper
 } from "../../styled/common";
 
-const AllExpenseList = () => {
+const AllCategoriesList = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
   const getExpenses = () => {
@@ -33,19 +33,19 @@ const AllExpenseList = () => {
         });
       });
   };
+  const goToAddNew = () => {
+    history.push(`/category/add`);
+  };
   useEffect(() => {
     getExpenses();
   }, []);
-  const goToAddNew = () => {
-    history.push(`/expense/add`);
-  };
   return (
     <FixedContainer>
       <PageHeader>
         <BreadCrumbs
           links={[
             { name: "Dashboard", url: "/" },
-            { name: "My Expenses", url: "" }
+            { name: "My Categories", url: "" }
           ]}
         />
         <PageActions>
@@ -68,4 +68,4 @@ const AllExpenseList = () => {
   );
 };
 
-export default AllExpenseList;
+export default AllCategoriesList;

@@ -28,8 +28,8 @@ export const MaterialIcon = styled.i`
 
 export const FixedContainer = styled.div<{ padding?: string }>`
   max-width: 1200px;
-  margin: 0 auto;
-  padding: ${({ padding }) => (padding ? padding : "0 16px")};
+  margin: 0 auto 32px 0;
+  padding: ${({ padding }) => (padding ? padding : "0 32px")};
 `;
 export const PageTitle = styled.h3`
   margin: 16px 0 24px 0;
@@ -37,6 +37,35 @@ export const PageTitle = styled.h3`
   font-weight: normal;
   color: #999;
 `;
+
+export const PageHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0 32px 0;
+  @media (max-width: 480px) {
+    margin: 0 0 16px 0;
+  }
+  & > div:last-child {
+    margin-left: auto;
+  }
+`;
+
+export const PageActions = styled.div`
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    li {
+      a,
+      button {
+        height: 48px;
+        padding: 0 16px;
+        display: block;
+      }
+    }
+  }
+`;
+
 export const Container = styled.div`
   padding: 0 16px;
 `;

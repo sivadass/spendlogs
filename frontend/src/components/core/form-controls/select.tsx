@@ -116,9 +116,6 @@ const FormLabel = styled.label`
   line-height: 20px;
   display: block;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   color: rgba(0, 0, 0, 0.54);
   span {
     color: #ff5722;
