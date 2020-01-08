@@ -33,47 +33,6 @@ const ExpenseSchema = Yup.object().shape({
     .max(250, "Too Long!")
 });
 
-const CategoryInput: React.FC<{
-  icons: {
-    name: string;
-    tags: string[];
-  }[];
-}> = () => {
-  const [term, setTerm] = useState("");
-  const handleSearch = (e: any) => {
-    setTerm(e.target.value);
-  };
-  function searchingFor(t: string) {
-    return function(x: any) {
-      return x.name.toLowerCase().includes(t.toLowerCase()) || !term;
-    };
-  }
-  useEffect(() => {
-    searchingFor(term);
-  }, [term]);
-
-  console.log("s term", term);
-  return (
-    <CategoryInputContainer>
-      <input
-        placeholder="Search for icons"
-        onChange={(e: any) => handleSearch(e)}
-      />
-      <ul>
-        {CATEGORY_ICONS.filter(searchingFor(term)).map(icon => {
-          return (
-            <li key={icon.name}>
-              <span>
-                <Icon name={icon.name} />
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </CategoryInputContainer>
-  );
-};
-
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
@@ -117,12 +76,18 @@ const AddExpense = () => {
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               <Field
-                placeholder="Category Name"
+                placeholder="Name"
                 type="text"
                 name="payee"
                 component={FormControl.Input}
               />
-              <CategoryInput icons={CATEGORY_ICONS} />
+              <Field
+                placeholder="Category Icon"
+                type="text"
+                name="icon"
+                icons={CATEGORY_ICONS}
+                component={FormControl.CategoryInput}
+              />
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -142,35 +107,5 @@ const AddExpense = () => {
     </FixedContainer>
   );
 };
-
-const CategoryInputContainer = styled.div`
-  ul {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    li {
-      span {
-        display: block;
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-        text-align: center;
-        border-radius: 24px;
-        background-color: #1fc8db;
-        color: #fff;
-        margin: 16px auto;
-        background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
-      }
-    }
-    @media (max-width: 480px) {
-      grid-template-columns: auto auto auto auto auto auto;
-    }
-    @media (max-width: 480px) {
-      grid-template-columns: auto auto auto auto auto;
-    }
-    @media (max-width: 360px) {
-      grid-template-columns: auto auto auto auto;
-    }
-  }
-`;
 
 export default AddExpense;
