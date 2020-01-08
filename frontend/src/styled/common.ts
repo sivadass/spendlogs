@@ -28,7 +28,7 @@ export const MaterialIcon = styled.i`
 
 export const FixedContainer = styled.div<{ padding?: string }>`
   max-width: 1200px;
-  margin: 0 auto 32px 0;
+  margin: 0 auto 32px auto;
   padding: ${({ padding }) => (padding ? padding : "0 32px")};
 `;
 export const PageTitle = styled.h3`
