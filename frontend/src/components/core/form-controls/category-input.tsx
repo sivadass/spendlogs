@@ -143,13 +143,12 @@ const CategorySelectorContainer = styled.div`
     border-color: #ccc;
   }
   ul {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto;
     margin: 0 8px 16px 8px;
     max-height: 240px;
     overflow-y: auto;
     li {
-      margin: 8px;
+      margin: 0;
+      display: inline-block;
       span {
         display: block;
         width: 48px;
@@ -157,6 +156,7 @@ const CategorySelectorContainer = styled.div`
         line-height: 48px;
         text-align: center;
         border-radius: 24px;
+        margin: 4px;
         background-color: #1fc8db;
         color: #fff;
         background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
@@ -172,7 +172,7 @@ const CategorySelectorContainer = styled.div`
       grid-template-columns: auto auto auto auto;
     }
     @media (max-width: 360px) {
-      grid-template-columns: auto auto auto;
+      width: 25%;
     }
   }
 `;

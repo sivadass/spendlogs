@@ -78,7 +78,8 @@ const AddExpense = () => {
               <Field
                 placeholder="Name"
                 type="text"
-                name="payee"
+                name="name"
+                label="Name"
                 component={FormControl.Input}
               />
               <Field
@@ -86,6 +87,7 @@ const AddExpense = () => {
                 type="text"
                 name="icon"
                 icons={CATEGORY_ICONS}
+                label="Icon"
                 component={FormControl.CategoryInput}
               />
               <Button
