@@ -9,28 +9,22 @@ import EmptyState from "./empty-state";
 import { Wrapper } from "../styled/common";
 import { formatAmount } from "../utils/common";
 
-export interface ExpenseItemData {
+export interface CategoryItemData {
   id: string;
-  amount: number;
-  comment: string;
-  payee: string;
-  paidOn: Date;
-  category: {
-    value: string;
-    label: string;
-    icon: string;
-    color: string;
-  };
-  createdOn: string;
+  name: string;
+  icon: string;
   updatedOn: string;
 }
 
-export interface ExpenseListProps {
-  data: ExpenseItemData[];
+export interface CategoryListProps {
+  data: CategoryItemData[];
   loading?: boolean;
 }
 
-const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
+const ExpenseList: React.FC<CategoryListProps> = ({
+  data,
+  loading = false
+}) => {
   if (loading) {
     return (
       <Wrapper>
@@ -41,39 +35,25 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
   if (!loading && data.length === 0) {
     return (
       <EmptyState
-        title="No Expenses found!"
-        message="When you add new expenses, it will be listed here."
-        icon="receipt"
+        title="No Categories found!"
+        message="When you create new categories, it will be listed here."
+        icon="styles"
       />
     );
   }
   return (
     <Wrapper>
       {data &&
-        data.map(expense => {
+        data.map(category => {
           return (
-            <ExpenseListItem key={expense.id}>
-              <Link to={`expense/${expense.id}`}>
+            <ExpenseListItem key={category.id}>
+              <Link to={`category/${category.id}`}>
                 <CategoryIcon>
-                  <Icon name={_get(expense, "category.icon", "")} />
+                  <Icon name={_get(category, "icon", "")} />
                 </CategoryIcon>
-                <ExpenseDetails>
-                  <Wrapper>
-                    <h6>{_get(expense, "payee", "")}</h6>
-                    <p>
-                      <span>
-                        {moment(expense.paidOn).format("h:mm a, MMM D")}
-                      </span>
-                      <span>{_get(expense, "category.label", "")}</span>
-                    </p>
-                  </Wrapper>
-                </ExpenseDetails>
                 <ExpenseDescription>
-                  <p>{expense.comment}</p>
+                  <p>{category.name}</p>
                 </ExpenseDescription>
-                <ExpenseAmount>
-                  <h4>{formatAmount(expense.amount)}</h4>
-                </ExpenseAmount>
               </Link>
             </ExpenseListItem>
           );

@@ -58,11 +58,15 @@ export const PageActions = styled.div`
     li {
       a,
       button {
-        height: 48px;
+        height: 36px;
         padding: 0 16px;
         display: block;
       }
     }
+  }
+  @media (max-width: 600px) {
+    visibility: hidden;
+    width: 0;
   }
 `;
 
@@ -79,7 +83,7 @@ export const Main = styled.div`
   padding: 16px;
   min-height: 300px;
   border-radius: 16px;
-  max-width: 1200px;
+  max-width: 1140px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 75px;
   @media (max-width: 1200px) {
     margin-left: 16px;

@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import _get from "lodash/get";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Store } from "../../store";
-import { expenseActions, actionTypes } from "../../store/actions";
-import ExpenseList from "../../components/expense-list";
+import { categoryActions, actionTypes } from "../../store/actions";
+import CategoryList from "../../components/category-list";
 import BreadCrumbs from "../../components/breadcrumbs";
 import { Button, Icon } from "../../components/core";
 import {
@@ -17,18 +17,18 @@ const AllCategoriesList = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
   const getExpenses = () => {
-    dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
-    return expenseActions
-      .getExpenses()
+    dispatch({ type: actionTypes.CATEGORIES_REQUEST, payload: {} });
+    return categoryActions
+      .getCategories()
       .then((d: any) => {
         dispatch({
-          type: actionTypes.EXPENSES_SUCCESS,
+          type: actionTypes.CATEGORIES_SUCCESS,
           payload: _get(d, "data", [])
         });
       })
       .catch(err => {
         dispatch({
-          type: actionTypes.EXPENSES_FAILURE,
+          type: actionTypes.CATEGORIES_FAILURE,
           payload: err.message
         });
       });
@@ -59,7 +59,7 @@ const AllCategoriesList = () => {
         </PageActions>
       </PageHeader>
       <Wrapper>
-        <ExpenseList
+        <CategoryList
           data={_get(state, "expense.list.data")}
           loading={_get(state, "expense.list.loading")}
         />
