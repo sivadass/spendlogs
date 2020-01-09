@@ -32,11 +32,7 @@ const loginValidation = data => {
 
 const categoryValidation = data => {
   const schema = {
-    value: Joi.string()
-      .min(3)
-      .max(30)
-      .required(),
-    label: Joi.string()
+    name: Joi.string()
       .min(1)
       .max(30)
       .required(),

@@ -7,18 +7,14 @@ router.post("/", verify, async (req, res) => {
   const { error } = categoryValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   const category = new Category({
-    value: req.body.value,
-    label: req.body.label,
+    name: req.body.name,
     icon: req.body.icon,
-    color: req.body.color
+    color: req.body.color,
+    owner: req.user._id
   });
   try {
-    if (req.user.role === "admin") {
-      const savedCategory = await category.save();
-      res.send(savedCategory);
-    } else {
-      res.status(400).send(err);
-    }
+    const savedCategory = await category.save();
+    res.send(savedCategory);
   } catch (err) {
     res.status(400).send(err);
   }

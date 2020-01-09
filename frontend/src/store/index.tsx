@@ -7,7 +7,9 @@ import {
   commonReducer,
   commonInitialState,
   expenseReducer,
-  expenseInitialState
+  expenseInitialState,
+  categoryReducer,
+  categoryInitialState
 } from "./reducers";
 import { APP_STATE } from "../constants/common";
 
@@ -56,6 +58,10 @@ export function StoreProvider(props: any) {
     expense: useReducer(
       expenseReducer,
       _get(localState, "expense") || expenseInitialState
+    ),
+    category: useReducer(
+      categoryReducer,
+      _get(localState, "category") || categoryInitialState
     )
   });
   const value: any = { state, dispatch };

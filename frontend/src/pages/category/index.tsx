@@ -16,11 +16,12 @@ import {
 const AllCategoriesList = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
-  const getExpenses = () => {
+  const getCategories = () => {
     dispatch({ type: actionTypes.CATEGORIES_REQUEST, payload: {} });
     return categoryActions
       .getCategories()
       .then((d: any) => {
+        console.log(d);
         dispatch({
           type: actionTypes.CATEGORIES_SUCCESS,
           payload: _get(d, "data", [])
@@ -37,7 +38,7 @@ const AllCategoriesList = () => {
     history.push(`/category/add`);
   };
   useEffect(() => {
-    getExpenses();
+    getCategories();
   }, []);
   return (
     <FixedContainer>
@@ -60,8 +61,8 @@ const AllCategoriesList = () => {
       </PageHeader>
       <Wrapper>
         <CategoryList
-          data={_get(state, "expense.list.data")}
-          loading={_get(state, "expense.list.loading")}
+          data={_get(state, "category.list.data")}
+          loading={_get(state, "category.list.loading")}
         />
       </Wrapper>
     </FixedContainer>

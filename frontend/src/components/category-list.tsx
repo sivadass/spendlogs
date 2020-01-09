@@ -51,9 +51,9 @@ const ExpenseList: React.FC<CategoryListProps> = ({
                 <CategoryIcon>
                   <Icon name={_get(category, "icon", "")} />
                 </CategoryIcon>
-                <ExpenseDescription>
+                <CategoryName>
                   <p>{category.name}</p>
-                </ExpenseDescription>
+                </CategoryName>
               </Link>
             </ExpenseListItem>
           );
@@ -100,75 +100,13 @@ const ExpenseListItem = styled.div`
   }
 `;
 
-const ExpenseDetails = styled.div`
+export const CategoryName = styled.div`
   flex-grow: 1;
-  overflow: hidden;
-  max-width: 400px;
-  ${Wrapper} {
-    margin-left: 16px;
-    width: 100%;
-    h6 {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #666;
-      width: 90%;
-      white-space: nowrap;
-      overflow: hidden;
-      display: block;
-      text-overflow: ellipsis;
-    }
-    p {
-      font-size: 13px;
-      width: 90%;
-      white-space: nowrap;
-      overflow: hidden;
-      display: block;
-      color: #999;
-      text-overflow: ellipsis;
-      span:nth-child(2) {
-        color: red;
-        padding: 2px 6px;
-        border-radius: 8px;
-        font-size: 12px;
-        background: #ddd;
-        margin-left: 8px;
-        color: #666;
-        @media (max-width: 480px) {
-          display: none;
-        }
-      }
-    }
-  }
-`;
-const ExpenseAmount = styled.div`
-  width: 132px;
-  flex-shrink: 0;
-  h4 {
-    color: #232323;
-    text-align: right;
-    line-height: 44px;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 16px;
-  }
-  @media (max-width: 480px) {
-    width: 120px;
-    h4 {
-      font-size: 16px;
-    }
-  }
-`;
-
-export const ExpenseDescription = styled.div`
-  flex-grow: 2;
   overflow: hidden;
   max-width: 600px;
   p {
     line-height: 44px;
-  }
-  @media (max-width: 600px) {
-    display: none;
+    padding-left: 16px;
   }
 `;
 
