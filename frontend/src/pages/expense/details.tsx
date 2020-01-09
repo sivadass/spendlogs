@@ -16,6 +16,7 @@ import { expenseActions, actionTypes } from "../../store/actions";
 import Spinner from "../../components/core/form-controls/spinner";
 import { Button } from "../../components/core";
 import BreadCrumbs from "../../components/breadcrumbs";
+import Dropdown from "../../components/dropdown";
 
 type IProps = RouteProps;
 
@@ -85,24 +86,30 @@ const ExpenseDetails: React.FC<IProps> = () => {
         <PageActions>
           <ul>
             <li>
-              <Button onClick={() => goToEdit()} variant="default">
-                <Icon name="edit" />
-              </Button>
-            </li>
-            <li>
-              <Button
-                variant="default"
-                onClick={() => deleteExpense()}
-                loading={_get(state, "expense.details.deleting", false)}
+              <Dropdown
+                trigger={
+                  <Button onClick={() => {}} variant="default">
+                    <Icon name="more_vert" />
+                  </Button>
+                }
               >
-                {_get(state, "expense.details.deleting", false) ? (
-                  ""
-                ) : (
-                  <>
-                    <Icon name="delete_outline" />
-                  </>
-                )}
-              </Button>
+                <Button onClick={() => goToEdit()} variant="default">
+                  <Icon name="edit" /> Edit
+                </Button>
+                <Button
+                  variant="default"
+                  onClick={() => deleteExpense()}
+                  loading={_get(state, "expense.details.deleting", false)}
+                >
+                  {_get(state, "expense.details.deleting", false) ? (
+                    ""
+                  ) : (
+                    <>
+                      <Icon name="delete_outline" /> Delete
+                    </>
+                  )}
+                </Button>
+              </Dropdown>
             </li>
           </ul>
         </PageActions>
