@@ -20,9 +20,13 @@ router.post("/", verify, async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", verify, async (req, res) => {
+  let query = {};
+  if (req.user.role !== "admin") {
+    query.owner = req.user._id;
+  }
   try {
-    const allCategories = await Category.find({});
+    const allCategories = await Category.find({ query });
     res.send(allCategories);
   } catch (err) {
     res.status(400).send(err);

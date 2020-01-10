@@ -126,8 +126,7 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
   ${Container} {
     max-width: ${({ isOpen }) => (isOpen ? "280px" : 0)};
     height: 100%;
-    background-color: #1fc8db;
-    background-image: linear-gradient(141deg, #06537b 0%, #70afc1 75%);
+    background-color: #06537b;
     position: relative;
     padding: 0;
     transition-delay: 300ms;
@@ -149,19 +148,19 @@ const MenuContainer = styled.div<{ isOpen: boolean }>`
           transition-delay: 0ms;
         }
         &:nth-child(2) {
-          transition-delay: 200ms;
+          transition-delay: 100ms;
         }
         &:nth-child(3) {
-          transition-delay: 400ms;
+          transition-delay: 200ms;
         }
         &:nth-child(4) {
-          transition-delay: 600ms;
+          transition-delay: 300ms;
         }
         &:nth-child(5) {
-          transition-delay: 800ms;
+          transition-delay: 400ms;
         }
         &:nth-child(6) {
-          transition-delay: 1000ms;
+          transition-delay: 5000ms;
         }
         a {
           display: block;
