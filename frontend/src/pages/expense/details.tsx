@@ -94,7 +94,7 @@ const ExpenseDetails: React.FC<IProps> = () => {
                 }
               >
                 <Button onClick={() => goToEdit()} variant="default">
-                  <Icon name="edit" /> Edit
+                  <Icon name="edit" /> Edit Spending
                 </Button>
                 <Button
                   variant="default"
