@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <StyledFooter>
       <p>
-        &copy; 2020 <a href="https://spendlogs.now.sh">SpendLogs</a> by{" "}
+        &copy; 2020 <a href="https://spendlogs.ml">SpendLogs</a> by{" "}
         <a href="https://sivadass.in">Sivadass</a> {" | "}
-        <a href="https://github.com/sivadass/spendlogs">Source Code</a>
+        <a href="https://github.com/sivadass/spendlogs">Github</a>
       </p>
     </StyledFooter>
   );

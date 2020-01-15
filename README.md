@@ -2,7 +2,7 @@
 
 Your Personal Expense Manager
 
-[https://spendlogs.now.sh](https://spendlogs.now.sh)
+[https://spendlogs.ml](https://spendlogs.ml)
 
 ### Tech Stack (MERN)
 
