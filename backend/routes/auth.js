@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
       html: messageWithActionTemplate(
         `Hi ${user.name},`,
         `Thank you for signing up with <b>Spendlogs</b>. <br/>Please verify your email address by clicking the button below to complete the registration.`,
-        `https://spendlogs.app/auth/verify?token=${token}`,
+        `https://spendlogs.ml/auth/verify?token=${token}`,
         "Verify my email now!"
       )
     };
@@ -92,7 +92,7 @@ router.get("/verifyEmail", async (req, res) => {
             html: messageWithActionTemplate(
               `Hi ${user.name},`,
               `Warm welcome to <b>Spendlogs</b>.<br/> Your email address is successfully verified. <br/> You can login now with your email and password.`,
-              `https://spendlogs.app/auth/login`,
+              `https://spendlogs.ml/auth/login`,
               "Login now!"
             )
           };
@@ -133,7 +133,7 @@ router.post("/resetPassword", async (req, res) => {
       html: messageWithActionTemplate(
         `Hi ${user.name},`,
         `Your recently tried to reset your password. Please use the link below to reset the same. <br/> <br/>And also, please note that the link will expire after <b>24 hrs</b> from now.`,
-        `https://spendlogs.app/auth/update-password?token=${token}`,
+        `https://spendlogs.ml/auth/update-password?token=${token}`,
         "Reset my password!"
       )
     };
@@ -167,7 +167,7 @@ router.post("/updatePassword", async (req, res) => {
           html: messageWithActionTemplate(
             `Hi ${user.name},`,
             `Your password has been successfully reset. Please use the link below to login.`,
-            `https://spendlogs.app/auth/login`,
+            `https://spendlogs.ml/auth/login`,
             "Login now!"
           )
         };

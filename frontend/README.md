@@ -2,7 +2,7 @@
 
 ## Demo
 
-[https://spendlogs.app](https://spendlogs.app)
+[https://spendlogs.ml](https://spendlogs.ml)
 
 ## Development
 

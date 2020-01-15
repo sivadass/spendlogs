@@ -115,7 +115,7 @@ module.exports = (title, message, url, buttonLabel = "Click here!") => `
                 <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
                   <tr>
                     <td>
-                      <a href="https://spendlogs.app" target="_blank"><img
+                      <a href="https://spendlogs.ml" target="_blank"><img
                             src="https://res.cloudinary.com/spendlogs/image/upload/v1578090007/branding/spendlogs-logo-green_ynjqex.png"
                             alt="Spendlogs"
                             style="display: block; margin-top: 24px; margin-bottom: 24px; margin-left: auto; margin-right: auto; max-width: 90px; "
@@ -154,7 +154,7 @@ module.exports = (title, message, url, buttonLabel = "Click here!") => `
                     <td>
                       <p style="text-align: center; margin-top: 0; margin-bottom: 12px; color: #999; font-size: 14px; line-height: 21px">
                         Sent with ❤️ from
-                        <a href="https://spendlogs.app" style="text-decoration: none; color: #333">Spendlogs</a
+                        <a href="https://spendlogs.ml" style="text-decoration: none; color: #333">Spendlogs</a
                           >
                         </p>
                         <p

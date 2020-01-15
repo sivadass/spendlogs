@@ -124,7 +124,7 @@ module.exports = (title, message, url) => `
                 >
                   <tr>
                     <td>
-                      <a href="https://spendlogs.app" target="_blank"
+                      <a href="https://spendlogs.ml" target="_blank"
                         ><img
                           src="https://res.cloudinary.com/spendlogs/image/upload/v1578090007/branding/spendlogs-logo-green_ynjqex.png"
                           alt="Spendlogs"
@@ -175,7 +175,7 @@ module.exports = (title, message, url) => `
                       >
                         Sent with ❤️ from
                         <a
-                          href="https://spendlogs.app"
+                          href="https://spendlogs.ml"
                           style="text-decoration: none; color: #333"
                           >Spendlogs</a
                         >
