@@ -7,7 +7,7 @@ import { Store } from "../../store";
 import { FixedContainer, Wrapper } from "../../styled/common";
 import Icon from "../../components/core/icon";
 import { formatAmount } from "../../utils/common";
-import { expenseActions, actionTypes } from "../../store/actions";
+import { categoryActions, actionTypes } from "../../store/actions";
 import Spinner from "../../components/core/form-controls/spinner";
 import { Button } from "../../components/core";
 import BreadCrumbs from "../../components/breadcrumbs";
@@ -19,49 +19,49 @@ const ExpenseDetails: React.FC<IProps> = () => {
   let history = useHistory();
   const { state, dispatch } = useContext(Store);
   const getDetails = () => {
-    dispatch({ type: actionTypes.EXPENSE_DETAILS_REQUEST, payload: {} });
-    return expenseActions
-      .getExpenseDetails(id)
+    dispatch({ type: actionTypes.CATEGORY_DETAILS_REQUEST, payload: {} });
+    return categoryActions
+      .getCategoryDetails(id)
       .then((d: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DETAILS_SUCCESS,
+          type: actionTypes.CATEGORY_DETAILS_SUCCESS,
           payload: _get(d, "data", {})
         });
       })
       .catch((err: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DETAILS_FAILURE,
+          type: actionTypes.CATEGORY_DETAILS_FAILURE,
           payload: err.message
         });
       });
   };
   const deleteExpense = () => {
-    dispatch({ type: actionTypes.EXPENSE_DELETE_REQUEST, payload: {} });
-    return expenseActions
-      .deleteExpense(id)
+    dispatch({ type: actionTypes.CATEGORY_DELETE_REQUEST, payload: {} });
+    return categoryActions
+      .deleteCategory(id)
       .then((d: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DELETE_SUCCESS,
+          type: actionTypes.CATEGORY_DELETE_SUCCESS,
           payload: _get(d, "data", {})
         });
-        history.push(`/expense`);
+        history.push(`/category`);
       })
       .catch((err: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DELETE_FAILURE,
+          type: actionTypes.CATEGORY_DELETE_FAILURE,
           payload: err.message
         });
       });
   };
 
   const goToEdit = () => {
-    history.push(`/expense/${id}/edit`);
+    history.push(`/category/${id}/edit`);
   };
   useEffect(() => {
     getDetails();
   }, [id]);
 
-  if (_get(state, "expense.details.loading")) {
+  if (_get(state, "category.details.loading")) {
     return (
       <FixedContainer>
         <Spinner block />
@@ -77,54 +77,7 @@ const ExpenseDetails: React.FC<IProps> = () => {
         ]}
       />
       <Wrapper>
-        <Amount>
-          {formatAmount(_get(state, "expense.details.data.amount", 0))}
-        </Amount>
-        <MediaObject>
-          <MediaObjectFigure>
-            <Icon name="date_range" />
-          </MediaObjectFigure>
-          <MediaObjectBody>
-            <h4>
-              {moment(_get(state, "expense.details.data.paidOn", "")).format(
-                "DD MMM YYYY, h:mm a"
-              )}
-            </h4>
-            <p>8% Greater than last month</p>
-          </MediaObjectBody>
-        </MediaObject>
-
-        <MediaObject>
-          <MediaObjectFigure>
-            <Icon name="public" />
-          </MediaObjectFigure>
-          <MediaObjectBody>
-            <h4>Internet</h4>
-            <p>5th Most spent category of this month</p>
-          </MediaObjectBody>
-        </MediaObject>
-
-        <MediaObject>
-          <MediaObjectFigure>
-            <Icon name="chat" />
-          </MediaObjectFigure>
-          <MediaObjectBody>
-            <h4>{_get(state, "expense.details.data.payee", "")}</h4>
-            <p>{_get(state, "expense.details.data.comment", "")}</p>
-          </MediaObjectBody>
-        </MediaObject>
-
-        <MediaObject>
-          <MediaObjectFigure>
-            <Icon name="attach_file" />
-          </MediaObjectFigure>
-          <MediaObjectBody>
-            <h4>Bill</h4>
-            <p>
-              <img src={_get(state, "expense.details.data.attachment", "")} />
-            </p>
-          </MediaObjectBody>
-        </MediaObject>
+        <h1>Category Details</h1>
         <Actions>
           <li>
             <Button onClick={() => goToEdit()} variant="default">

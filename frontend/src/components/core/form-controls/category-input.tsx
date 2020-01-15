@@ -16,45 +16,70 @@ interface InputProps {
 }
 
 const CategorySelector: React.FC<{
+  name: string;
+  defaultValue: string;
+  onSelect: (name: string, val: string) => any;
   icons: {
     name: string;
     tags: string[];
   }[];
-}> = ({ icons }) => {
+}> = ({ icons, name, defaultValue, onSelect }) => {
   const [term, setTerm] = useState("");
+  const [selected, setSelected] = useState(defaultValue || "");
   const handleSearch = (e: any) => {
     setTerm(e.target.value);
   };
   function searchingFor(t: string) {
     return function(x: any) {
-      return x.name.toLowerCase().includes(t.toLowerCase()) || !term;
-      // return x.tags.filter(
-      //   (tag: string) => tag.toLowerCase().includes(t.toLowerCase()) || !term
-      // );
+      return x.tags.some((y: any) => y.includes(t.toLowerCase()) || !term);
     };
   }
   useEffect(() => {
     searchingFor(term);
   }, [term]);
-
-  console.log("s term", term);
+  useEffect(() => {
+    onSelect(name, selected);
+  }, [selected]);
+  const filteredIcons = icons.filter(searchingFor(term));
   return (
     <CategorySelectorContainer>
-      <input
-        placeholder="Search for icons"
-        onChange={(e: any) => handleSearch(e)}
-      />
-      <ul>
-        {icons.filter(searchingFor(term)).map(icon => {
-          return (
-            <li key={icon.name}>
-              <span>
-                <Icon name={icon.name} />
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <CategoryField>
+        {selected ? (
+          <span>
+            <Icon name={selected} />
+          </span>
+        ) : (
+          "Select an icon from below list"
+        )}
+      </CategoryField>
+      <CategoryFilter>
+        <input
+          placeholder="Search for icons"
+          onChange={(e: any) => handleSearch(e)}
+        />
+        <Icon name="search" />
+      </CategoryFilter>
+      <CategoryResult>
+        {filteredIcons.length === 0 ? (
+          <CategoryResultItem active={false}>
+            <p>Sorry no results found!</p>
+          </CategoryResultItem>
+        ) : (
+          filteredIcons.map(icon => {
+            return (
+              <CategoryResultItem
+                key={icon.name}
+                onClick={() => setSelected(icon.name)}
+                active={selected === icon.name}
+              >
+                <span>
+                  <Icon name={icon.name} />
+                </span>
+              </CategoryResultItem>
+            );
+          })
+        )}
+      </CategoryResult>
     </CategorySelectorContainer>
   );
 };
@@ -65,7 +90,7 @@ const CategoryInput: React.FC<InputProps> = ({
   placeholder,
   required = false,
   field,
-  form: { touched, errors },
+  form: { touched, errors, setFieldValue },
   icons,
   ...props
 }) => (
@@ -75,8 +100,12 @@ const CategoryInput: React.FC<InputProps> = ({
         {label} {required && <span>*</span>}
       </FormLabel>
     )}
-    {/* <FormControl type={type} {...field} {...props} placeholder={placeholder} /> */}
-    <CategorySelector icons={icons} />
+    <CategorySelector
+      icons={icons}
+      onSelect={setFieldValue}
+      defaultValue={field.value}
+      name={field.name}
+    />
     {touched[field.name] && errors[field.name] && (
       <FormHelperText>{errors[field.name]}</FormHelperText>
     )}
@@ -136,32 +165,7 @@ const CategorySelectorContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: 16px;
-  input {
-    border-radius: 6px 6px 0 0;
-    margin-bottom: 16px;
-    border-width: 0 0 1px 0;
-    border-color: #ccc;
-  }
   ul {
-    margin: 0 8px 16px 8px;
-    max-height: 240px;
-    overflow-y: auto;
-    li {
-      margin: 0;
-      display: inline-block;
-      span {
-        display: block;
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-        text-align: center;
-        border-radius: 24px;
-        margin: 4px;
-        background-color: #1fc8db;
-        color: #fff;
-        background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
-      }
-    }
     @media (max-width: 700px) {
       grid-template-columns: auto auto auto auto auto auto auto auto;
     }
@@ -174,6 +178,70 @@ const CategorySelectorContainer = styled.div`
     @media (max-width: 360px) {
       width: 25%;
     }
+  }
+`;
+
+const CategoryField = styled.div`
+  border-bottom: 1px solid #ccc;
+  padding: 16px;
+  span {
+    display: block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 4px;
+    background-color: #1fc8db;
+    color: #fff;
+    background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+  }
+`;
+
+const CategoryFilter = styled.div`
+  position: relative;
+  margin-bottom: 16px;
+  input {
+    border-radius: 6px 6px 0 0;
+    border-width: 0 0 1px 0;
+    border-color: #ccc;
+  }
+  i {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #999;
+  }
+`;
+
+const CategoryResult = styled.ul`
+  margin: 0 8px 16px 8px;
+  max-height: 240px;
+  overflow-y: auto;
+`;
+const CategoryResultItem = styled.li<{ active: boolean }>`
+  margin: 0;
+  display: inline-block;
+  span {
+    display: block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 4px;
+    background-color: #1fc8db;
+    color: #fff;
+    cursor: pointer;
+    /* border: 2px solid ${({ active }) => (active ? "red" : "transparent")}; */
+    background-image: ${({ active }) =>
+      active
+        ? "linear-gradient(141deg, #06537b 0%,#2196F3 75%)"
+        : "linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%)"};
+  }
+  p {
+    color: #999;
+    padding: 0 16px;
   }
 `;
 

@@ -10,7 +10,7 @@ import { Wrapper } from "../styled/common";
 import { formatAmount } from "../utils/common";
 
 export interface CategoryItemData {
-  id: string;
+  _id: string;
   name: string;
   icon: string;
   updatedOn: string;
@@ -46,8 +46,8 @@ const ExpenseList: React.FC<CategoryListProps> = ({
       {data &&
         data.map(category => {
           return (
-            <ExpenseListItem key={category.id}>
-              <Link to={`category/${category.id}`}>
+            <ExpenseListItem key={category._id}>
+              <Link to={`category/${category._id}`}>
                 <CategoryIcon>
                   <Icon name={_get(category, "icon", "")} />
                 </CategoryIcon>

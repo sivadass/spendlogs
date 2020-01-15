@@ -30,7 +30,7 @@ const getCategoryDetails = (id: string) => {
     });
 };
 
-const updateCategory = (id: string, values: any) => {
+const updateCategory = (values: any, id: string) => {
   return putJSON(`/category/${id}`, values)
     .then(d => {
       return d;

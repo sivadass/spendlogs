@@ -1,37 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import styled from "styled-components";
-import { Formik, Field } from "formik";
-import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../../store";
-import { expenseActions } from "../../store/actions";
+import { categoryActions } from "../../store/actions";
 import { Alert, Button, FormControl, Icon } from "../../components/core";
 import {
   FixedContainer,
-  PageTitle,
   Wrapper,
-  FixedFormWrapper,
   PageHeader,
   PageActions
 } from "../../styled/common";
 import BreadCrumbs from "../../components/breadcrumbs";
-import { CATEGORY_ICONS } from "../../constants/common";
+import CategoryForm from "../../components/form/category";
 
-const ExpenseSchema = Yup.object().shape({
-  amount: Yup.number()
-    .min(1, "Should be greater than 1!")
-    .max(100000000, "Too Long!")
-    .required("Required"),
-  payee: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  categoryId: Yup.string().required("Required"),
-  comment: Yup.string()
-    .min(4, "Too Short!")
-    .max(250, "Too Long!")
-});
+const initialValues = {
+  name: "",
+  icon: ""
+};
 
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
@@ -52,59 +37,10 @@ const AddExpense = () => {
         <PageActions />
       </PageHeader>
       <Wrapper>
-        <Formik
-          initialValues={{
-            name: "",
-            icon: ""
-          }}
-          validationSchema={ExpenseSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            setError("");
-            return expenseActions
-              .addExpense(values)
-              .then(d => {
-                setSubmitting(false);
-                setSuccess(true);
-                history.push(`/expense/${d.data.id}`);
-              })
-              .catch(err => {
-                setSubmitting(false);
-                setError(err);
-              });
-          }}
-        >
-          {({ handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
-              <Field
-                placeholder="Name"
-                type="text"
-                name="name"
-                label="Name"
-                component={FormControl.Input}
-              />
-              <Field
-                placeholder="Category Icon"
-                type="text"
-                name="icon"
-                icons={CATEGORY_ICONS}
-                label="Icon"
-                component={FormControl.CategoryInput}
-              />
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                onClick={() => {}}
-                loading={isSubmitting}
-              >
-                SAVE
-              </Button>
-              {success && (
-                <Alert message="Successfully saved!" type="success" />
-              )}
-              {error && <Alert message={error} type="error" />}
-            </form>
-          )}
-        </Formik>
+        <CategoryForm
+          initialValues={initialValues}
+          handleFormSubmit={categoryActions.addCategory}
+        />
       </Wrapper>
     </FixedContainer>
   );
