@@ -10,6 +10,7 @@ import {
   FixedContainer,
   PageHeader,
   PageActions,
+  FloatingActions,
   Wrapper
 } from "../../styled/common";
 
@@ -49,15 +50,7 @@ const AllCategoriesList = () => {
             { name: "My Categories", url: "" }
           ]}
         />
-        <PageActions>
-          <ul>
-            <li>
-              <Button onClick={() => goToAddNew()} variant="primary">
-                <Icon name="add_circle_outline" /> Add New
-              </Button>
-            </li>
-          </ul>
-        </PageActions>
+        <PageActions />
       </PageHeader>
       <Wrapper>
         <CategoryList
@@ -65,6 +58,11 @@ const AllCategoriesList = () => {
           loading={_get(state, "category.list.loading")}
         />
       </Wrapper>
+      <FloatingActions>
+        <Button onClick={() => goToAddNew()} variant="floating">
+          <Icon name="add_outline" />
+        </Button>
+      </FloatingActions>
     </FixedContainer>
   );
 };

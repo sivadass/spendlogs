@@ -49,7 +49,11 @@ export const PageHeader = styled.div`
     margin-left: auto;
   }
 `;
-
+export const FloatingActions = styled.div`
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+`;
 export const PageActions = styled.div`
   ul {
     list-style: none;
@@ -105,10 +109,11 @@ export const Main = styled.div`
   margin: 74px auto 16px auto;
   background: #fff;
   padding: 16px;
-  min-height: 300px;
+  min-height: calc(100vh - 90px);
   border-radius: 16px;
   max-width: 1140px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 75px;
+  overflow: hidden;
   @media (max-width: 1200px) {
     margin-left: 16px;
     margin-right: 16px;

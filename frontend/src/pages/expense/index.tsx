@@ -9,7 +9,7 @@ import { Button, Icon } from "../../components/core";
 import {
   FixedContainer,
   PageHeader,
-  PageActions,
+  FloatingActions,
   Wrapper
 } from "../../styled/common";
 
@@ -48,21 +48,22 @@ const AllExpenseList = () => {
             { name: "My Expenses", url: "" }
           ]}
         />
-        <PageActions>
-          <ul>
-            <li>
-              <Button onClick={() => goToAddNew()} variant="primary">
-                <Icon name="add_circle_outline" /> Add New
-              </Button>
-            </li>
-          </ul>
-        </PageActions>
+        <div />
       </PageHeader>
       <Wrapper>
         <ExpenseList
           data={_get(state, "expense.list.data")}
           loading={_get(state, "expense.list.loading")}
         />
+        <FloatingActions>
+          <ul>
+            <li>
+              <Button onClick={() => goToAddNew()} variant="floating">
+                <Icon name="add_outline" />
+              </Button>
+            </li>
+          </ul>
+        </FloatingActions>
       </Wrapper>
     </FixedContainer>
   );

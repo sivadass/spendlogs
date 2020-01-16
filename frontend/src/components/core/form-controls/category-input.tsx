@@ -165,20 +165,6 @@ const CategorySelectorContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: 16px;
-  ul {
-    @media (max-width: 700px) {
-      grid-template-columns: auto auto auto auto auto auto auto auto;
-    }
-    @media (max-width: 480px) {
-      grid-template-columns: auto auto auto auto auto auto;
-    }
-    @media (max-width: 480px) {
-      grid-template-columns: auto auto auto auto;
-    }
-    @media (max-width: 360px) {
-      width: 25%;
-    }
-  }
 `;
 
 const CategoryField = styled.div`

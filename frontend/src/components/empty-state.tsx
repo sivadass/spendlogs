@@ -42,7 +42,7 @@ const EmptyStateContainer = styled.div<{ size: EmptyStateProps["size"] }>`
     color: #999;
   }
   @media (max-width: 480px) {
-    padding: 16px;
+    padding: 90px 16px;
   }
 `;
 

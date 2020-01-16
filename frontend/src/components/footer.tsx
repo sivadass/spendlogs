@@ -23,6 +23,9 @@ const StyledFooter = styled.footer`
       color: #66c2aa;
     }
   }
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 export default Footer;

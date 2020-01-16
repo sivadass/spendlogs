@@ -8,7 +8,7 @@ interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   type?: "button" | "submit";
-  variant?: "default" | "primary" | "secondary";
+  variant?: "default" | "primary" | "secondary" | "floating";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -72,6 +72,22 @@ const StyledButton = styled.button<{ variant: string }>`
     color: #0a6b8a;
     background-color: #fff;
     border-color: #0a6b8a;
+  `}
+  ${props =>
+    props.variant === "floating" &&
+    `
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 24px;
+    color: #fff;
+    background-color: #64c2ac;
+    background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+    i {
+      font-size: 32px;
+      width: 32px;
+      line-height: 48px;
+    }
   `}
 `;
 
