@@ -15,6 +15,9 @@ const EditCategory = () => {
   let history = useHistory();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const handleFormSubmit = (values: any) => {
+    return categoryActions.updateCategory(values, id);
+  };
   return (
     <FixedContainer>
       <BreadCrumbs
@@ -27,7 +30,7 @@ const EditCategory = () => {
         <Wrapper>
           <CategoryForm
             initialValues={{ name: "di", icon: "public" }}
-            handleFormSubmit={categoryActions.updateCategory}
+            handleFormSubmit={handleFormSubmit}
             isEditing
           />
         </Wrapper>

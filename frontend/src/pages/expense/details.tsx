@@ -74,6 +74,7 @@ const ExpenseDetails: React.FC<IProps> = () => {
       </FixedContainer>
     );
   }
+  console.log(_get(state, "expense.details"));
   return (
     <FixedContainer>
       <PageHeader>
@@ -134,10 +135,22 @@ const ExpenseDetails: React.FC<IProps> = () => {
 
         <MediaObject>
           <MediaObjectFigure>
-            <Icon name="public" />
+            <Icon
+              name={_get(
+                state,
+                "expense.details.data.category.icon",
+                "post_add"
+              )}
+            />
           </MediaObjectFigure>
           <MediaObjectBody>
-            <h4>Internet</h4>
+            <h4>
+              {_get(
+                state,
+                "expense.details.data.category.name",
+                "Uncategorized"
+              )}
+            </h4>
             <p>5th Most spent category of this month</p>
           </MediaObjectBody>
         </MediaObject>

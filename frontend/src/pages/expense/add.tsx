@@ -18,7 +18,7 @@ import {
   PageActions
 } from "../../styled/common";
 import BreadCrumbs from "../../components/breadcrumbs";
-import { EXPENSE_CATEGORIES } from "../../constants/common";
+import { getCategoryOptions } from "../../utils/common";
 
 const ExpenseSchema = Yup.object().shape({
   amount: Yup.number()
@@ -34,13 +34,6 @@ const ExpenseSchema = Yup.object().shape({
     .min(4, "Too Short!")
     .max(250, "Too Long!")
 });
-
-const getCategoryOptions = (categories: any) => {
-  return categories.map((category: any) => ({
-    label: category.name,
-    value: category._id
-  }));
-};
 
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
@@ -72,7 +65,6 @@ const AddExpense = () => {
   }, []);
 
   const categoryOptions = getCategoryOptions(_get(state, "category.list.data"));
-  console.log(categoryOptions);
   return (
     <FixedContainer>
       <PageHeader>

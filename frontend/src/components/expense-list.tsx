@@ -55,7 +55,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
             <ExpenseListItem key={expense.id}>
               <Link to={`expense/${expense.id}`}>
                 <CategoryIcon>
-                  <Icon name={_get(expense, "category.icon", "")} />
+                  <Icon name={_get(expense, "category.icon", "post_add")} />
                 </CategoryIcon>
                 <ExpenseDetails>
                   <Wrapper>
@@ -64,7 +64,9 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                       <span>
                         {moment(expense.paidOn).format("h:mm a, MMM D")}
                       </span>
-                      <span>{_get(expense, "category.label", "")}</span>
+                      <span>
+                        {_get(expense, "category.name", "Uncategorized")}
+                      </span>
                     </p>
                   </Wrapper>
                 </ExpenseDetails>

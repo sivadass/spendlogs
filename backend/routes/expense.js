@@ -36,7 +36,7 @@ router.get("/", verify, async (req, res) => {
     const allExpenses = await Expense.find(query)
       .sort("-paidOn")
       .limit(5)
-      .populate("category", "label value icon color -_id");
+      .populate("category", "name icon -_id");
     res.send(allExpenses);
   } catch (err) {
     res.status(400).send(err);
@@ -49,14 +49,9 @@ router.get("/:id", verify, async (req, res) => {
     query.owner = req.user._id;
   }
   try {
-    const expenseDetails = await Expense.findById(
-      req.params.id,
-      (err, detail) => {
-        var opts = [{ path: "category", match: { owner: req.user._id } }];
-        Expense.populate(detail, opts, function(err, details) {
-          console.log(details);
-        });
-      }
+    const expenseDetails = await Expense.findById(req.params.id).populate(
+      "category",
+      "name icon -_id"
     );
     res.send(expenseDetails);
   } catch (err) {

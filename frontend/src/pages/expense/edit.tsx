@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import _pick from "lodash/pick";
 import { Store } from "../../store";
-import { expenseActions } from "../../store/actions";
+import {
+  expenseActions,
+  categoryActions,
+  actionTypes
+} from "../../store/actions";
 import { Alert, Button, FormControl } from "../../components/core";
 import {
   FixedContainer,
@@ -13,7 +17,7 @@ import {
   Wrapper,
   FixedFormWrapper
 } from "../../styled/common";
-import { EXPENSE_CATEGORIES } from "../../constants/common";
+import { getCategoryOptions } from "../../utils/common";
 
 const ExpenseSchema = Yup.object().shape({
   amount: Yup.number()
@@ -36,6 +40,29 @@ const EditExpense = () => {
   let history = useHistory();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const categoryOptions = getCategoryOptions(_get(state, "category.list.data"));
+  const getCategories = () => {
+    dispatch({ type: actionTypes.CATEGORIES_REQUEST, payload: {} });
+    return categoryActions
+      .getCategories()
+      .then((d: any) => {
+        console.log(d);
+        dispatch({
+          type: actionTypes.CATEGORIES_SUCCESS,
+          payload: _get(d, "data", [])
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: actionTypes.CATEGORIES_FAILURE,
+          payload: err.message
+        });
+      });
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <FixedContainer>
       <FixedFormWrapper>
@@ -84,7 +111,7 @@ const EditExpense = () => {
                   placeholder="Category"
                   name="categoryId"
                   component={FormControl.Select}
-                  options={EXPENSE_CATEGORIES}
+                  options={categoryOptions}
                 />
                 <Field
                   placeholder="Comment"

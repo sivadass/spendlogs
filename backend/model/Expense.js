@@ -15,7 +15,7 @@ const expenseSchema = new mongoose.Schema(
       max: 50
     },
     categoryId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true
     },
     comment: {
@@ -46,7 +46,7 @@ const expenseSchema = new mongoose.Schema(
 expenseSchema.virtual("category", {
   ref: "Category",
   localField: "categoryId",
-  foreignField: "value",
+  foreignField: "_id",
   justOne: true
 });
 
