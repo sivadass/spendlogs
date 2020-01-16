@@ -58,15 +58,39 @@ export const PageActions = styled.div`
     li {
       a,
       button {
-        height: 36px;
+        height: 48px;
         padding: 0 16px;
+        max-width: 180px;
+        min-width: 180px;
+        text-align: left;
         display: block;
+        &:hover {
+          background: #f3f3f3;
+        }
+      }
+      .dropdown-trigger {
+        padding: 0;
+        button {
+          min-width: 48px;
+          width: 48px;
+          border-radius: 24px;
+          padding: 0;
+          i {
+            margin: 12px;
+          }
+        }
+      }
+      .dropdown-contents {
+        min-width: 180px;
+        button {
+          display: flex;
+          justify-content: flex-start;
+          i {
+            margin-right: 8px;
+          }
+        }
       }
     }
-  }
-  @media (max-width: 600px) {
-    visibility: hidden;
-    width: 0;
   }
 `;
 

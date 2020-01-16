@@ -17,6 +17,7 @@ import Spinner from "../../components/core/form-controls/spinner";
 import { Button } from "../../components/core";
 import BreadCrumbs from "../../components/breadcrumbs";
 import Dropdown from "../../components/dropdown";
+import IMG_EMPTY_BILL from "../../assets/images/empty-bill.png";
 
 type IProps = RouteProps;
 
@@ -95,15 +96,15 @@ const ExpenseDetails: React.FC<IProps> = () => {
                 }
               >
                 <Button onClick={() => goToEdit()} variant="default">
-                  <Icon name="edit" /> Edit Spending
+                  <Icon name="edit" /> Edit
                 </Button>
                 <Button
                   variant="default"
                   onClick={() => deleteExpense()}
-                  loading={_get(state, "expense.details.deleting", false)}
+                  loading={!_get(state, "expense.details.deleting", false)}
                 >
-                  {_get(state, "expense.details.deleting", false) ? (
-                    ""
+                  {!_get(state, "expense.details.deleting", false) ? (
+                    "Deleting"
                   ) : (
                     <>
                       <Icon name="delete_outline" /> Delete
@@ -172,7 +173,12 @@ const ExpenseDetails: React.FC<IProps> = () => {
           <MediaObjectBody>
             <h4>Bill</h4>
             <p>
-              <img src={_get(state, "expense.details.data.attachment", "")} />
+              <img
+                src={
+                  _get(state, "expense.details.data.attachment", "") ||
+                  IMG_EMPTY_BILL
+                }
+              />
             </p>
           </MediaObjectBody>
         </MediaObject>
