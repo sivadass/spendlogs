@@ -51,8 +51,18 @@ export const PageHeader = styled.div`
 `;
 export const FloatingActions = styled.div`
   position: fixed;
-  right: 32px;
-  bottom: 32px;
+  top: 100px;
+  @media (min-width: 1201px) {
+    right: calc(((100% - 1200px) / 2) + 64px);
+  }
+  @media (min-width: 481px) and (max-width: 1200px) {
+    right: 48px;
+  }
+  @media (max-width: 480px) {
+    right: 32px;
+    top: initial;
+    bottom: 32px;
+  }
 `;
 export const PageActions = styled.div`
   ul {

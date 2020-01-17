@@ -101,9 +101,9 @@ const ExpenseDetails: React.FC<IProps> = () => {
                 <Button
                   variant="default"
                   onClick={() => deleteExpense()}
-                  loading={!_get(state, "expense.details.deleting", false)}
+                  loading={_get(state, "expense.details.deleting", false)}
                 >
-                  {!_get(state, "expense.details.deleting", false) ? (
+                  {_get(state, "expense.details.deleting", false) ? (
                     "Deleting"
                   ) : (
                     <>
