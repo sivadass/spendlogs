@@ -77,6 +77,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: inherit;
     display: block;
     width: 100%;
+    background: #fff;
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;

@@ -92,6 +92,9 @@ export const PageActions = styled.div`
           i {
             margin: 12px;
           }
+          @media (max-width: 480px) {
+            margin-right: -16px;
+          }
         }
       }
       .dropdown-contents {

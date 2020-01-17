@@ -13,7 +13,7 @@ export interface CategoryItemData {
   _id: string;
   name: string;
   icon: string;
-  updatedOn: string;
+  updatedAt: string;
 }
 
 export interface CategoryListProps {
@@ -21,7 +21,7 @@ export interface CategoryListProps {
   loading?: boolean;
 }
 
-const ExpenseList: React.FC<CategoryListProps> = ({
+const CategoryList: React.FC<CategoryListProps> = ({
   data,
   loading = false
 }) => {
@@ -46,16 +46,24 @@ const ExpenseList: React.FC<CategoryListProps> = ({
       {data &&
         data.map(category => {
           return (
-            <ExpenseListItem key={category._id}>
+            <CategoryListItem key={category._id}>
               <Link to={`category/${category._id}`}>
                 <CategoryIcon>
                   <Icon name={_get(category, "icon", "")} />
                 </CategoryIcon>
                 <CategoryName>
-                  <p>{category.name}</p>
+                  <p>
+                    {category.name} <br />{" "}
+                    <span>
+                      {moment(category.updatedAt).format("h:mm a, MMM D")}
+                    </span>
+                  </p>
                 </CategoryName>
+                <CategoryDate>
+                  <p>{moment(category.updatedAt).format("h:mm a, MMM D")}</p>
+                </CategoryDate>
               </Link>
-            </ExpenseListItem>
+            </CategoryListItem>
           );
         })}
     </Wrapper>
@@ -79,7 +87,7 @@ const CategoryIcon = styled.div`
   }
 `;
 
-const ExpenseListItem = styled.div`
+const CategoryListItem = styled.div`
   a {
     display: flex;
     justify-content: space-between;
@@ -107,7 +115,32 @@ export const CategoryName = styled.div`
   p {
     line-height: 44px;
     padding-left: 16px;
+    color: #666;
+    @media (min-width: 481px) {
+      span {
+        display: none;
+      }
+    }
+    @media (max-width: 480px) {
+      line-height: 22px;
+      span {
+        font-size: 12px;
+        color: #999;
+      }
+    }
   }
 `;
 
-export default ExpenseList;
+export const CategoryDate = styled.div`
+  margin-left: auto;
+  p {
+    line-height: 44px;
+    padding-left: 16px;
+    font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+
+export default CategoryList;

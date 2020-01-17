@@ -169,7 +169,7 @@ const CategorySelectorContainer = styled.div`
 
 const CategoryField = styled.div`
   border-bottom: 1px solid #ccc;
-  padding: 16px;
+  padding: 8px 16px;
   span {
     display: block;
     width: 48px;
@@ -186,23 +186,30 @@ const CategoryField = styled.div`
 
 const CategoryFilter = styled.div`
   position: relative;
-  margin-bottom: 16px;
+  margin: 12px 0;
+  padding: 0 12px;
   input {
-    border-radius: 6px 6px 0 0;
-    border-width: 0 0 1px 0;
-    border-color: #ccc;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: #eee;
+    height: 40px;
+    &:focus {
+      border-color: #66c2aa;
+      background: transparent;
+    }
   }
   i {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 8px;
+    right: 24px;
     color: #999;
   }
 `;
 
 const CategoryResult = styled.ul`
-  margin: 0 8px 16px 8px;
-  max-height: 240px;
+  margin: 0 8px 8px 8px;
+  max-height: 228px;
+  min-height: 228px;
   overflow-y: auto;
 `;
 const CategoryResultItem = styled.li<{ active: boolean }>`
@@ -228,6 +235,15 @@ const CategoryResultItem = styled.li<{ active: boolean }>`
   p {
     color: #999;
     padding: 0 16px;
+  }
+  @media(max-width: 480px) {
+    width: 20%;
+    span {
+      margin: 4px auto;
+    }
+  }
+  @media(max-width: 400px) {
+    width: 25%;
   }
 `;
 

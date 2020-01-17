@@ -55,11 +55,6 @@ const SidebarMenu = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/expense/add">
-                  <Icon name="add_circle_outline" /> Add Expense
-                </NavLink>
-              </li>
-              <li>
                 <a href="#" onClick={(e: any) => logout(e)}>
                   <Icon name="exit_to_app" /> Logout
                 </a>

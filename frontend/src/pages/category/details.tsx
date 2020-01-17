@@ -2,15 +2,19 @@ import React, { useContext, useEffect } from "react";
 import { Link, useParams, useHistory, RouteProps } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
-import moment from "moment";
 import { Store } from "../../store";
-import { FixedContainer, Wrapper } from "../../styled/common";
+import {
+  FixedContainer,
+  Wrapper,
+  PageHeader,
+  PageActions
+} from "../../styled/common";
 import Icon from "../../components/core/icon";
-import { formatAmount } from "../../utils/common";
 import { categoryActions, actionTypes } from "../../store/actions";
 import Spinner from "../../components/core/form-controls/spinner";
 import { Button } from "../../components/core";
 import BreadCrumbs from "../../components/breadcrumbs";
+import Dropdown from "../../components/dropdown";
 
 type IProps = RouteProps;
 
@@ -70,36 +74,47 @@ const ExpenseDetails: React.FC<IProps> = () => {
   }
   return (
     <FixedContainer>
-      <BreadCrumbs
-        links={[
-          { name: "My Categories", url: "/category" },
-          { name: "Details", url: "" }
-        ]}
-      />
+      <PageHeader>
+        <BreadCrumbs
+          links={[
+            { name: "My Categories", url: "/category" },
+            { name: "Details", url: "" }
+          ]}
+        />
+        <PageActions>
+          <ul>
+            <li>
+              <Dropdown
+                trigger={
+                  <Button onClick={() => {}} variant="default">
+                    <Icon name="more_vert" />
+                  </Button>
+                }
+              >
+                <Button onClick={() => goToEdit()} variant="default">
+                  <Icon name="edit" /> Edit
+                </Button>
+                <Button
+                  variant="default"
+                  onClick={() => deleteExpense()}
+                  loading={_get(state, "expense.details.deleting", false)}
+                >
+                  {_get(state, "expense.details.deleting", false) ? (
+                    "Deleting"
+                  ) : (
+                    <>
+                      <Icon name="delete_outline" /> Delete
+                    </>
+                  )}
+                </Button>
+              </Dropdown>
+            </li>
+          </ul>
+        </PageActions>
+      </PageHeader>
       <Wrapper>
         <h1>Category Details</h1>
-        <Actions>
-          <li>
-            <Button onClick={() => goToEdit()} variant="default">
-              <Icon name="edit" /> Edit
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant="secondary"
-              onClick={() => deleteExpense()}
-              loading={_get(state, "expense.details.deleting", false)}
-            >
-              {_get(state, "expense.details.deleting", false) ? (
-                "Deleting"
-              ) : (
-                <>
-                  <Icon name="delete_outline" /> Delete
-                </>
-              )}
-            </Button>
-          </li>
-        </Actions>
+        <p>Details placeholder</p>
       </Wrapper>
     </FixedContainer>
   );
