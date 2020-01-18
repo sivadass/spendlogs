@@ -15,7 +15,7 @@ const AddExpense = () => {
   const getRecentExpenses = () => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
-      .getExpenses()
+      .getExpenses(5)
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,

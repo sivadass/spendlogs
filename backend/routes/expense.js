@@ -24,7 +24,7 @@ router.post("/", verify, async (req, res) => {
 });
 
 router.get("/", verify, async (req, res) => {
-  const { categoryId } = req.query;
+  const { categoryId, perPage = 0 } = req.query;
   let query = {};
   if (categoryId) {
     query.categoryId = categoryId;
@@ -35,7 +35,7 @@ router.get("/", verify, async (req, res) => {
   try {
     const allExpenses = await Expense.find(query)
       .sort("-paidOn")
-      .limit(5)
+      .limit(Number(perPage))
       .populate("category", "name icon -_id");
     res.send(allExpenses);
   } catch (err) {

@@ -10,8 +10,8 @@ const addExpense = (values: {}) => {
     });
 };
 
-const getExpenses = () => {
-  return getJSON("/expense")
+const getExpenses = (perPage: number = 0) => {
+  return getJSON(`/expense?perPage=${perPage}`)
     .then(d => {
       return d;
     })
