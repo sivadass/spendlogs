@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useParams, useHistory, RouteProps } from "react-router-dom";
+import { useParams, useHistory, RouteProps } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
+import moment from "moment";
 import { Store } from "../../store";
 import {
   FixedContainer,
@@ -113,28 +114,68 @@ const ExpenseDetails: React.FC<IProps> = () => {
         </PageActions>
       </PageHeader>
       <Wrapper>
-        <CategoryName>
-          {_get(state, "category.details.data.name", "")}
-        </CategoryName>
-        <CategoryIcon>
-          <Icon name={_get(state, "category.details.data.icon", "")} />
-        </CategoryIcon>
+        <CategoryInfo>
+          <p>Name</p>
+          <h3>{_get(state, "category.details.data.name", "")}</h3>
+        </CategoryInfo>
+        <CategoryInfo>
+          <p>Date Added On</p>
+          <h3>
+            {moment(_get(state, "category.details.data.createdAt", "")).format(
+              "h:mm a, MMM D"
+            )}
+          </h3>
+        </CategoryInfo>
+        <CategoryInfo>
+          <p>Last Updated On</p>
+          <h3>
+            {moment(_get(state, "category.details.data.updatedAt", "")).format(
+              "h:mm a, MMM D"
+            )}
+          </h3>
+        </CategoryInfo>
+        <CategoryInfo>
+          <p>Icon</p>
+          <h3>
+            <CategoryIcon>
+              <Icon name={_get(state, "category.details.data.icon", "")} />
+            </CategoryIcon>
+          </h3>
+        </CategoryInfo>
       </Wrapper>
     </FixedContainer>
   );
 };
 
-const CategoryName = styled.div`
-  font-size: 42px;
-  line-height: 42px;
-  margin-bottom: 36px;
+const CategoryInfo = styled.div`
+  margin-bottom: 24px;
+  p {
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+  }
+  h3 {
+    font-size: 16px;
+    line-height: 20px;
+    color: #666;
+    font-weight: 400;
+  }
 `;
 
 const CategoryIcon = styled.div`
-  margin-bottom: 36px;
+  flex-shrink: 0;
+  height: 44px;
+  width: 44px;
+  line-height: 44px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #1fc8db;
+  background-image: linear-gradient(141deg, #64c2ac 0%, #a0dd9d 75%);
+  border: 1px solid transparent;
+  transition: all 300ms ease-in;
   i {
-    font-size: 42px;
-    line-height: 42px;
+    line-height: 44px;
   }
 `;
 
