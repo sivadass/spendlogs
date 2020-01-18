@@ -113,17 +113,29 @@ const ExpenseDetails: React.FC<IProps> = () => {
         </PageActions>
       </PageHeader>
       <Wrapper>
-        <h1>Category Details</h1>
-        <p>Details placeholder</p>
+        <CategoryName>
+          {_get(state, "category.details.data.name", "")}
+        </CategoryName>
+        <CategoryIcon>
+          <Icon name={_get(state, "category.details.data.icon", "")} />
+        </CategoryIcon>
       </Wrapper>
     </FixedContainer>
   );
 };
 
-const Amount = styled.div`
+const CategoryName = styled.div`
   font-size: 42px;
   line-height: 42px;
   margin-bottom: 36px;
+`;
+
+const CategoryIcon = styled.div`
+  margin-bottom: 36px;
+  i {
+    font-size: 42px;
+    line-height: 42px;
+  }
 `;
 
 const MediaObject = styled.div`
@@ -165,17 +177,6 @@ const MediaObjectBody = styled.div`
       margin: 8px 0 0 0;
       border-radius: 6px;
       max-width: 600px;
-    }
-  }
-`;
-
-const Actions = styled.ul`
-  li {
-    display: inline-block;
-    button {
-      i {
-        margin-right: 8px;
-      }
     }
   }
 `;
