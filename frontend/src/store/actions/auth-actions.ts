@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import actionTypes from "./action-types";
-import { postJSON } from "../../utils/axios";
+import { postJSON, getJSON } from "../../utils/axios";
 
 const login = (values: {}) =>
   postJSON("/user/login", values)
@@ -49,8 +49,25 @@ const updatePassword = (values: any) => {
     });
 };
 
+const verifyEmail = (token: string) => {
+  return getJSON(`/user/verifyEmail?token=${token}`)
+    .then(d => {
+      return d;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
 const logout = (dispatch: any) => {
   return dispatch({ type: actionTypes.LOGOUT_SUCCESS });
 };
 
-export default { login, register, forgotPassword, updatePassword, logout };
+export default {
+  login,
+  register,
+  forgotPassword,
+  updatePassword,
+  verifyEmail,
+  logout
+};

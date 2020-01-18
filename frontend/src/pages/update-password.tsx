@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
@@ -10,18 +10,16 @@ import {
   FixedContainer,
   PageTitle,
   Wrapper,
-  FixedFormWrapper,
-  AuthNavLinks
+  FixedFormWrapper
 } from "../styled/common";
 
-const LoginSchema = Yup.object().shape({
+const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
-    .required("Required"),
-  password: Yup.string().required("Required")
+    .required("Required")
 });
 
-const Login = () => {
+const ForgotPassword = () => {
   const { state, dispatch } = useContext(Store);
   let history = useHistory();
   let location = useLocation();
@@ -35,11 +33,11 @@ const Login = () => {
   return (
     <FixedContainer>
       <FixedFormWrapper>
-        <PageTitle>Login</PageTitle>
+        <PageTitle>Forgot Password</PageTitle>
         <Wrapper>
           <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={LoginSchema}
+            initialValues={{ email: "" }}
+            validationSchema={ForgotPasswordSchema}
             onSubmit={(values, { setSubmitting }) => {
               setError("");
               return authActions
@@ -66,23 +64,14 @@ const Login = () => {
                   name="email"
                   component={FormControl.Input}
                 />
-                <Field
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  component={FormControl.Input}
-                />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
                   onClick={() => {}}
                   loading={isSubmitting}
                 >
-                  LOGIN
+                  SEND ME PASSWORD RESET INSTRUCTIONS
                 </Button>
-                <AuthNavLinks>
-                  <Link to="forgot-password">Forgot Password?</Link>
-                </AuthNavLinks>
                 {error && <Alert type="error" message={error} />}
               </form>
             )}
@@ -93,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

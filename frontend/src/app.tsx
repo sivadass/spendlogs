@@ -5,6 +5,9 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Verify from "./pages/verify";
+import ForgotPassword from "./pages/forgot-password";
+import UpdatePassword from "./pages/update-password";
 import Dashboard from "./pages/dashboard";
 import ExpenseList from "./pages/expense/index";
 import ExpenseDetails from "./pages/expense/details";
@@ -36,6 +39,15 @@ function App() {
               </Route>
               <Route path="/register">
                 <Register />
+              </Route>
+              <Route path="/verify">
+                <Verify />
+              </Route>
+              <Route path="/forgot-password">
+                <ForgotPassword />
+              </Route>
+              <Route path="/update-password">
+                <UpdatePassword />
               </Route>
               <PrivateRoute path="/" exact>
                 <Dashboard />

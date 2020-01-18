@@ -147,3 +147,15 @@ export const FixedFormWrapper = styled.div`
     padding: 16px;
   }
 `;
+
+export const AuthNavLinks = styled.p`
+  margin-top: 24px;
+  text-align: center;
+  line-height: 24px;
+  a {
+    color: #66c2aa;
+    i {
+      font-size: 20px;
+    }
+  }
+`;

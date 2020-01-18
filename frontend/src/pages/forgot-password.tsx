@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../store";
-import { actionTypes, authActions } from "../store/actions";
-import { Alert, Button, FormControl } from "../components/core";
+import { authActions } from "../store/actions";
+import { Alert, Button, FormControl, Icon } from "../components/core";
 import {
   FixedContainer,
   PageTitle,
@@ -14,18 +14,16 @@ import {
   AuthNavLinks
 } from "../styled/common";
 
-const LoginSchema = Yup.object().shape({
+const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
-    .required("Required"),
-  password: Yup.string().required("Required")
+    .required("Required")
 });
 
-const Login = () => {
-  const { state, dispatch } = useContext(Store);
+const ForgotPassword = () => {
+  const { state } = useContext(Store);
   let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
     if (_get(state, "auth.isAuthenticated")) {
@@ -35,22 +33,20 @@ const Login = () => {
   return (
     <FixedContainer>
       <FixedFormWrapper>
-        <PageTitle>Login</PageTitle>
+        <PageTitle>Forgot Password</PageTitle>
         <Wrapper>
           <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={LoginSchema}
-            onSubmit={(values, { setSubmitting }) => {
+            initialValues={{ email: "" }}
+            validationSchema={ForgotPasswordSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSuccess(false);
               setError("");
               return authActions
-                .login(values)
-                .then(d => {
-                  dispatch({
-                    type: actionTypes.LOGIN_SUCCESS,
-                    payload: d
-                  });
+                .forgotPassword(values)
+                .then(() => {
+                  resetForm({});
+                  setSuccess(true);
                   setSubmitting(false);
-                  history.replace(from);
                 })
                 .catch(err => {
                   setSubmitting(false);
@@ -66,23 +62,26 @@ const Login = () => {
                   name="email"
                   component={FormControl.Input}
                 />
-                <Field
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  component={FormControl.Input}
-                />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
                   onClick={() => {}}
                   loading={isSubmitting}
                 >
-                  LOGIN
+                  RESET PASSWORD
                 </Button>
                 <AuthNavLinks>
-                  <Link to="forgot-password">Forgot Password?</Link>
+                  <Link to="login">
+                    {" "}
+                    <Icon name="arrow_back" /> Back to Login
+                  </Link>
                 </AuthNavLinks>
+                {success && (
+                  <Alert
+                    type="success"
+                    message="Please check your inbox for password reset instructions."
+                  />
+                )}
                 {error && <Alert type="error" message={error} />}
               </form>
             )}
@@ -93,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
