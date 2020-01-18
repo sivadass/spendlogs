@@ -119,6 +119,12 @@ const EditExpense = () => {
                   component={FormControl.TextArea}
                 />
                 <Field
+                  placeholder="Paid On"
+                  type="datetime-local"
+                  name="paidOn"
+                  component={FormControl.DateTimeInput}
+                />
+                <Field
                   placeholder="Bill/Attachment"
                   name="attachment"
                   component={FormControl.FileInput}
