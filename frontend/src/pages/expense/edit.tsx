@@ -15,9 +15,11 @@ import {
   FixedContainer,
   PageTitle,
   Wrapper,
-  FixedFormWrapper
+  PageHeader,
+  PageActions
 } from "../../styled/common";
 import { getCategoryOptions } from "../../utils/common";
+import BreadCrumbs from "../../components/breadcrumbs";
 
 const ExpenseSchema = Yup.object().shape({
   amount: Yup.number()
@@ -65,102 +67,108 @@ const EditExpense = () => {
 
   return (
     <FixedContainer>
-      <FixedFormWrapper>
-        <PageTitle>Edit Expense</PageTitle>
-        <Wrapper>
-          <Formik
-            initialValues={_pick(_get(state, "expense.details.data"), [
-              "amount",
-              "payee",
-              "categoryId",
-              "comment",
-              "attachment",
-              "paidOn"
-            ])}
-            validationSchema={ExpenseSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              setError("");
-              return expenseActions
-                .updateExpense(id, values)
-                .then(d => {
-                  setSubmitting(false);
-                  setSuccess(true);
-                  history.push(`/expense/${id}`);
-                })
-                .catch(err => {
-                  setSubmitting(false);
-                  setError(err);
-                });
-            }}
-          >
-            {({ handleSubmit, isSubmitting, values }) => (
-              <form onSubmit={handleSubmit}>
-                <Field
-                  label="Amount"
-                  placeholder="Amount"
-                  type="number"
-                  name="amount"
-                  component={FormControl.Input}
-                />
-                <Field
-                  label="Payee"
-                  placeholder="Payee"
-                  type="text"
-                  name="payee"
-                  component={FormControl.Input}
-                />
-                <Field
-                  label="Category"
-                  placeholder="Category"
-                  name="categoryId"
-                  component={FormControl.Select}
-                  options={categoryOptions}
-                />
-                <Field
-                  label="Date"
-                  placeholder="Paid On Date"
-                  type="datetime-local"
-                  name="paidOn"
-                  component={FormControl.DateTimeInput}
-                  timeFormat={false}
-                />
-                <Field
-                  label="Time"
-                  placeholder="Paid On Time"
-                  type="datetime-local"
-                  name="paidOn"
-                  component={FormControl.DateTimeInput}
-                  dateFormat={false}
-                />
-                <Field
-                  label="Comments"
-                  placeholder="Comments"
-                  name="comment"
-                  component={FormControl.TextArea}
-                />
-                <Field
-                  label="Attachment"
-                  placeholder="Bill/Attachment"
-                  name="attachment"
-                  component={FormControl.FileInput}
-                />
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  onClick={() => {}}
-                  loading={isSubmitting}
-                >
-                  UPDATE
-                </Button>
-                {success && (
-                  <Alert message="Successfully updated!" type="success" />
-                )}
-                {error && <Alert message={error} type="error" />}
-              </form>
-            )}
-          </Formik>
-        </Wrapper>
-      </FixedFormWrapper>
+      <PageHeader>
+        <BreadCrumbs
+          links={[
+            { name: "Details", url: `/expense/${id}` },
+            { name: "Edit", url: "" }
+          ]}
+        />
+        <PageActions />
+      </PageHeader>
+      <Wrapper>
+        <Formik
+          initialValues={_pick(_get(state, "expense.details.data"), [
+            "amount",
+            "payee",
+            "categoryId",
+            "comment",
+            "attachment",
+            "paidOn"
+          ])}
+          validationSchema={ExpenseSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            setError("");
+            return expenseActions
+              .updateExpense(id, values)
+              .then(d => {
+                setSubmitting(false);
+                setSuccess(true);
+                history.push(`/expense/${id}`);
+              })
+              .catch(err => {
+                setSubmitting(false);
+                setError(err);
+              });
+          }}
+        >
+          {({ handleSubmit, isSubmitting, values }) => (
+            <form onSubmit={handleSubmit}>
+              <Field
+                label="Amount"
+                placeholder="Amount"
+                type="number"
+                name="amount"
+                component={FormControl.Input}
+              />
+              <Field
+                label="Payee"
+                placeholder="Payee"
+                type="text"
+                name="payee"
+                component={FormControl.Input}
+              />
+              <Field
+                label="Category"
+                placeholder="Category"
+                name="categoryId"
+                component={FormControl.Select}
+                options={categoryOptions}
+              />
+              <Field
+                label="Date"
+                placeholder="Paid On Date"
+                type="datetime-local"
+                name="paidOn"
+                component={FormControl.DateTimeInput}
+                timeFormat={false}
+              />
+              <Field
+                label="Time"
+                placeholder="Paid On Time"
+                type="datetime-local"
+                name="paidOn"
+                component={FormControl.DateTimeInput}
+                dateFormat={false}
+              />
+              <Field
+                label="Comments"
+                placeholder="Comments"
+                name="comment"
+                component={FormControl.TextArea}
+              />
+              <Field
+                label="Attachment"
+                placeholder="Bill/Attachment"
+                name="attachment"
+                component={FormControl.FileInput}
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                onClick={() => {}}
+                loading={isSubmitting}
+              >
+                UPDATE
+              </Button>
+              {success && (
+                <Alert message="Successfully updated!" type="success" />
+              )}
+              {error && <Alert message={error} type="error" />}
+            </form>
+          )}
+        </Formik>
+      </Wrapper>
     </FixedContainer>
   );
 };

@@ -21,3 +21,11 @@ export const formatAmount = (price: number) => {
     "₹ " + otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
   return result;
 };
+
+export const transformImageURL = (url: string) => {
+  const extension = url.split(".").pop();
+  if (extension === "pdf") {
+    return url.substr(0, url.lastIndexOf(".")) + ".jpg";
+  }
+  return url;
+};

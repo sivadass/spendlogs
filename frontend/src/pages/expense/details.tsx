@@ -11,7 +11,7 @@ import {
   PageActions
 } from "../../styled/common";
 import Icon from "../../components/core/icon";
-import { formatAmount } from "../../utils/common";
+import { formatAmount, transformImageURL } from "../../utils/common";
 import { expenseActions, actionTypes } from "../../store/actions";
 import Spinner from "../../components/core/form-controls/spinner";
 import { Button } from "../../components/core";
@@ -75,7 +75,6 @@ const ExpenseDetails: React.FC<IProps> = () => {
       </FixedContainer>
     );
   }
-  console.log(_get(state, "expense.details"));
   return (
     <FixedContainer>
       <PageHeader>
@@ -174,10 +173,10 @@ const ExpenseDetails: React.FC<IProps> = () => {
             <h4>Bill</h4>
             <p>
               <img
-                src={
+                src={transformImageURL(
                   _get(state, "expense.details.data.attachment", "") ||
-                  IMG_EMPTY_BILL
-                }
+                    IMG_EMPTY_BILL
+                )}
               />
             </p>
           </MediaObjectBody>

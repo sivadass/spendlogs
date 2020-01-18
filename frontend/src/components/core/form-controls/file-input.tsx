@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Dropzone from "react-dropzone";
 import styled from "styled-components";
 import { uploadInstance } from "../../../utils/axios";
+import { transformImageURL } from "../../../utils/common";
 import Spinner from "./spinner";
 
 const UploadingView = () => {
@@ -23,7 +24,7 @@ const UploadedList: React.FC<UploadedListProps> = ({ file, onRemove }) => {
     <ul className="uploaded-list">
       <li key={file}>
         <div className="image-preview">
-          <img src={file} alt="Preview" />
+          <img src={transformImageURL(file)} alt="Preview" />
         </div>
         <div className="image-meta">
           <a href={file} target="_blank" rel="noopener noreferrer">
@@ -51,6 +52,7 @@ interface FileInputProps {
   label: string;
   placeholder: string;
   className: string;
+  required?: boolean;
   field: any;
   form: any;
 }
@@ -65,6 +67,7 @@ const FileInput: React.FC<FileInputProps> = ({
   type,
   label,
   placeholder,
+  required = false,
   className,
   field,
   form: { touched, errors, setFieldValue },
@@ -109,7 +112,7 @@ const FileInput: React.FC<FileInputProps> = ({
 
   return (
     <StyledDropZone>
-      <Dropzone accept="image/jpeg" onDrop={onDrop}>
+      <Dropzone accept="image/jpg, image/jpeg, application/pdf" onDrop={onDrop}>
         {({ getRootProps, getInputProps, isDragActive }) => {
           return (
             <div
@@ -119,12 +122,16 @@ const FileInput: React.FC<FileInputProps> = ({
                 errors: errors[`${field.name}`] && touched
               })}
             >
-              {label && <label className="field-label">{label}</label>}
+              {label && (
+                <FormLabel htmlFor={field.name}>
+                  {label} {required && <span>*</span>}
+                </FormLabel>
+              )}
               <input {...getInputProps()} />
               {isDragActive ? (
                 <p className="field-control">Drop files here...</p>
               ) : !isLoading ? (
-                <p className="field-control">Select or drop files here</p>
+                <p className="field-control">Select or drop JPG or PDF file</p>
               ) : (
                 <UploadingView />
               )}
@@ -146,6 +153,17 @@ const StyledUploadContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const FormLabel = styled.label`
+  font-size: 13px;
+  line-height: 20px;
+  display: block;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.54);
+  span {
+    color: #ff5722;
+  }
 `;
 
 const StyledDropZone = styled.div`

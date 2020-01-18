@@ -47,7 +47,7 @@ const BreadCrumbsContainer = styled.ul`
     }
     a {
       padding: 8px 0;
-      color: #999;
+      color: #0a6b8a;
       &:hover {
         text-decoration: none;
         color: #0a6b8a;
@@ -57,7 +57,7 @@ const BreadCrumbsContainer = styled.ul`
       color: #ddd;
     }
     span {
-      color: #0a6b8a;
+      color: #999;
     }
   }
 `;
