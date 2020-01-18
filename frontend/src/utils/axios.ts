@@ -1,13 +1,16 @@
 import axios from "axios";
 import _get from "lodash/get";
 
-const getURL = (url: string) => `${process.env.REACT_APP_API_HOST}${url}`;
+export const API = axios.create({
+  baseURL: `${process.env.REACT_APP_API_HOST}`,
+  timeout: 5000
+});
 
 export function setAuthHeader(token: string) {
   if (token) {
-    axios.defaults.headers["auth-token"] = token;
+    API.defaults.headers["auth-token"] = token;
   } else {
-    delete axios.defaults.headers["auth-token"];
+    delete API.defaults.headers["auth-token"];
   }
 }
 
@@ -16,52 +19,49 @@ export const uploadInstance = axios.create({
   headers: {}
 });
 
-export function getJSON(url: string, token?: string) {
-  return axios
-    .get(getURL(url), {
-      headers: {
-        ...(token && { "auth-token": token })
+export const setupAxiosInterceptors = (onUnauthenticated: () => void) => {
+  API.interceptors.response.use(
+    function(response) {
+      // Any status code that lie within the range of 2xx cause this function to trigger
+      // Do something with response data
+      return response;
+    },
+    function(error) {
+      const { status } = error.response;
+      if (status === 403 || status === 401) {
+        onUnauthenticated();
       }
-    })
-    .then(res => res)
-    .catch(err => {
-      throw err;
-    });
-}
+      return Promise.reject(error);
+    }
+  );
+};
 
-export function postJSON(url: string, values: {}, token?: string) {
-  return axios
-    .post(getURL(url), values, {
-      headers: {
-        ...(token && { "auth-token": token })
-      }
-    })
-    .then(res => res)
-    .catch(error => {
-      throw _get(error, "response.data");
-    });
-}
-
-export function putJSON(url: string, values: {}, token?: string) {
-  return axios
-    .put(getURL(url), values, {
-      headers: {
-        ...(token && { "auth-token": token })
-      }
-    })
+export function getJSON(url: string) {
+  return API.get(url)
     .then(res => res)
     .catch(error => {
       throw _get(error, "response.data");
     });
 }
 
-export function deleteJSON(url: string, token?: string) {
-  return axios
-    .delete(getURL(url), {
-      headers: {
-        ...(token && { "auth-token": token })
-      }
-    })
+export function postJSON(url: string, values: {}) {
+  return API.post(url, values)
+    .then(res => res)
+    .catch(error => {
+      throw _get(error, "response.data");
+    });
+}
+
+export function putJSON(url: string, values: {}) {
+  return API.put(url, values)
+    .then(res => res)
+    .catch(error => {
+      throw _get(error, "response.data");
+    });
+}
+
+export function deleteJSON(url: string) {
+  return API.delete(url)
     .then(res => res)
     .catch(error => {
       throw _get(error, "response.data");

@@ -3,7 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 import _get from "lodash/get";
 import { Store } from "./store";
 import PrivateLayout from "./private-layout";
-import { setAuthHeader } from "./utils/axios";
+import { authActions } from "./store/actions";
+import { setAuthHeader, setupAxiosInterceptors } from "./utils/axios";
 
 interface PrivateRouteProps {
   children: any;
@@ -17,10 +18,14 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   exact = false
 }) => {
   const {
-    state: { auth }
+    state: { auth },
+    dispatch
   } = useContext(Store);
   const { isAuthenticated, user, token } = auth;
   setAuthHeader(token);
+  setupAxiosInterceptors(() => {
+    authActions.logout(dispatch);
+  });
   return (
     <Route
       path={path}

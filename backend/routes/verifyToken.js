@@ -8,6 +8,9 @@ module.exports = function auth(req, res, next) {
     req.user = verified;
     next();
   } catch (err) {
-    res.status(400).send(err);
+    if (err.name === "TokenExpiredError") {
+      res.status(401).send("Unauthorized");
+    }
+    res.status(401).send(err);
   }
 };
