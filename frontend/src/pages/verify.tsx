@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Formik, Field } from "formik";
-import * as Yup from "yup";
 import _get from "lodash/get";
-import { Store } from "../store";
-import { actionTypes, authActions } from "../store/actions";
-import { Alert, Button, FormControl } from "../components/core";
+import styled from "styled-components";
+import { authActions } from "../store/actions";
+import { Alert } from "../components/core";
+import Spinner from "../components/core/form-controls/spinner";
 import {
   FixedContainer,
   PageTitle,
@@ -13,35 +12,56 @@ import {
   FixedFormWrapper
 } from "../styled/common";
 
-const ForgotPasswordSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required")
-});
-
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 const Verify = () => {
-  const { state, dispatch } = useContext(Store);
   let query = useQuery();
-  const token = query.get("token");
-  console.log("token", token);
+  const token = query.get("token") || "";
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const verifyToken = () => {
+    setLoading(true);
+    return authActions
+      .verifyEmail(token)
+      .then((d: any) => {
+        setLoading(false);
+        setSuccess(_get(d, "data", ""));
+      })
+      .catch((err: any) => {
+        setLoading(false);
+        if (_get(err, "name") === "JsonWebTokenError") {
+          setError("Sorry, invalid token!");
+        } else {
+          setError("Oops, an unknown error occurred!");
+        }
+      });
+  };
   useEffect(() => {
-    if (token) authActions.verifyEmail(token);
+    verifyToken();
   }, [token]);
   return (
     <FixedContainer>
       <FixedFormWrapper>
-        <PageTitle>Verify</PageTitle>
+        <PageTitle>Email Verification</PageTitle>
         <Wrapper>
-          <p>Please wait...</p>
+          {loading && <Spinner block />}
+          <Message>
+            {success && <Alert type="success" message={success} />}
+            {error && <Alert type="error" message={error} />}
+          </Message>
         </Wrapper>
       </FixedFormWrapper>
     </FixedContainer>
   );
 };
+
+const Message = styled.div`
+  & > div {
+    padding: 16px;
+  }
+`;
 
 export default Verify;
