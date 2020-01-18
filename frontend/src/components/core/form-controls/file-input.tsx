@@ -23,12 +23,13 @@ const UploadedList: React.FC<UploadedListProps> = ({ file, onRemove }) => {
   return (
     <ul className="uploaded-list">
       <li key={file}>
-        <div className="image-preview">
-          <img src={transformImageURL(file)} alt="Preview" />
-        </div>
         <div className="image-meta">
-          <a href={file} target="_blank" rel="noopener noreferrer">
-            {file}
+          <a
+            href={transformImageURL(file)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={transformImageURL(file)} alt="Preview" />
           </a>
         </div>
         <div className="image-actions">
@@ -187,26 +188,23 @@ const StyledDropZone = styled.div`
 
   .uploaded-list {
     li {
-      background: #f5f5f5;
       border-radius: 4px;
       margin-bottom: 8px;
       display: flex;
-
-      .image-preview {
-        img {
-          width: 64px;
-          height: 64px;
-          object-fit: cover;
-          margin-right: 16px;
-          border-radius: 5px;
-        }
-      }
       .image-meta {
-        word-break: break-all;
-        padding: 8px 0;
         a {
-          color: #666;
-          font-size: 14px;
+          display: block;
+          overflow: hidden;
+          border: 1px solid #66c2aa;
+          border-radius: 4px;
+          position: relative;
+          img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            display: block;
+          }
         }
       }
       .image-actions {
