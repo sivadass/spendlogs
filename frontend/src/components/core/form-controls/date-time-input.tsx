@@ -28,12 +28,13 @@ const DateTimeInput: React.FC<InputProps> = ({
       </FormLabel>
     )}
     <Datetime
-      defaultValue={moment(field.value)}
+      value={moment(field.value)}
       dateFormat
       timeFormat
       onChange={(time: any) => {
         setFieldValue(field.name, time);
       }}
+      {...props}
     />
     {touched[field.name] && errors[field.name] && (
       <FormHelperText>{errors[field.name]}</FormHelperText>

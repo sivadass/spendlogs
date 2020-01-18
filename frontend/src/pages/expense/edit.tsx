@@ -95,6 +95,7 @@ const EditExpense = () => {
           >
             {({ handleSubmit, isSubmitting, values }) => (
               <form onSubmit={handleSubmit}>
+                <pre>{JSON.stringify(values, null, 2)}</pre>
                 <Field
                   placeholder="Payee"
                   type="text"
@@ -123,6 +124,14 @@ const EditExpense = () => {
                   type="datetime-local"
                   name="paidOn"
                   component={FormControl.DateTimeInput}
+                  timeFormat={false}
+                />
+                <Field
+                  placeholder="Paid On"
+                  type="datetime-local"
+                  name="paidOn"
+                  component={FormControl.DateTimeInput}
+                  dateFormat={false}
                 />
                 <Field
                   placeholder="Bill/Attachment"
