@@ -95,45 +95,51 @@ const EditExpense = () => {
           >
             {({ handleSubmit, isSubmitting, values }) => (
               <form onSubmit={handleSubmit}>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
                 <Field
-                  placeholder="Payee"
-                  type="text"
-                  name="payee"
-                  component={FormControl.Input}
-                />
-                <Field
+                  label="Amount"
                   placeholder="Amount"
                   type="number"
                   name="amount"
                   component={FormControl.Input}
                 />
                 <Field
+                  label="Payee"
+                  placeholder="Payee"
+                  type="text"
+                  name="payee"
+                  component={FormControl.Input}
+                />
+                <Field
+                  label="Category"
                   placeholder="Category"
                   name="categoryId"
                   component={FormControl.Select}
                   options={categoryOptions}
                 />
                 <Field
-                  placeholder="Comment"
-                  name="comment"
-                  component={FormControl.TextArea}
-                />
-                <Field
-                  placeholder="Paid On"
+                  label="Date"
+                  placeholder="Paid On Date"
                   type="datetime-local"
                   name="paidOn"
                   component={FormControl.DateTimeInput}
                   timeFormat={false}
                 />
                 <Field
-                  placeholder="Paid On"
+                  label="Time"
+                  placeholder="Paid On Time"
                   type="datetime-local"
                   name="paidOn"
                   component={FormControl.DateTimeInput}
                   dateFormat={false}
                 />
                 <Field
+                  label="Comments"
+                  placeholder="Comments"
+                  name="comment"
+                  component={FormControl.TextArea}
+                />
+                <Field
+                  label="Attachment"
                   placeholder="Bill/Attachment"
                   name="attachment"
                   component={FormControl.FileInput}
