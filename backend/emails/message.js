@@ -118,7 +118,7 @@ module.exports = (title, message) => `
                       <a href="https://spendlogs.ml" target="_blank"><img
                             src="https://res.cloudinary.com/spendlogs/image/upload/v1578090007/branding/spendlogs-logo-green_ynjqex.png"
                             alt="Spendlogs"
-                            style="display: block; margin-top: 24px; margin-bottom: 24px; margin-left: auto; margin-right: auto; max-width: 90px; "
+                            style="display: block; margin-top: 24px; margin-bottom: 24px; margin-left: auto; margin-right: auto; max-width: 180px; "
                         /></a>
                     </td>
                   </tr>
