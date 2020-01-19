@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
     const token = jwt.sign(info, process.env.TOKEN_SECRET);
     const msg = {
       to: `${user.name} <${user.email}>`,
-      from: `Spendlogs <no-reply@spendlogs.app>`,
+      from: `Spendlogs <no-reply@spendlogs.ml>`,
       subject: "Email Verification",
       html: messageWithActionTemplate(
         `Hi ${user.name},`,
@@ -87,7 +87,7 @@ router.get("/verifyEmail", async (req, res) => {
           user.save();
           const msg = {
             to: `${user.name} <${user.email}>`,
-            from: `Spendlogs <no-reply@spendlogs.app>`,
+            from: `Spendlogs <no-reply@spendlogs.ml>`,
             subject: "Registration Successful 👍",
             html: messageWithActionTemplate(
               `Hi ${user.name},`,
@@ -128,7 +128,7 @@ router.post("/resetPassword", async (req, res) => {
     const token = jwt.sign(info, process.env.TOKEN_SECRET);
     const msg = {
       to: `${user.name} <${user.email}>`,
-      from: `Spendlogs <no-reply@spendlogs.app>`,
+      from: `Spendlogs <no-reply@spendlogs.ml>`,
       subject: "Reset Your Password",
       html: messageWithActionTemplate(
         `Hi ${user.name},`,
@@ -161,7 +161,7 @@ router.post("/updatePassword", async (req, res) => {
         user.save();
         const msg = {
           to: `${user.name} <${user.email}>`,
-          from: `Spendlogs <no-reply@spendlogs.app>`,
+          from: `Spendlogs <no-reply@spendlogs.ml>`,
           subject: "Password Reset Successful 👍",
           text: "Your password has been successfully reset.",
           html: messageWithActionTemplate(
