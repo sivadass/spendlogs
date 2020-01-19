@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import _get from "lodash/get";
 import styled from "styled-components";
 import { authActions } from "../store/actions";
 import { Alert } from "../components/core";
 import Spinner from "../components/core/form-controls/spinner";
+import useQuery from "../hooks/useQuery";
 import {
   FixedContainer,
   PageTitle,
   Wrapper,
   FixedFormWrapper
 } from "../styled/common";
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 const Verify = () => {
   let query = useQuery();

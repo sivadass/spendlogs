@@ -1,54 +1,103 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Formik, Field } from "formik";
+import styled from "styled-components";
+import jwtDecode from "jwt-decode";
 import * as Yup from "yup";
 import _get from "lodash/get";
 import { Store } from "../store";
-import { actionTypes, authActions } from "../store/actions";
-import { Alert, Button, FormControl } from "../components/core";
+import useQuery from "../hooks/useQuery";
+import { authActions } from "../store/actions";
+import { Alert, Button, FormControl, Icon } from "../components/core";
 import {
   FixedContainer,
   PageTitle,
   Wrapper,
-  FixedFormWrapper
+  FixedFormWrapper,
+  AuthNavLinks
 } from "../styled/common";
 
-const ForgotPasswordSchema = Yup.object().shape({
+const UpdatePasswordSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
+    .required("Required"),
+  password: Yup.string().required("Required"),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Required")
 });
 
+const useDecode = (token: string) => {
+  try {
+    const decode = jwtDecode(token);
+    return decode;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const ForgotPassword = () => {
   const { state, dispatch } = useContext(Store);
-  let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  let query = useQuery();
+  const token = query.get("token") || "";
+  const decoded = useDecode(token);
+  const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  useEffect(() => {
-    if (_get(state, "auth.isAuthenticated")) {
-      history.replace("/");
-    }
-  }, []);
+  if (!token || !decoded) {
+    return (
+      <FixedContainer>
+        <FixedFormWrapper>
+          <PageTitle>Update Password</PageTitle>
+          <Wrapper>
+            <Message>
+              <Alert
+                type="error"
+                message="Sorry! Invalid or no token provided!"
+              />
+            </Message>
+          </Wrapper>
+        </FixedFormWrapper>
+      </FixedContainer>
+    );
+  }
+  if (token && new Date(_get(decoded, "expiry")) < new Date()) {
+    return (
+      <FixedContainer>
+        <FixedFormWrapper>
+          <PageTitle>Update Password</PageTitle>
+          <Wrapper>
+            <Message>
+              <Alert type="error" message="Sorry! Link expired!" />
+            </Message>
+          </Wrapper>
+        </FixedFormWrapper>
+      </FixedContainer>
+    );
+  }
   return (
     <FixedContainer>
       <FixedFormWrapper>
-        <PageTitle>Forgot Password</PageTitle>
+        <PageTitle>Update Password</PageTitle>
         <Wrapper>
           <Formik
-            initialValues={{ email: "" }}
-            validationSchema={ForgotPasswordSchema}
-            onSubmit={(values, { setSubmitting }) => {
+            initialValues={{
+              email: _get(decoded, "email", ""),
+              password: "",
+              passwordConfirm: "",
+              token
+            }}
+            validationSchema={UpdatePasswordSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               setError("");
+              setSuccess("");
               return authActions
-                .login(values)
-                .then(d => {
-                  dispatch({
-                    type: actionTypes.LOGIN_SUCCESS,
-                    payload: d
-                  });
+                .updatePassword(values)
+                .then(() => {
                   setSubmitting(false);
-                  history.replace(from);
+                  resetForm({});
+                  setSuccess(
+                    "Your password has been successfully changed, thank you!"
+                  );
                 })
                 .catch(err => {
                   setSubmitting(false);
@@ -63,6 +112,19 @@ const ForgotPassword = () => {
                   type="email"
                   name="email"
                   component={FormControl.Input}
+                  disabled
+                />
+                <Field
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  component={FormControl.Input}
+                />
+                <Field
+                  placeholder="Confirm Password"
+                  type="password"
+                  name="passwordConfirm"
+                  component={FormControl.Input}
                 />
                 <Button
                   type="submit"
@@ -70,8 +132,15 @@ const ForgotPassword = () => {
                   onClick={() => {}}
                   loading={isSubmitting}
                 >
-                  SEND ME PASSWORD RESET INSTRUCTIONS
+                  UPDATE PASSWORD
                 </Button>
+                <AuthNavLinks>
+                  <Link to="login">
+                    {" "}
+                    <Icon name="arrow_back" /> Back to Login
+                  </Link>
+                </AuthNavLinks>
+                {success && <Alert type="success" message={success} />}
                 {error && <Alert type="error" message={error} />}
               </form>
             )}
@@ -81,5 +150,11 @@ const ForgotPassword = () => {
     </FixedContainer>
   );
 };
+
+const Message = styled.div`
+  & > div {
+    padding: 16px;
+  }
+`;
 
 export default ForgotPassword;
