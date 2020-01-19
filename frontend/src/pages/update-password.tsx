@@ -90,6 +90,8 @@ const ForgotPassword = () => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setError("");
               setSuccess("");
+              delete values.email;
+              delete values.passwordConfirm;
               return authActions
                 .updatePassword(values)
                 .then(() => {

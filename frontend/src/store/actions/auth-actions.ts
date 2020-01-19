@@ -39,8 +39,7 @@ const forgotPassword = (values: any) => {
 };
 
 const updatePassword = (values: any) => {
-  const data = { ...values, role: "client" };
-  return postJSON("/user/updatePassword", data)
+  return postJSON("/user/updatePassword", values)
     .then(d => {
       return d;
     })
