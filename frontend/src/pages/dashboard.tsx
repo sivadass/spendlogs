@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import _get from "lodash/get";
 import { Store } from "../store";
 import { actionTypes, expenseActions } from "../store/actions";
-import { FixedContainer, PageTitle, Wrapper, Main } from "../styled/common";
+import { FixedContainer, Wrapper } from "../styled/common";
 import ExpenseList from "../components/expense-list";
 import { Icon } from "../components/core";
 import Spinner from "../components/core/form-controls/spinner";
@@ -67,13 +67,16 @@ const AddExpense = () => {
             </Link>
           </KPIItem>
         </KPIContainer>
-        <ExpenseListContainer>
-          <h2>Recent 5 Transactions</h2>
+        <Wrapper>
+          <ExpenseListHeader>
+            <h2>Recent 5 Transactions</h2>
+            <Link to="/expense">View All</Link>
+          </ExpenseListHeader>
           <ExpenseList
             data={_get(state, "expense.list.data")}
             loading={_get(state, "expense.list.loading")}
           />
-        </ExpenseListContainer>
+        </Wrapper>
       </DashboardContainer>
     </FixedContainer>
   );
@@ -165,10 +168,20 @@ const KPIContainer = styled.div`
   }
 `;
 
-const ExpenseListContainer = styled.div`
+const ExpenseListHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
   h2 {
     font-size: 16px;
-    margin-bottom: 16px;
+    font-weight: normal;
+    color: #666;
+  }
+  a {
+    margin-left: auto;
+    font-size: 14px;
+    color: #66c2aa;
   }
 `;
 
