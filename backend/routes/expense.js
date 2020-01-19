@@ -24,10 +24,10 @@ router.post("/", verify, async (req, res) => {
 });
 
 router.get("/", verify, async (req, res) => {
-  const { categoryId, perPage = 0 } = req.query;
+  const { from, to, perPage = 0 } = req.query;
   let query = {};
-  if (categoryId) {
-    query.categoryId = categoryId;
+  if (from && to) {
+    query.paidOn = { $gte: from, $lte: to };
   }
   if (req.user.role !== "admin") {
     query.owner = req.user._id;

@@ -132,6 +132,14 @@ function reducer(state: any, action: any) {
           error: action.payload
         }
       };
+    case actionTypes.EXPENSE_FILTER_CHANGE:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          filters: action.payload
+        }
+      };
     default:
       return state;
   }

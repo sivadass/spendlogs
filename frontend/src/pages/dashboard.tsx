@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import _get from "lodash/get";
+import moment from "moment";
 import { Store } from "../store";
 import { actionTypes, expenseActions } from "../store/actions";
 import { FixedContainer, Wrapper } from "../styled/common";
@@ -14,8 +15,15 @@ const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
   const getRecentExpenses = () => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
+    const to = moment()
+      .endOf("month")
+      .toISOString();
+    const from = moment()
+      .subtract(1, "months")
+      .endOf("day")
+      .toISOString();
     return expenseActions
-      .getExpenses(5)
+      .getExpenses(from, to, 5)
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,

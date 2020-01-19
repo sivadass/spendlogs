@@ -1,9 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import _get from "lodash/get";
+import styled from "styled-components";
+import moment from "moment";
 import { Store } from "../../store";
 import { expenseActions, actionTypes } from "../../store/actions";
 import ExpenseList from "../../components/expense-list";
+import ExpenseFilterForm from "../../components/form/expense-filter";
 import BreadCrumbs from "../../components/breadcrumbs";
 import { Button, Icon } from "../../components/core";
 import {
@@ -15,11 +18,26 @@ import {
 
 const AllExpenseList = () => {
   const { state, dispatch } = useContext(Store);
+  const toDate = _get(
+    state,
+    "expense.list.filters.from",
+    moment()
+      .endOf("day")
+      .format()
+  );
+  const fromDate = _get(
+    state,
+    "expense.list.filters.to",
+    moment()
+      .subtract(1, "months")
+      .endOf("month")
+      .format()
+  );
   let history = useHistory();
-  const getExpenses = () => {
+  const getExpenses = (from: string, to: string) => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
-      .getExpenses()
+      .getExpenses(from, to)
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,
@@ -34,8 +52,8 @@ const AllExpenseList = () => {
       });
   };
   useEffect(() => {
-    getExpenses();
-  }, []);
+    getExpenses(fromDate, toDate);
+  }, [fromDate, toDate]);
   const goToAddNew = () => {
     history.push(`/expense/add`);
   };
@@ -51,6 +69,19 @@ const AllExpenseList = () => {
         <div />
       </PageHeader>
       <Wrapper>
+        <ExpenseFilter>
+          <ExpenseFilterForm
+            initialValues={{
+              from: "",
+              to: ""
+            }}
+            handleFormSubmit={() => {}}
+          />
+        </ExpenseFilter>
+        <div>
+          from: {moment(fromDate).format("DD-MM-YYYY")} to:{" "}
+          {moment(toDate).format("DD-MM-YYYY")}
+        </div>
         <ExpenseList
           data={_get(state, "expense.list.data")}
           loading={_get(state, "expense.list.loading")}
@@ -68,5 +99,19 @@ const AllExpenseList = () => {
     </FixedContainer>
   );
 };
+
+const ExpenseFilter = styled.div`
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+  select {
+    max-width: 160px;
+    margin-left: 16px;
+    height: 36px;
+  }
+`;
 
 export default AllExpenseList;

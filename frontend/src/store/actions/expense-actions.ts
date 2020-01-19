@@ -1,3 +1,4 @@
+import moment from "moment";
 import { postJSON, getJSON, putJSON, deleteJSON } from "../../utils/axios";
 
 const addExpense = (values: {}) => {
@@ -10,8 +11,18 @@ const addExpense = (values: {}) => {
     });
 };
 
-const getExpenses = (perPage: number = 0) => {
-  return getJSON(`/expense?perPage=${perPage}`)
+const getExpenses = (
+  from: string = "",
+  to: string = "",
+  perPage: number = 0
+) => {
+  console.log(
+    "from :",
+    moment(from).format("DD-MMM-YYYY"),
+    "to :",
+    moment(to).format("DD-MMM-YYYY")
+  );
+  return getJSON(`/expense?from=${from}&to=${to}&perPage=${perPage}`)
     .then(d => {
       return d;
     })

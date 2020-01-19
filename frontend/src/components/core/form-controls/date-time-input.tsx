@@ -32,7 +32,8 @@ const DateTimeInput: React.FC<InputProps> = ({
       dateFormat
       timeFormat
       onChange={(time: any) => {
-        setFieldValue(field.name, time);
+        console.log(time);
+        setFieldValue(field.name, time.toISOString());
       }}
       {...props}
     />
