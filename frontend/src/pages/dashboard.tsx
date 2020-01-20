@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import _get from "lodash/get";
@@ -13,6 +13,19 @@ import { formatAmount } from "../utils/common";
 
 const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalTransactions, setTotalTransactions] = useState(0);
+  const getDashboardData = () => {
+    return expenseActions
+      .getDashboardDetails()
+      .then((d: any) => {
+        setTotalAmount(_get(d, "data[0].totalAmount", 0));
+        setTotalTransactions(_get(d, "data[0].totalTransactions", 0));
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
   const getRecentExpenses = () => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
@@ -31,6 +44,7 @@ const AddExpense = () => {
       });
   };
   useEffect(() => {
+    getDashboardData();
     getRecentExpenses();
   }, []);
   return (
@@ -40,23 +54,25 @@ const AddExpense = () => {
           <KPIItem>
             <Wrapper>
               <Icon name="account_balance_wallet" />
-              <h2>{formatAmount(34567)}</h2>
-              <p>This Month</p>
+              <h2>{formatAmount(totalAmount)}</h2>
+              <p>Spent This Month</p>
             </Wrapper>
           </KPIItem>
           <KPIItem>
             <Wrapper>
               <Icon name="date_range" />
-              <h2>{formatAmount(7834567)}</h2>
-              <p>Last 6 Months</p>
+              <h2>{totalTransactions}</h2>
+              <p>Transactions This Month</p>
             </Wrapper>
           </KPIItem>
           <KPIItem>
-            <Wrapper>
-              <Icon name="motorcycle" />
-              <h2>Travel</h2>
-              <p>Most spent</p>
-            </Wrapper>
+            <Link to="/category/add">
+              <Wrapper>
+                <Icon name="post_add" />
+                <h2>Create</h2>
+                <p>New Category</p>
+              </Wrapper>
+            </Link>
           </KPIItem>
           <KPIItem>
             <Link to="/expense/add">

@@ -56,10 +56,10 @@ router.get("/dashboard", verify, async (req, res) => {
       {
         $group: {
           _id: null,
-          myCount: {
+          totalTransactions: {
             $sum: 1
           },
-          total: {
+          totalAmount: {
             $sum: "$amount"
           }
         }

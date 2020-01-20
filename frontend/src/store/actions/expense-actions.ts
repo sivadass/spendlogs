@@ -28,6 +28,16 @@ const getExpenses = (
     });
 };
 
+const getDashboardDetails = () => {
+  return getJSON(`/expense/dashboard`)
+    .then(d => {
+      return d;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
 const getExpenseDetails = (id: string) => {
   return getJSON(`/expense/${id}`)
     .then(d => {
@@ -61,6 +71,7 @@ const deleteExpense = (id: string) => {
 export default {
   addExpense,
   getExpenses,
+  getDashboardDetails,
   getExpenseDetails,
   updateExpense,
   deleteExpense
