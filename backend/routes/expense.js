@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { ObjectId } = require("mongodb");
 const Expense = require("../model/Expense");
 const { expenseValidation } = require("../validation");
 const verify = require("./verifyToken");
@@ -41,6 +42,37 @@ router.get("/", verify, async (req, res) => {
   } catch (err) {
     res.status(400).send(err);
   }
+});
+
+router.get("/dashboard", verify, async (req, res) => {
+  const owner = req.user._id;
+  return Expense.aggregate(
+    [
+      {
+        $match: {
+          owner: new ObjectId(owner)
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          myCount: {
+            $sum: 1
+          },
+          total: {
+            $sum: "$amount"
+          }
+        }
+      }
+    ],
+    function(err, result) {
+      if (err) {
+        res.status(400).send(err);
+        return;
+      }
+      return res.send(result);
+    }
+  );
 });
 
 router.get("/:id", verify, async (req, res) => {
@@ -91,29 +123,6 @@ router.delete("/:id", async (req, res) => {
     if (data.ok === 1) {
       return res.send("Successfully deleted!");
     }
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-var getTotal = function(ownerId) {
-  Expense.aggregate(
-    [{ $group: { total: { $sum: "$amount" } } }, { $sort: { total: -1 } }],
-    function(err, result) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(result);
-      return result;
-    }
-  );
-};
-
-router.get("/stats", verify, async (req, res) => {
-  try {
-    const data = await getTotal(req.user._id);
-    res.send(data);
   } catch (err) {
     res.status(400).send(err);
   }
