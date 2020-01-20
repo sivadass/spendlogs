@@ -34,6 +34,7 @@ const DateTimeInput: React.FC<InputProps> = ({
       onChange={(time: any) => {
         setFieldValue(field.name, time.toISOString());
       }}
+      className="form-control"
       {...props}
     />
     {touched[field.name] && errors[field.name] && (
@@ -84,7 +85,7 @@ const FormGroup = styled.div<{ isError: boolean }>`
   ${props =>
     props.isError &&
     `
-    ${FormControl} {
+    input.form-control {
       border-color: #f44336;
     }
   `}

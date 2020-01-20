@@ -106,6 +106,9 @@ export const FormWrapper = styled.form`
     }
     & > div {
       margin-bottom: 0;
+      .rdt + p {
+        display: none;
+      }
     }
   }
   button {
