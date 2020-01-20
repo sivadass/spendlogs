@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "name": "spendlogs"
+  "name": "spendlogs",
+  "build": {
+    "env": {
+      "REACT_APP_API_HOST": "@react-app-api-host",
+      "REACT_APP_CLOUDINARY_URL": "@react-app-cloudinary-url",
+      "REACT_APP_CLOUDINARY_UPLOAD_PRESET": "@react-app-cloudinary-preset"
+    }
+  }
 }
