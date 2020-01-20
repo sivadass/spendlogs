@@ -11,17 +11,14 @@ const addExpense = (values: {}) => {
     });
 };
 
+// from - start from past any date
+// to - end after start date
+
 const getExpenses = (
   from: string = "",
   to: string = "",
   perPage: number = 0
 ) => {
-  console.log(
-    "from :",
-    moment(from).format("DD-MMM-YYYY"),
-    "to :",
-    moment(to).format("DD-MMM-YYYY")
-  );
   return getJSON(`/expense?from=${from}&to=${to}&perPage=${perPage}`)
     .then(d => {
       return d;

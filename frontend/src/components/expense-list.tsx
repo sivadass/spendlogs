@@ -125,7 +125,7 @@ const ExpenseListItem = styled.div`
 const ExpenseDetails = styled.div`
   flex-grow: 1;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 300px;
   ${Wrapper} {
     margin-left: 16px;
     width: 100%;

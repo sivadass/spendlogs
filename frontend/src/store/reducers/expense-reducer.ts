@@ -1,4 +1,13 @@
+import moment from "moment";
 import { actionTypes } from "../actions";
+
+const to = moment()
+  .endOf("month")
+  .toISOString();
+const from = moment()
+  .subtract(1, "months")
+  .endOf("day")
+  .toISOString();
 
 export const expenseInitialState = {
   list: {
@@ -7,7 +16,10 @@ export const expenseInitialState = {
     data: [],
     pageNumber: 1,
     totalPages: 1,
-    filters: null
+    filters: {
+      from,
+      to
+    }
   },
   details: {
     loading: false,
@@ -138,6 +150,17 @@ function reducer(state: any, action: any) {
         list: {
           ...state.list,
           filters: action.payload
+        }
+      };
+    case actionTypes.EXPENSE_FILTER_CLEAR:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          filters: {
+            from: "",
+            to: ""
+          }
         }
       };
     default:

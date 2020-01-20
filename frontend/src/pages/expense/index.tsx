@@ -18,19 +18,19 @@ import {
 
 const AllExpenseList = () => {
   const { state, dispatch } = useContext(Store);
-  const toDate = _get(
-    state,
-    "expense.list.filters.from",
-    moment()
-      .endOf("day")
-      .format()
-  );
   const fromDate = _get(
     state,
     "expense.list.filters.to",
     moment()
       .subtract(1, "months")
       .endOf("month")
+      .format()
+  );
+  const toDate = _get(
+    state,
+    "expense.list.filters.from",
+    moment()
+      .endOf("day")
       .format()
   );
   let history = useHistory();
@@ -72,16 +72,11 @@ const AllExpenseList = () => {
         <ExpenseFilter>
           <ExpenseFilterForm
             initialValues={{
-              from: "",
-              to: ""
+              from: fromDate,
+              to: toDate
             }}
-            handleFormSubmit={() => {}}
           />
         </ExpenseFilter>
-        <div>
-          from: {moment(fromDate).format("DD-MM-YYYY")} to:{" "}
-          {moment(toDate).format("DD-MM-YYYY")}
-        </div>
         <ExpenseList
           data={_get(state, "expense.list.data")}
           loading={_get(state, "expense.list.loading")}

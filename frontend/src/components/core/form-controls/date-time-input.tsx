@@ -29,10 +29,9 @@ const DateTimeInput: React.FC<InputProps> = ({
     )}
     <Datetime
       value={moment(field.value)}
-      dateFormat
+      dateFormat="DD-MMM-YYYY"
       timeFormat
       onChange={(time: any) => {
-        console.log(time);
         setFieldValue(field.name, time.toISOString());
       }}
       {...props}

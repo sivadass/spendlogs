@@ -27,7 +27,7 @@ router.get("/", verify, async (req, res) => {
   const { from, to, perPage = 0 } = req.query;
   let query = {};
   if (from && to) {
-    query.paidOn = { $gte: from, $lte: to };
+    query.paidOn = { $gte: to, $lte: from };
   }
   if (req.user.role !== "admin") {
     query.owner = req.user._id;

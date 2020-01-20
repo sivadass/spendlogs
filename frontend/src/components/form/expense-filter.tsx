@@ -20,7 +20,6 @@ interface ExpenseFilterProps {
     from: string;
     to: string;
   };
-  handleFormSubmit: any;
 }
 
 var valid = function(current: any) {
@@ -28,10 +27,7 @@ var valid = function(current: any) {
   return current.isBefore(today);
 };
 
-const ExpenseFilter: React.FC<ExpenseFilterProps> = ({
-  initialValues,
-  handleFormSubmit
-}) => {
+const ExpenseFilter: React.FC<ExpenseFilterProps> = ({ initialValues }) => {
   const { state, dispatch } = useContext(Store);
   const isLoading = _get(state, "expense.list.loading", false);
   return (
@@ -45,7 +41,7 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({
         });
       }}
     >
-      {({ handleSubmit, isSubmitting }) => (
+      {({ handleSubmit, isSubmitting, resetForm }) => (
         <FormWrapper onSubmit={handleSubmit}>
           <Wrapper>
             <p>From: </p>
@@ -75,6 +71,19 @@ const ExpenseFilter: React.FC<ExpenseFilterProps> = ({
           >
             Filter
           </Button>
+          <Button
+            type="button"
+            variant="default"
+            onClick={() => {
+              dispatch({
+                type: actionTypes.EXPENSE_FILTER_CLEAR,
+                payload: null
+              });
+              resetForm({});
+            }}
+          >
+            Reset
+          </Button>
         </FormWrapper>
       )}
     </Formik>
@@ -86,7 +95,7 @@ export const FormWrapper = styled.form`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   ${Wrapper} {
     display: flex;
     margin-right: 24px;
@@ -101,6 +110,26 @@ export const FormWrapper = styled.form`
   }
   button {
     max-width: 120px;
+    margin-right: 16px;
+  }
+  @media (max-width: 600px) {
+    display: block;
+    ${Wrapper} {
+      margin: 0 0 16px 0;
+      & > p {
+        min-width: 50px;
+      }
+      & > div {
+        flex-grow: 1;
+      }
+    }
+    button {
+      max-width: initial;
+      margin: 0 0 16px 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 `;
 

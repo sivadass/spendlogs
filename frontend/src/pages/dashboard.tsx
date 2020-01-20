@@ -15,15 +15,8 @@ const AddExpense = () => {
   const { state, dispatch } = useContext(Store);
   const getRecentExpenses = () => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
-    const to = moment()
-      .endOf("month")
-      .toISOString();
-    const from = moment()
-      .subtract(1, "months")
-      .endOf("day")
-      .toISOString();
     return expenseActions
-      .getExpenses(from, to, 5)
+      .getExpenses("", "", 5)
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,

@@ -22,7 +22,6 @@ const AllCategoriesList = () => {
     return categoryActions
       .getCategories()
       .then((d: any) => {
-        console.log(d);
         dispatch({
           type: actionTypes.CATEGORIES_SUCCESS,
           payload: _get(d, "data", [])
