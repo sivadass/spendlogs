@@ -51,7 +51,7 @@ const SidebarMenu = () => {
               </li>
               <li>
                 <NavLink to="/category">
-                  <Icon name="style" /> My Categories
+                  <Icon name="category" /> My Categories
                 </NavLink>
               </li>
               <li>

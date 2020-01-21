@@ -115,162 +115,90 @@ export const CATEGORY_ICONS: {
   {
     name: "style",
     tags: ["others", "misc", "uncategorized"]
-  }
-];
-export const EXPENSE_CATEGORIES: {
-  label: string;
-  value: string;
-  icon: string;
-  color?: string;
-}[] = [
-  {
-    label: "Dine Out",
-    value: "dine_out",
-    icon: "local_dining",
-    color: "#4099fe"
   },
   {
-    label: "Taxes",
-    value: "taxes",
-    icon: "receipt",
-    color: "#4099ff"
+    name: "security",
+    tags: ["protection", "safety", "security", "shield"]
   },
   {
-    label: "Kids",
-    value: "kids",
-    icon: "child_friendly",
-    color: "#4099ff"
+    name: "toys",
+    tags: ["toys", "kids", "children", "baby"]
   },
   {
-    label: "Pets",
-    value: "pets",
-    icon: "pets",
-    color: "#4099ff"
+    name: "atm",
+    tags: ["atm", "cash", "withdraw", "money", "amount"]
   },
   {
-    label: "Travel",
-    value: "travel",
-    icon: "commute",
-    color: "#4099ff"
+    name: "flight",
+    tags: ["flight", "airways", "travel"]
   },
   {
-    label: "Electricity",
-    value: "electricity",
-    icon: "power",
-    color: "#4099ff"
+    name: "local_taxi",
+    tags: ["car", "polo", "sedan", "hatchback", "suv"]
   },
   {
-    label: "Milk",
-    value: "milk",
-    icon: "local_cafe",
-    color: "#4099ff"
+    name: "hotel",
+    tags: ["oyo", "hotel", "pg", "hostel", "paying", "guest", "rent", "tolet"]
   },
   {
-    label: "Water",
-    value: "water",
-    icon: "local_drink",
-    color: "#4099ff"
+    name: "local_bar",
+    tags: ["juice", "drinks", "beer", "brandy", "wine", "whisky"]
   },
   {
-    label: "Fruits & Vegetables",
-    value: "fruits_and_vegetables",
-    icon: "shopping_basket",
-    color: "#4099ff"
+    name: "local_gas_station",
+    tags: ["petrol", "diesel", "gas", "lpg", "fuel"]
   },
   {
-    label: "Groceries",
-    value: "groceries",
-    icon: "store",
-    color: "#4099ff"
+    name: "ev_station",
+    tags: ["fuel", "diesel", "gas", "lpg", "petrol", "electric", "charging"]
   },
   {
-    label: "Transportation & Auto",
-    value: "transportation_and_auto",
-    icon: "motorcycle",
-    color: "#4099ff"
+    name: "directions_bus",
+    tags: ["bus", "travel", "pass", "transport", "commute"]
   },
   {
-    label: "Entertainment",
-    value: "entertainment",
-    icon: "local_movies",
-    color: "#4099ff"
+    name: "train",
+    tags: ["train", "travel", "pass", "transport", "commute"]
   },
   {
-    label: "Medical",
-    value: "medical",
-    icon: "local_hospital",
-    color: "#4099ff"
+    name: "local_shipping",
+    tags: ["van", "moving", "packers", "courier", "movers"]
   },
   {
-    label: "Gym",
-    value: "gym",
-    icon: "fitness_center",
-    color: "#4099ff"
+    name: "school",
+    tags: [
+      "school",
+      "college",
+      "fees",
+      "education",
+      "study",
+      "course",
+      "learning",
+      "books"
+    ]
   },
   {
-    label: "Snacks",
-    value: "snacks",
-    icon: "fastfood",
-    color: "#4099ff"
+    name: "sports_esports",
+    tags: ["sports", "gaming", "game", "kids", "children"]
   },
   {
-    label: "Shopping",
-    value: "shopping",
-    icon: "local_grocery_store",
-    color: "#4099ff"
+    name: "star",
+    tags: ["uncategorized", "important", "gift"]
   },
   {
-    label: "Gifts & Donations",
-    value: "gifts_and_donations",
-    icon: "local_florist",
-    color: "#4099ff"
+    name: "smoking_rooms",
+    tags: ["smoking", "cigarette", "cigar"]
   },
   {
-    label: "LPG Gas",
-    value: "lpg_gas",
-    icon: "whatshot",
-    color: "#4099ff"
+    name: "local_play",
+    tags: ["event", "drama", "ticket", "booking", "cinema"]
   },
   {
-    label: "Meats & Fishes",
-    value: "meats_and_fishes",
-    icon: "kitchen",
-    color: "#4099ff"
+    name: "local_play",
+    tags: ["event", "drama", "ticket", "booking", "cinema"]
   },
   {
-    label: "Investments",
-    value: "investments",
-    icon: "people",
-    color: "#4099ff"
-  },
-  {
-    label: "Internet",
-    value: "internet",
-    icon: "public",
-    color: "#4099ff"
-  },
-  {
-    label: "Mobile",
-    value: "mobile",
-    icon: "phone_iphone",
-    color: "#4099ff"
-  },
-  {
-    label: "Services & Maintenance",
-    value: "services_and_maintenance",
-    icon: "ac_unit",
-    color: "#4099ff"
-  },
-  {
-    label: "Spa & Parlour",
-    value: "spa_and_parlour",
-    icon: "spa",
-    color: "#4099ff"
-  },
-  {
-    label: "Misc",
-    value: "misc",
-    icon: "style",
-    color: "#4099ff"
+    name: "local_play",
+    tags: ["event", "drama", "ticket", "booking", "cinema"]
   }
 ];
