@@ -192,13 +192,72 @@ export const CATEGORY_ICONS: {
   {
     name: "local_play",
     tags: ["event", "drama", "ticket", "booking", "cinema"]
+  }
+];
+export const LANGUAGES = [
+  {
+    label: "English US",
+    value: "en-US"
   },
   {
-    name: "local_play",
-    tags: ["event", "drama", "ticket", "booking", "cinema"]
+    label: "English UK",
+    value: "en-UK"
   },
   {
-    name: "local_play",
-    tags: ["event", "drama", "ticket", "booking", "cinema"]
+    label: "English IN",
+    value: "en-In"
+  }
+];
+
+// Getting 30 Most used currencies from the link below:
+// https://fastspring.com/blog/how-to-format-30-currencies-from-countries-all-over-the-world/
+export const CURRENCIES = [
+  {
+    label: "$ USD - United States",
+    value: "USD"
+  },
+  {
+    label: "€ EUR - European Union",
+    value: "EUR"
+  },
+  {
+    label: "￥ JPY - Japan",
+    value: "JPY"
+  },
+  {
+    label: "₹ INR - India",
+    value: "INR"
+  },
+  {
+    label: "￥ CNY - China",
+    value: "CNY"
+  },
+  {
+    label: "$ CAD - Canada",
+    value: "CAD"
+  },
+  {
+    label: "$ AUD - Australia",
+    value: "AUD"
+  },
+  {
+    label: "$ ARS - Argentina",
+    value: "ARS"
+  },
+  {
+    label: "R$ BRS - Brazilian",
+    value: "BRS"
+  },
+  {
+    label: "$ COP - Columbia",
+    value: "COP"
+  },
+  {
+    label: "Kč CZK - Czech Republic",
+    value: "CZK"
+  },
+  {
+    label: "kr. DKK - Denmark",
+    value: "DKK"
   }
 ];

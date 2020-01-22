@@ -5,16 +5,22 @@ export const getCategoryOptions = (categories: any) => {
   }));
 };
 
-export const formatAmount = (price: number) => {
-  const priceString = price.toString();
-  let lastThree = priceString.substring(priceString.length - 3);
-  const otherNumbers = priceString.substring(0, priceString.length - 3);
-  if (otherNumbers !== "") {
-    lastThree = "," + lastThree;
-  }
-  const result =
-    "₹ " + otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-  return result;
+export const formatAmount = (
+  price: number,
+  compact: boolean = false
+): string => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+    ...(compact &&
+      Math.floor(price).toString().length >= 6 && {
+        // @ts-ignore
+        notation: "compact",
+        compactDisplay: "short"
+      })
+  }).format(price);
 };
 
 export const transformImageURL = (url: string) => {

@@ -30,6 +30,9 @@ export const FixedContainer = styled.div<{ padding?: string }>`
   max-width: 1200px;
   margin: 0 auto 32px auto;
   padding: ${({ padding }) => (padding ? padding : "0 32px")};
+  @media (max-width: 480px) {
+    padding: 0 16px;
+  }
 `;
 export const PageTitle = styled.h3`
   margin: 16px 0 24px 0;

@@ -62,7 +62,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                     <h6>{_get(expense, "payee", "")}</h6>
                     <p>
                       <span>
-                        {moment(expense.paidOn).format("h:mm a, MMM D")}
+                        {moment(expense.paidOn).format("MMM D, h:mm a")}
                       </span>
                       <span>
                         {_get(expense, "category.name", "Uncategorized")}
@@ -74,7 +74,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                   <p>{expense.comment}</p>
                 </ExpenseDescription>
                 <ExpenseAmount>
-                  <h4>{formatAmount(expense.amount)}</h4>
+                  <h4>{formatAmount(expense.amount, true)}</h4>
                 </ExpenseAmount>
               </Link>
             </ExpenseListItem>
@@ -175,7 +175,7 @@ const ExpenseAmount = styled.div`
     margin-left: 16px;
   }
   @media (max-width: 480px) {
-    width: 120px;
+    width: 78px;
     h4 {
       font-size: 16px;
     }

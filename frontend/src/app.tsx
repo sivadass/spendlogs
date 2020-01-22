@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Settings from "./pages/settings";
 import Verify from "./pages/verify";
 import ForgotPassword from "./pages/forgot-password";
 import UpdatePassword from "./pages/update-password";
@@ -51,6 +52,9 @@ function App() {
               </Route>
               <PrivateRoute path="/" exact>
                 <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path="/settings" exact>
+                <Settings />
               </PrivateRoute>
               <PrivateRoute path="/expense" exact>
                 <ExpenseList />

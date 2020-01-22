@@ -54,7 +54,7 @@ const AddExpense = () => {
           <KPIItem>
             <Wrapper>
               <Icon name="account_balance_wallet" />
-              <h2>{formatAmount(totalAmount)}</h2>
+              <h2>{formatAmount(totalAmount, true)}</h2>
               <p>Spent This Month</p>
             </Wrapper>
           </KPIItem>

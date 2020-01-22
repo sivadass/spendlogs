@@ -55,6 +55,11 @@ const SidebarMenu = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/settings">
+                  <Icon name="tune" /> Settings
+                </NavLink>
+              </li>
+              <li>
                 <a href="#" onClick={(e: any) => logout(e)}>
                   <Icon name="exit_to_app" /> Logout
                 </a>
