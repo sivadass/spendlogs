@@ -10,7 +10,7 @@ import {
   PageActions
 } from "../styled/common";
 import Icon from "../components/core/icon";
-import { expenseActions, actionTypes } from "../store/actions";
+import { expenseActions, actionTypes, authActions } from "../store/actions";
 import Spinner from "../components/core/form-controls/spinner";
 import { Button } from "../components/core";
 import BreadCrumbs from "../components/breadcrumbs";
@@ -19,59 +19,26 @@ import SettingsForm from "../components/form/settings";
 type IProps = RouteProps;
 
 const Settings: React.FC<IProps> = () => {
-  let { id = "" } = useParams();
-  let history = useHistory();
   const { state, dispatch } = useContext(Store);
-  const getDetails = () => {
-    dispatch({ type: actionTypes.EXPENSE_DETAILS_REQUEST, payload: {} });
-    return expenseActions
-      .getExpenseDetails(id)
+
+  const updateProfile = (values: any) => {
+    dispatch({ type: actionTypes.UPDATE_PROFILE_REQUEST, payload: {} });
+    return authActions
+      .updateProfile(values)
       .then((d: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DETAILS_SUCCESS,
+          type: actionTypes.UPDATE_PROFILE_SUCCESS,
           payload: _get(d, "data", {})
         });
       })
       .catch((err: any) => {
         dispatch({
-          type: actionTypes.EXPENSE_DETAILS_FAILURE,
-          payload: err.message
-        });
-      });
-  };
-  const deleteExpense = () => {
-    dispatch({ type: actionTypes.EXPENSE_DELETE_REQUEST, payload: {} });
-    return expenseActions
-      .deleteExpense(id)
-      .then((d: any) => {
-        dispatch({
-          type: actionTypes.EXPENSE_DELETE_SUCCESS,
-          payload: _get(d, "data", {})
-        });
-        history.push(`/expense`);
-      })
-      .catch((err: any) => {
-        dispatch({
-          type: actionTypes.EXPENSE_DELETE_FAILURE,
+          type: actionTypes.UPDATE_PROFILE_FAILURE,
           payload: err.message
         });
       });
   };
 
-  const goToEdit = () => {
-    history.push(`/expense/${id}/edit`);
-  };
-  useEffect(() => {
-    getDetails();
-  }, [id]);
-
-  if (_get(state, "expense.details.loading")) {
-    return (
-      <FixedContainer>
-        <Spinner block />
-      </FixedContainer>
-    );
-  }
   return (
     <FixedContainer>
       <PageHeader>
@@ -86,10 +53,12 @@ const Settings: React.FC<IProps> = () => {
       <Wrapper>
         <SettingsForm
           initialValues={{
-            name: "Sivadass",
-            email: "hi@123.com"
+            name: _get(state, "auth.user.name", ""),
+            email: _get(state, "auth.user.email", ""),
+            language: _get(state, "auth.user.language", ""),
+            currency: _get(state, "auth.user.currency", "")
           }}
-          handleFormSubmit={() => {}}
+          handleFormSubmit={(val: any) => updateProfile(val)}
         />
       </Wrapper>
     </FixedContainer>

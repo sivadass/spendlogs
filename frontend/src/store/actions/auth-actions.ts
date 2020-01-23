@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import actionTypes from "./action-types";
-import { postJSON, getJSON } from "../../utils/axios";
+import { postJSON, getJSON, putJSON } from "../../utils/axios";
 
 const login = (values: {}) =>
   postJSON("/user/login", values)
@@ -48,6 +48,16 @@ const updatePassword = (values: any) => {
     });
 };
 
+const updateProfile = (values: any) => {
+  return putJSON("/user/profile", values)
+    .then(d => {
+      return d;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
+
 const verifyEmail = (token: string) => {
   return getJSON(`/user/verifyEmail?token=${token}`)
     .then(d => {
@@ -67,6 +77,7 @@ export default {
   register,
   forgotPassword,
   updatePassword,
+  updateProfile,
   verifyEmail,
   logout
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import _get from "lodash/get";
@@ -8,6 +8,7 @@ import Spinner from "./core/form-controls/spinner";
 import EmptyState from "./empty-state";
 import { Wrapper } from "../styled/common";
 import { formatAmount } from "../utils/common";
+import { Store } from "../store";
 
 export interface ExpenseItemData {
   id: string;
@@ -31,6 +32,7 @@ export interface ExpenseListProps {
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
+  const { state, dispatch } = useContext(Store);
   if (loading) {
     return (
       <Wrapper>
@@ -74,7 +76,14 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                   <p>{expense.comment}</p>
                 </ExpenseDescription>
                 <ExpenseAmount>
-                  <h4>{formatAmount(expense.amount, true)}</h4>
+                  <h4>
+                    {formatAmount(
+                      expense.amount,
+                      _get(state, "auth.user.language", ""),
+                      _get(state, "auth.user.currency", ""),
+                      true
+                    )}
+                  </h4>
                 </ExpenseAmount>
               </Link>
             </ExpenseListItem>

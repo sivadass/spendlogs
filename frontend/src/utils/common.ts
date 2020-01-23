@@ -7,11 +7,13 @@ export const getCategoryOptions = (categories: any) => {
 
 export const formatAmount = (
   price: number,
+  language: string = "en-US",
+  currency: string = "USD",
   compact: boolean = false
 ): string => {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat(language, {
     style: "currency",
-    currency: "INR",
+    currency: currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
     ...(compact &&

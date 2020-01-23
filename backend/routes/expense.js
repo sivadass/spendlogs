@@ -7,19 +7,21 @@ const verify = require("./verifyToken");
 router.post("/", verify, async (req, res) => {
   const { error } = expenseValidation(req.body);
   if (error) {
+    console.log("e1", error);
     return res.status(400).send(error.details[0].message);
   }
   const post = new Expense({
     amount: req.body.amount,
     payee: req.body.payee,
     categoryId: req.body.categoryId,
-    comment: req.body.comment,
+    // comment: req.body.comment,
     owner: req.user._id
   });
   try {
     const savedPost = await post.save();
     res.send(savedPost);
   } catch (err) {
+    console.log("e2", err);
     res.status(400).send(err);
   }
 });

@@ -32,6 +32,8 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
       validationSchema={SettingsSchema}
       onSubmit={(values, { setSubmitting }) => {
         setError("");
+        delete values.email;
+        console.log(values);
         return handleFormSubmit(values)
           .then((d: any) => {
             setSubmitting(false);
@@ -39,7 +41,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
           })
           .catch((err: any) => {
             setSubmitting(false);
-            setError(err);
+            setError("Some error");
           });
       }}
     >
@@ -69,7 +71,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
           />
           <Field
             placeholder="Currency"
-            name="language"
+            name="currency"
             label="Currency"
             component={FormControl.Select}
             options={CURRENCIES}

@@ -5,6 +5,7 @@ const User = require("../model/User");
 const { registerValidation, loginValidation } = require("../validation");
 const sendEmail = require("../utils/sendMail");
 const messageWithActionTemplate = require("../emails/messageWithAction");
+const verify = require("./verifyToken");
 
 router.post("/register", async (req, res) => {
   const { error } = registerValidation(req.body);
@@ -69,7 +70,14 @@ router.post("/login", async (req, res) => {
   if (!validPass) return res.status(400).send("Incorrect email/password!");
 
   const token = jwt.sign(
-    { _id: user._id, role: user.role, email: user.email, name: user.name },
+    {
+      _id: user._id,
+      role: user.role,
+      email: user.email,
+      name: user.name,
+      language: user.language,
+      currency: user.currency
+    },
     process.env.TOKEN_SECRET,
     {
       expiresIn: "24h"
@@ -187,6 +195,31 @@ router.post("/updatePassword", async (req, res) => {
       res.status(410).send("Token is expired!");
     }
   } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.put("/profile", verify, async (req, res) => {
+  try {
+    User.findOneAndUpdate(
+      {
+        _id: req.user._id
+      },
+      {
+        name: req.body.name,
+        language: req.body.language,
+        currency: req.body.currency
+      },
+      { upsert: true, new: true },
+      (err, data) => {
+        if (err) {
+          return res.send(err);
+        }
+        return res.send(data);
+      }
+    );
+  } catch (err) {
+    console.log(err);
     res.status(400).send(err);
   }
 });

@@ -201,11 +201,51 @@ export const LANGUAGES = [
   },
   {
     label: "English UK",
-    value: "en-UK"
+    value: "en-GB"
+  },
+  {
+    label: "English CA",
+    value: "en-CA"
   },
   {
     label: "English IN",
-    value: "en-In"
+    value: "en-IN"
+  },
+  {
+    label: "Russian",
+    value: "ru-RU"
+  },
+  {
+    label: "French",
+    value: "fr-FR"
+  },
+  {
+    label: "Spanish ES",
+    value: "es-ES"
+  },
+  {
+    label: "Spanish MX",
+    value: "es-MX"
+  },
+  {
+    label: "German",
+    value: "de-DE"
+  },
+  {
+    label: "Portuguese",
+    value: "pt-BR"
+  },
+  {
+    label: "Italian",
+    value: "it-IT"
+  },
+  {
+    label: "Japanese",
+    value: "ja-JP"
+  },
+  {
+    label: "Chinese",
+    value: "zh-CN"
   }
 ];
 
@@ -259,5 +299,93 @@ export const CURRENCIES = [
   {
     label: "kr. DKK - Denmark",
     value: "DKK"
+  },
+  {
+    label: "HK$ HKD - HongKong",
+    value: "HKD"
+  },
+  {
+    label: "Ft HUF - Hungary",
+    value: "HUF"
+  },
+  {
+    label: "₪ ILS - Israel",
+    value: "ILS"
+  },
+  {
+    label: "₩ KRW- Republic of Korea",
+    value: "KRW"
+  },
+  {
+    label: "RM MYR- Malaysia",
+    value: "MYR"
+  },
+  {
+    label: "$ MXN - Mexico",
+    value: "MXN"
+  },
+  {
+    label: ".د.م. MAD - Morocco",
+    value: "MAD"
+  },
+  {
+    label: "$ NZD - New Zealand",
+    value: "NZD"
+  },
+  {
+    label: "kr NOK - Norway",
+    value: "NOK"
+  },
+  {
+    label: "₱ PHP - Philippines",
+    value: "PHP"
+  },
+  {
+    label: "zł PLN - Poland",
+    value: "PLN"
+  },
+  {
+    label: "p. RUB - Russian Federation",
+    value: "RUB"
+  },
+  {
+    label: " ﷼ SAR - Saudi Arabia",
+    value: "SAR"
+  },
+  {
+    label: "$ SGD - Singapore",
+    value: "SGD"
+  },
+  {
+    label: "$ ZAR - South Africa",
+    value: "ZAR"
+  },
+  {
+    label: "kr SEK - Sweden",
+    value: "SEK"
+  },
+  {
+    label: "fr. CHF - Switzerland",
+    value: "CHF"
+  },
+  {
+    label: "元 TWD - Taiwan",
+    value: "TWD"
+  },
+  {
+    label: "฿ THB - Thailand",
+    value: "THB"
+  },
+  {
+    label: "₺ TRY - Turkey",
+    value: "TRY"
+  },
+  {
+    label: "£ GBP - UK/Great Britain",
+    value: "GBP"
+  },
+  {
+    label: "₫ VND - Vietnam",
+    value: "VND"
   }
 ];

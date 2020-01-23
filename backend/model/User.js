@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema(
       min: 6,
       max: 1024
     },
+    language: {
+      type: String,
+      default: "en-US"
+    },
+    currency: {
+      type: String,
+      default: "USD"
+    },
     role: {
       type: String,
       enum: ["admin", "user"],
