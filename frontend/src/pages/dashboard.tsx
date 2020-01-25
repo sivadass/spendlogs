@@ -29,11 +29,11 @@ const AddExpense = () => {
   const getRecentExpenses = () => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
-      .getExpenses("", "", 5)
+      .getExpenses("", "")
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,
-          payload: _get(d, "data", [])
+          payload: _get(d, "data", {})
         });
       })
       .catch(err => {

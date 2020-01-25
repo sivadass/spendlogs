@@ -27,7 +27,9 @@ router.post("/", verify, async (req, res) => {
 });
 
 router.get("/", verify, async (req, res) => {
-  const { from, to, perPage = 0 } = req.query;
+  const { from, to } = req.query;
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const limit = req.query.limit ? parseInt(req.query.limit) : 5;
   let query = {};
   if (from && to) {
     query.paidOn = { $gte: to, $lte: from };
@@ -36,11 +38,13 @@ router.get("/", verify, async (req, res) => {
     query.owner = req.user._id;
   }
   try {
-    const allExpenses = await Expense.find(query)
+    const total = await Expense.find(query).count();
+    const data = await Expense.find(query)
+      .skip((page - 1) * limit)
+      .limit(limit)
       .sort("-paidOn")
-      .limit(Number(perPage))
       .populate("category", "name icon -_id");
-    res.send(allExpenses);
+    res.send({ data, total });
   } catch (err) {
     res.status(400).send(err);
   }

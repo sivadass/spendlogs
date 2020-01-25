@@ -41,7 +41,7 @@ const AllExpenseList = () => {
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,
-          payload: _get(d, "data", [])
+          payload: _get(d, "data", {})
         });
       })
       .catch(err => {

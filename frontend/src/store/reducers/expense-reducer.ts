@@ -15,7 +15,7 @@ export const expenseInitialState = {
     error: null,
     data: [],
     pageNumber: 1,
-    totalPages: 1,
+    total: 1,
     filters: {
       from,
       to
@@ -48,7 +48,8 @@ function reducer(state: any, action: any) {
           ...state.list,
           loading: false,
           error: null,
-          data: action.payload
+          data: action.payload.data,
+          total: action.payload.total
         }
       };
     case actionTypes.EXPENSES_FAILURE:

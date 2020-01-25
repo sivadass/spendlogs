@@ -17,9 +17,10 @@ const addExpense = (values: {}) => {
 const getExpenses = (
   from: string = "",
   to: string = "",
-  perPage: number = 0
+  page: number = 1,
+  limit: number = 5
 ) => {
-  return getJSON(`/expense?from=${from}&to=${to}&perPage=${perPage}`)
+  return getJSON(`/expense?from=${from}&to=${to}&page=${page}&limit=${limit}`)
     .then(d => {
       return d;
     })
