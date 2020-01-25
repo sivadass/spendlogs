@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import _get from "lodash/get";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import ExpenseList from "../../components/expense-list";
 import ExpenseFilterForm from "../../components/form/expense-filter";
 import BreadCrumbs from "../../components/breadcrumbs";
 import { Button, Icon } from "../../components/core";
+import Pagination from "../../components/pagination";
 import {
   FixedContainer,
   PageHeader,
@@ -18,6 +19,7 @@ import {
 
 const AllExpenseList = () => {
   const { state, dispatch } = useContext(Store);
+  const [page, setPage] = useState(1);
   const fromDate = _get(
     state,
     "expense.list.filters.to",
@@ -34,10 +36,15 @@ const AllExpenseList = () => {
       .format()
   );
   let history = useHistory();
-  const getExpenses = (from: string, to: string) => {
+  const getExpenses = (
+    from: string,
+    to: string,
+    page: number = 1,
+    limit: number = 10
+  ) => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
-      .getExpenses(from, to)
+      .getExpenses(from, to, page, limit)
       .then((d: any) => {
         dispatch({
           type: actionTypes.EXPENSES_SUCCESS,
@@ -51,8 +58,13 @@ const AllExpenseList = () => {
         });
       });
   };
+
+  const handlePagination = (p: number) => {
+    setPage(p);
+    getExpenses("", "", p, 10);
+  };
   useEffect(() => {
-    getExpenses(fromDate, toDate);
+    getExpenses(fromDate, toDate, 1, 10);
   }, [fromDate, toDate]);
   const goToAddNew = () => {
     history.push(`/expense/add`);
@@ -80,6 +92,12 @@ const AllExpenseList = () => {
         <ExpenseList
           data={_get(state, "expense.list.data")}
           loading={_get(state, "expense.list.loading")}
+        />
+        <Pagination
+          total={_get(state, "expense.list.total", 0)}
+          page={page}
+          limit={5}
+          onClick={handlePagination}
         />
         <FloatingActions>
           <ul>
