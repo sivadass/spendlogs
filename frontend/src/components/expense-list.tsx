@@ -79,8 +79,8 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ data, loading = false }) => {
                   <h4>
                     {formatAmount(
                       expense.amount,
-                      _get(state, "auth.user.language", ""),
-                      _get(state, "auth.user.currency", ""),
+                      _get(state, "auth.user.language", "en-US"),
+                      _get(state, "auth.user.currency", "USD"),
                       true
                     )}
                   </h4>

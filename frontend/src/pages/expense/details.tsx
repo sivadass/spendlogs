@@ -117,7 +117,12 @@ const ExpenseDetails: React.FC<IProps> = () => {
       </PageHeader>
       <Wrapper>
         <Amount>
-          {formatAmount(_get(state, "expense.details.data.amount", 0))}
+          {formatAmount(
+            _get(state, "expense.details.data.amount", 0),
+            _get(state, "auth.user.language", "en-US"),
+            _get(state, "auth.user.currency", "USD"),
+            false
+          )}
         </Amount>
         <MediaObject>
           <MediaObjectFigure>
