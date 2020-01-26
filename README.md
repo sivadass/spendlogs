@@ -4,6 +4,18 @@ Your Personal Expense Manager
 
 [https://spendlogs.ml](https://spendlogs.ml)
 
+### Preview
+
+![Dashboard](/branding-assets/dashboard.png)
+
+![Expense List](/branding-assets/expense_list.png)
+
+![Add Expense](/branding-assets/expense_add.png)
+
+![Category List](/branding-assets/category_list.png)
+
+![Add Category](/branding-assets/category_add.png)
+
 ### Tech Stack (MERN)
 
 - MongoDB
