@@ -59,12 +59,12 @@ router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Invalid email/password!");
 
-  if (user && !user.activated)
-    return res
-      .status(400)
-      .send(
-        "Sorry! Account not activated. Please complete email verification."
-      );
+  // if (user && !user.activated)
+  //   return res
+  //     .status(400)
+  //     .send(
+  //       "Sorry! Account not activated. Please complete email verification."
+  //     );
 
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if (!validPass) return res.status(400).send("Incorrect email/password!");

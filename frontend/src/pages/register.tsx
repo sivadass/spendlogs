@@ -98,7 +98,7 @@ const Register = () => {
                 </Button>
                 {success && (
                   <Alert
-                    message="Please check your inbox for confirmation email with verification code!"
+                    message="Success!, you can login now!"
                     type="success"
                   />
                 )}

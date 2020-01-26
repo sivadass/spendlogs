@@ -24,7 +24,6 @@ function reducer(state: any, action: any) {
     case actionTypes.LOGOUT_SUCCESS:
       return { ...state, isAuthenticated: false, user: null };
     case actionTypes.UPDATE_PROFILE_SUCCESS:
-      console.log("payload in reducer", action.payload);
       return {
         ...state,
         user: {
