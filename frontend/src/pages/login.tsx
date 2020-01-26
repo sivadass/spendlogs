@@ -83,6 +83,9 @@ const Login = () => {
                 <AuthNavLinks>
                   <Link to="forgot-password">Forgot Password?</Link>
                 </AuthNavLinks>
+                <AuthNavLinks>
+                  Or New here? <Link to="register">Signup Now!</Link>
+                </AuthNavLinks>
                 {error && <Alert type="error" message={error} />}
               </form>
             )}
