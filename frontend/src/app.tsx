@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import _get from "lodash/get";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import ScrollToTop from "./components/scroll-to-top";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Settings from "./pages/settings";
@@ -29,6 +30,7 @@ function App() {
   return (
     <Router>
       <GlobalStyles />
+      <ScrollToTop />
       <Wrapper>
         <SidebarMenu />
         <Wrapper>

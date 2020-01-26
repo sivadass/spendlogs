@@ -14,7 +14,7 @@ router.post("/", verify, async (req, res) => {
     amount: req.body.amount,
     payee: req.body.payee,
     categoryId: req.body.categoryId,
-    // comment: req.body.comment,
+    comment: req.body.comment,
     owner: req.user._id
   });
   try {
