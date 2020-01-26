@@ -14,10 +14,13 @@ const Pagination: React.FC<PaginationProps> = ({
   page,
   onClick
 }) => {
-  const pages = new Array(Math.trunc(total / limit))
+  const totalPagesCount = Math.ceil(total / limit);
+  const pages = new Array(totalPagesCount)
     .fill(1)
     .map((v: any, index: number) => v * (index + 1));
-  console.log(pages);
+  if (totalPagesCount <= 1) {
+    return null;
+  }
   return (
     <Container>
       <ul>

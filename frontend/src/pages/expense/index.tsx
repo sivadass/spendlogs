@@ -17,6 +17,8 @@ import {
   Wrapper
 } from "../../styled/common";
 
+const RESULTS_PER_PAGE = 10;
+
 const AllExpenseList = () => {
   const { state, dispatch } = useContext(Store);
   const [page, setPage] = useState(1);
@@ -40,7 +42,7 @@ const AllExpenseList = () => {
     from: string,
     to: string,
     page: number = 1,
-    limit: number = 10
+    limit: number
   ) => {
     dispatch({ type: actionTypes.EXPENSES_REQUEST, payload: {} });
     return expenseActions
@@ -61,10 +63,10 @@ const AllExpenseList = () => {
 
   const handlePagination = (p: number) => {
     setPage(p);
-    getExpenses("", "", p, 10);
+    getExpenses("", "", p, RESULTS_PER_PAGE);
   };
   useEffect(() => {
-    getExpenses(fromDate, toDate, 1, 10);
+    getExpenses(fromDate, toDate, 1, RESULTS_PER_PAGE);
   }, [fromDate, toDate]);
   const goToAddNew = () => {
     history.push(`/expense/add`);
@@ -96,7 +98,7 @@ const AllExpenseList = () => {
         <Pagination
           total={_get(state, "expense.list.total", 0)}
           page={page}
-          limit={5}
+          limit={10}
           onClick={handlePagination}
         />
         <FloatingActions>
