@@ -5,6 +5,7 @@ const User = require("../model/User");
 const { registerValidation, loginValidation } = require("../validation");
 const sendEmail = require("../utils/sendMail");
 const messageWithActionTemplate = require("../emails/messageWithAction");
+const plainMessageTemplate = require("../emails/plainMessage");
 const verify = require("./verifyToken");
 
 router.post("/register", async (req, res) => {
@@ -33,12 +34,11 @@ router.post("/register", async (req, res) => {
     const msg = {
       to: `${user.name} <${user.email}>`,
       from: `Spendlogs <no-reply@spendlogs.ml>`,
-      subject: "Email Verification",
-      html: messageWithActionTemplate(
+      subject: "Welcome to SpendLogs",
+      html: plainMessageTemplate(
         `Hi ${user.name},`,
-        `Thank you for signing up with <b>Spendlogs</b>. <br/>Please verify your email address by clicking the button below to complete the registration.`,
-        `https://spendlogs.ml/verify?token=${token}`,
-        "Verify my email now!"
+        `Thank you for signing up with <b>Spendlogs</b>. <br/>Please verify your email address by clicking the link below to complete the registration.`,
+        `https://spendlogs.ml/verify?token=${token}`
       )
     };
     try {
