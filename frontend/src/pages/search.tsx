@@ -7,6 +7,7 @@ const Search = () => {
       <PageTitle>Search</PageTitle>
       <Wrapper>
         <input placeholder="Search for Expenses, Bills, etc" />
+        <h3>Page under Construction</h3>
       </Wrapper>
     </FixedContainer>
   );
